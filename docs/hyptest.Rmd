@@ -1,0 +1,246 @@
+---
+title: "Hypothesis testing"
+description: |
+  Statistical Inference II
+author:
+  - name: Aldo Solari
+    url: https://aldosolari.github.io/
+    affiliation: DEMS
+    affiliation_url: http://dems.unimib.it/
+date: "`r Sys.Date()`"
+output:
+  radix::radix_article:
+    toc: true
+    toc_depth: 1
+bibliography: hyptest.bib
+---
+
+# Darwin data
+
+**Reference**: @davison2003statistical, Example 1.1
+
+Charles Darwin collected data over a period of years on the heights of Zea mays plants. The plants were descended from the same parents and planted at the same time. 
+
+Half of the plants were *self-fertilized*, and half were
+*cross-fertilized*, and the purpose of the experiment was to compare their *heights*. To this end Darwin planted them in pairs in different pots.
+
+
+```{r}
+library(SMPracticals)
+data(darwin)
+darwin_pair = data.frame(Pot = darwin[darwin$type=="Cross",1],
+           Cross = darwin[darwin$type=="Cross",4],
+           Self = darwin[darwin$type=="Self",4])
+darwin_pair
+```
+
+Cross-fertilized plants seem higher than self-fertilized ones, with averages:
+
+```{r}
+aggregate(height~type, data=darwin, FUN="mean")
+```
+
+Questions arise:
+
+1. Is the difference in heights too large to have occurred by chance?
+
+2. Can we estimate the height increase, and assess the uncertainty of our estimate?
+
+
+### Galton model
+
+Galton considered a model where the height of a self-fertilized plant is
+$$
+Y = \mu + \sigma \varepsilon
+$$
+and of a cross-fertilized plant is
+$$
+X = \mu + \theta + \sigma \epsilon
+$$
+where $\mu$, $\theta$ and $\sigma$ are unknown parameters, and $\varepsilon$ and $\epsilon$ are independent random variables with mean zero and unit variance. 
+
+Observations from self-fertilized plants $Y_1,\ldots,Y_{15}$ are i.i.d. as $Y$, and observations from cross-fertilized plants $X_1,\ldots,X_{15}$ are i.i.d. as $X$. 
+
+
+Under this model the questions translate to:
+
+1. Is the average height increase $\theta \neq 0$?
+2. Can we estimate $\theta$, and assess the uncertainty of our estimate?
+
+The comparison between groups can be visualized by a boxpot:
+
+```{r}
+library(ggpubr)
+ p <- ggboxplot(darwin, x = "type", y = "height",
+                color = "type", add = "jitter")
+ p
+```
+
+
+If we assume that $\varepsilon$ and $\epsilon$ have a  $N(0,1)$ distribution, we can use 
+
+```{r}
+t.test(height ~ type, data=darwin, var.equal=TRUE)
+
+```
+
+
+
+### Fisher model
+
+In order to minimize differences in humidity, growing conditions, and lighting, Darwin had taken the trouble to plant the seeds in pairs in the same pots.
+
+Comparison of different pairs would therefore involve
+these differences, which are not of interest, whereas
+*comparison within pairs* would depend only on the type of fertilization. 
+
+Fisher considered the model
+$$Y_i = \mu_j + \sigma \varepsilon_{i}, \quad X_i = \mu_i + \theta + \sigma \epsilon_{i}, \quad i = 1,\ldots,n$$
+
+The parameter $\mu_i$ represents the effects of the planting conditions for the $i$th pair,
+and $\varepsilon_i$ and $\epsilon_i$ are independent random variables with mean zero and unit variance. 
+
+The $\mu_i$ could be eliminated by using the differences
+$$D_i = X_i - Y_i$$
+which have mean $\theta$ and variance $2\sigma^2$. 
+
+The comparison within pairs can be visualized by the following plot:
+
+```{r}
+ggline(darwin, x = "type", y = "height", group="pair")
+```
+
+
+If we assume that $D_1,\ldots,D_{15}$ are i.i.d. $N(\theta,2\sigma^2)$, we can use 
+
+```{r}
+differences = apply(darwin_pair[,3:2],1,diff)
+t.test(differences)
+```
+
+
+# $p$-values
+
+**Reference**: @davison2003statistical, Section 7.3.1
+
+A scientific theory leads to assertions that are testable using empirical data. One way to investigate the extent to which a theory is supported by the *data* $Y$ is to choose a *test statistic*, $T=t(Y)$, large values of which cast dubts on the theory.
+
+This theory, the *null hypothesis* $H_0$, places restrictions on the distribution of $Y$ and is used to calculate a $p$-value
+$$p_{\mathrm{obs}}=\mathrm{P}_{0}(T \geq t_{\mathrm{obs}})$$
+where $t_{\mathrm{obs}}$ is the value of $T$ actually observed. 
+
+A distribution computed under the assumption that $H_0$ is true is called *null distribution*, and then we use $\mathrm{P}_{0}, \mathrm{E}_0$, $\ldots$ to indicate probability, expectation and so forth. 
+
+
+A hypothesis that completely determines the distribution of $T$ is called *simple*; otherwise is *composite*.
+
+
+### $p$-value null distribution
+
+The $p$-value may be written as $p_{\mathrm{obs}}=1 - F_0(t_{\mathrm{obs}})$, where $F_0$ is the null distribution function of $T$, supposed to be continuous. 
+
+
+One interpretation of $p_{\mathrm{obs}}$ stems from the correponding random variable $P=1-F_0(T)$. 
+For $0 \leq u \leq 1$, its null distribution is *uniform*
+on the unit interval:
+$$\mathrm{P}_{0}(P\leq u)  = \mathrm{P}_{0}(F_0^{-1}(1-u)\leq T) = 1 - F_0(F_0^{-1}(1-u))=u$$
+
+
+### One- and two-sided tests
+
+In general, a $p$-value for a *two-sided test* can be constructed by considering two *one-sided tests*, one for each tail
+$$p^+_{\mathrm{obs}}=\mathrm{P}_{0}(T \geq t_{\mathrm{obs}}), \quad p^-_{\mathrm{obs}}=\mathrm{P}_{0}(T \leq t_{\mathrm{obs}})$$
+and taking the smallest $p$-value multiplied by 2
+$$p_{\mathrm{obs}} = 2\min(p^+_{\mathrm{obs}}, p^-_{\mathrm{obs}})$$
+when the distribution of $T$ is continous. 
+This is because the null distribution of $P = \min(P^+,P^-)$ is uniform on the interval $(0,\frac{1}{2})$, thus the $p$-value is
+$$\mathrm{P}_{0}(P \leq \min(p^+_{\mathrm{obs}}, p^-_{\mathrm{obs}})) = 2\min(p^+_{\mathrm{obs}}, p^-_{\mathrm{obs}})$$
+
+
+### Student $t$ test
+
+Let $Y_1,\ldots,Y_n$ be a Gaussian random sample with mean $\mu$ and variance $\sigma^2$. Suppose that the null hypothesis is $H_0: \mu = \mu_0$ against the alternative hypothesis $H_1:\mu\neq 0$.
+
+The likelihood ratio test statistic is
+$$2\{\max_{\mu,\sigma^2} \ell(\mu,\sigma^2) - \max_{\sigma^2} \ell(\mu_0,\sigma^2) \} = n \log\left\{1 + \frac{T^2}{n-1}\right\}$$
+where 
+$$T = \frac{\bar{Y}- \mu_0}{\sqrt{S^2/n}}$$
+is the Student $t$ statistic, which has a $t_{n-1}$ null distribution. 
+
+Since the likelihood ratio test statistic is a monotone functio of $T^2$, the $p$-value is
+
+$$p_{\mathrm{obs}}=\mathrm{P}_{0}(T^2 \geq t^2_{\mathrm{obs}}) = 2\mathrm{P}(T \geq |t_{\mathrm{obs}}|)$$
+
+### Lack of fit tests
+
+Suppose that the null hypothesis is that the random sample $Y_1,\ldots,Y_n$ is from a known continuous distribution $F(y)$. Then we can compare $F(y)$ with the emprirical distribution function 
+$$\hat{F}(y) = \frac{1}{n}\sum_{i=1}^{n}I\{Y_i\leq y\}$$
+whose mean and variance are $F(y)$ and $[F(y)(1-F(y))]/n$ under $H_0$. 
+
+Under the matched pair model for the Darwin data, we assumed that $D_1,\ldots,D_{15}$ are i.i.d. as $N(\theta, \tau^2)$ where $\tau^2=2\sigma^2$. Because $\theta$ and $\tau^2$ are unknown, we cheat by replacing them with the sample mean and variance  $\hat{\theta}$ and $\hat{\tau}^2$:
+
+
+```{r}
+plot(ecdf(differences), verticals=T, pch=".", main="", ylab="Distribution function", xlab="y")
+curve(pnorm(x, mean=mean(differences), sd=sd(differences)), add=T)
+```
+
+A standard test for $H_0$ is based on the Kolmogorov-Smirnov statistic
+$$T=\sup_{y}|\hat{F}(y) - F(y)|$$
+
+```{r}
+t_obs = ks.test(differences, "pnorm", mean(differences), sd(differences))
+t_obs
+```
+ 
+To compute the $p$-value we can generate $B$ independent sets of data from the null distribution $N(\theta, \tau^2)$, calculating the corresponding statistics $T^{b}$ and
+$$p_{\mathrm{obs}}= \frac{1+\sum_{b=1}^{B} I\{ T^b \geq t_{\mathrm{obs}} \}}{1+B}$$
+
+```{r}
+set.seed(123)
+t_b = sapply(1:1000, function(b)
+ks.test(rnorm(15,mean(differences), sd(differences)),
+  "pnorm", mean(differences), sd(differences))$statistic
+)
+hist(t_b, xlab="T", 50, main="")
+cat("p-value =",(1+sum(t_b >= t_obs$statistic))/(1000+1))
+```
+
+
+
+### Sign test
+
+A random sample $Y_1,\ldots,Y_n$ arises from an unknown
+distribution $F$. The null hypothesis $H_0$ asserts that $F$ has median $\eta$ equal to $\eta_0$, while the alternative is that $\eta > \eta_0$. 
+
+If $\eta = \eta_0$, the probability that $Y$ falls on either side of $\eta_0$ is $1/2$, and if $\eta>\eta_0$, then $\mathrm{P}(Y > \eta_0) > 1/2$. This suggests that we can base a test on $$T = \sum_{i=1}^{n}I\{Y_i > \eta_0\}$$ 
+
+Under $H_0$, $T$ has a binomial distribution with size $n$ and probability $1/2$, so its mean and variance are $n/2$ and $n/4$. The $p$-value is
+
+$$p_{\mathrm{obs}}= \mathrm{P}_0(T \geq t_{\mathrm{obs}}) = \sum_{k=t_{\mathrm{obs}}}^{n} {n \choose k}\frac{1}{2^n} \approx 1 - \Phi\left( \frac{t_{\mathrm{obs}} - n/2}{\sqrt{n/4}}\right)$$
+by normal approximation to the binomial null distribution of $T$. 
+
+Under the matched pair model for the Darwin data, the height differences may be written as
+$$D_i = \theta + \sigma(\varepsilon_i - \epsilon_i)$$
+
+If $\varepsilon_i-\epsilon_i$ is symmetrically distributed around zero, then $D_i$ are symmetrically distributed around $\theta$, while $\theta=0$ under the null hypothesis of no difference between fertilization. 
+
+The sign test statistic takes value $t_{\mathrm{obs}}=13$, with corresponding $p$-value of 
+
+```{r}
+sum(dbinom(13:15, size=15, prob=0.5))
+```
+
+# Neyman-Pearson lemma
+
+### Power
+
+### Neyman-Pearson lemma
+
+### Local power
+
+### Similar tests
+
+
+
+

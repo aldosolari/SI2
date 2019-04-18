@@ -6,7 +6,7 @@ author:
   - name: Aldo Solari
     url: https://aldosolari.github.io/
     affiliation: DEMS
-    affiliation_url: https://www.unimib.it/ateneo/dipartimenti-e-scuole/alla-scoperta-%E2%80%A6/dipartimento-economia-metodi-quantitativi-e-strategie-impresa
+    affiliation_url: http://dems.unimib.it/
 date: "`r Sys.Date()`"
 output:
   radix::radix_article:
@@ -21,7 +21,7 @@ output:
 
 # Schedule
 
-1. **Hypothesis testing**: Darwin data, $p$-values, Neyman-Pearson lemma, link with confidence intervals, interval null hypothesis
+1. **[Hypothesis testing](https://aldosolari.github.io/SI2/hyptest.html)**: Darwin data, $p$-values, Neyman-Pearson lemma, link with confidence intervals, interval null hypothesis
 
 2. **Multiple testing and selective inference**: 
 Replicability crisis, case studies: U.S. economy-politics and jellybeans-acne, error rates: FWER, FDR and FDP
@@ -34,9 +34,6 @@ Replicability crisis, case studies: U.S. economy-politics and jellybeans-acne, e
 
 
 
-# Lecture notes
-
- 
 
 
 
