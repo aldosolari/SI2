@@ -21,7 +21,7 @@ output:
 
 # Schedule
 
-1. **[Hypothesis testing](https://aldosolari.github.io/SI2/hyptest.html)**: Darwin data, $p$-values, Neyman-Pearson lemma, link with confidence intervals, interval null hypothesis
+1. **[Hypothesis testing](https://aldosolari.github.io/SI2/docs/hyptest.html)**: Darwin data, $p$-values, Neyman-Pearson lemma, link with confidence intervals, interval null hypothesis
 
 2. **Multiple testing and selective inference**: 
 Replicability crisis, case studies: U.S. economy-politics and jellybeans-acne, error rates: FWER, FDR and FDP
