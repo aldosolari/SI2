@@ -21,9 +21,9 @@ output:
 
 # Schedule
 
-1. **[Hypothesis testing](https://aldosolari.github.io/SI2/docs/hyptest.html)**: Darwin data, $p$-values, Neyman-Pearson lemma, link with confidence intervals, interval null hypothesis
+1. **[Hypothesis testing](https://aldosolari.github.io/SI2/docs/hyptest.html)**: Darwin data, $p$-values, Neyman-Pearson lemma, Confidence bounds
 
-2. **Multiple testing and selective inference**: 
+2. **[Multiple testing and selective inference](https://aldosolari.github.io/SI2/docs/selinf.html)**: 
 Replicability crisis, case studies: U.S. economy-politics and jellybeans-acne, error rates: FWER, FDR and FDP
 
 3. **Methods for FWER and FDR control**: Golub data, Bonferroni, Holm, Westfall \& Young, Benjamini-Hochberg, confidence interval for selected parameters and false coverage rate
