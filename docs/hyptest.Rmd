@@ -428,7 +428,7 @@ tobs = t.test(differences)$stat
 cat(pf(tobs, df1=1,df2=n-1, ncp=n*Delta^2))
 ```
 
-# Confidence bounds
+# Duality with confidence intervals
 
 **Reference**: @davison2003statistical, Section 7.3.4
 

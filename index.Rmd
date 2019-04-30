@@ -14,17 +14,29 @@ output:
     toc_depth: 1
 ---
 
-
-### Latest announcements
+# Latest announcements
 
 * No news.
 
-# Schedule
+# Calendar
 
-1. **[Hypothesis testing](https://aldosolari.github.io/SI2/docs/hyptest.html)**: Darwin data, $p$-values, Neyman-Pearson lemma, Confidence bounds
+| Date | Hours | Room |
+|------|-------|------|
+| May 2 | 14:00-17:00 | U6-44 |
+| May 3 | 14:00-17:00 | U6-35 |
+| May 8 | 14:00-17:00 | U6-44 |
+| May 9 | 14:00-17:00 | U6-18 |
+| May 10 | 14:00-17:00 | U6-21 |
 
-2. **[Multiple testing and selective inference](https://aldosolari.github.io/SI2/docs/selinf.html)**: 
-Replicability crisis, case studies: U.S. economy-politics and jellybeans-acne, error rates: FWER, FDR and FDP
+# Program
+
+1. [**Hypothesis testing**](https://aldosolari.github.io/SI2/docs/hyptest.html): Darwin data, $p$-values, Neyman-Pearson lemma, duality with confidence intervals
+    - TBD
+
+2. [**Multiple testing and selective inference**](https://aldosolari.github.io/SI2/docs/selinf.html): 
+Replicability crisis, case studies: U.S. economy-politics,  jellybeans-acne and the dead salmon, error rates: FWER, FDR and FDP
+    - TBD
+
 
 3. **Methods for FWER and FDR control**: Golub data, Bonferroni, Holm, Westfall \& Young, Benjamini-Hochberg, confidence interval for selected parameters and false coverage rate
 
@@ -33,7 +45,23 @@ Replicability crisis, case studies: U.S. economy-politics and jellybeans-acne, e
 5. **The variable selection problem**: Best subset selection algorithm for linear models, post selection inference, model confidence set
 
 
+All of the course material is on the [github repository](https://github.com/aldosolari/SI2).
 
+
+# Exam
+
+The III term exam session starts on 8 July 2019 and ends on 19 July 2019. 
+
+| | Date | Hours | Room |
+|--|------|-------|------|
+| Written exam | TBD | TBD | TBD |
+| Oral exam | TBD | TBD | TBD |
+
+
+The grade will be based on
+
+* written and oral exam (75%)
+* homework (25%)
 
 
 
