@@ -69,7 +69,7 @@ Under this model the questions translate to:
 
 The comparison between groups can be visualized by a boxpot:
 
-```{r}
+```{r fig.cap="Darwin data: comparison of box-plots"}
 library(ggpubr)
  p <- ggboxplot(darwin, x = "type", y = "height",
                 color = "type", add = "jitter")
@@ -81,7 +81,6 @@ If we assume that $\varepsilon$ and $\epsilon$ have a  $N(0,1)$ distribution, we
 
 ```{r}
 t.test(height ~ type, data=darwin, var.equal=TRUE)
-
 ```
 
 
@@ -106,7 +105,7 @@ which have mean $\theta$ and variance $2\sigma^2$.
 
 The comparison within pairs can be visualized by the following plot:
 
-```{r}
+```{r fig.cap="Darwin data: difference in height for each pair"}
 ggline(darwin, x = "type", y = "height", group="pair")
 ```
 
@@ -132,55 +131,72 @@ where $t_{\mathrm{obs}}$ is the value of $T$ actually observed.
 A distribution computed under the assumption that $H_0$ is true is called *null distribution*, and then we use $\mathrm{P}_{0}, \mathrm{E}_0$, $\ldots$ to indicate probability, expectation and so forth. 
 
 
-A hypothesis that completely determines the distribution of $T$ is called *simple*; otherwise is *composite*.
 
 
 ### $p$-value null distribution
 
 The $p$-value may be written as $p_{\mathrm{obs}}=1 - F_0(t_{\mathrm{obs}})$, where $F_0$ is the null distribution function of $T$, supposed to be continuous. 
 
-
 One interpretation of $p_{\mathrm{obs}}$ stems from the correponding random variable $P=1-F_0(T)$. 
 For $0 \leq u \leq 1$, its null distribution is *uniform*
 on the unit interval:
 $$\mathrm{P}_{0}(P\leq u)  = \mathrm{P}_{0}(F_0^{-1}(1-u)\leq T) = 1 - F_0(F_0^{-1}(1-u))=u$$
 
+If we consider $t_{\mathrm{obs}}$ as just decisive evidence against $H_0$, then we would reject the hypothesis when true a long-run proportion $p_{\mathrm{obs}}$ of times.
 
 ### One- and two-sided tests
 
-In general, a $p$-value for a *two-sided test* can be constructed by considering two *one-sided tests*, one for each tail
-$$p^+_{\mathrm{obs}}=\mathrm{P}_{0}(T \geq t_{\mathrm{obs}}), \quad p^-_{\mathrm{obs}}=\mathrm{P}_{0}(T \leq t_{\mathrm{obs}})$$
+Suppose that we have a test statistic $T$, small and large values of which indicate a departure from $H_0$. The simplest procedure is then often to contemplate two tests, one for each tail. 
+
+With test statistic $T$, consider two $p$-values, namely
+$$p^-_{\mathrm{obs}}=\mathrm{P}_{0}(T \leq t_{\mathrm{obs}}), \quad p^+_{\mathrm{obs}}=\mathrm{P}_{0}(T \geq t_{\mathrm{obs}})$$
 and taking the smallest $p$-value multiplied by 2
-$$p_{\mathrm{obs}} = 2\min(p^+_{\mathrm{obs}}, p^-_{\mathrm{obs}})$$
-when the distribution of $T$ is continous. 
-This is because the null distribution of $P = \min(P^+,P^-)$ is uniform on the interval $(0,\frac{1}{2})$, thus the $p$-value is
-$$\mathrm{P}_{0}(P \leq \min(p^+_{\mathrm{obs}}, p^-_{\mathrm{obs}})) = 2\min(p^+_{\mathrm{obs}}, p^-_{\mathrm{obs}})$$
+when the distribution of $T$ is continous.
+
+This follows because the null distribution of $Q = \min(P^-,P^+)$ is that of $\min(1-U,U)$ with $U$ uniform on $(0,1)$, i.e. uniform on $(0,\frac{1}{2})$ and the $p$-value is
+$$p_{\mathrm{obs}} =\mathrm{P}_{0}(Q \leq q_{\mathrm{obs}}) = 2q_{\mathrm{obs}}$$
+
+In a discrete problem it is $q_{\mathrm{obs}}$ plus the achievable $p$-value from the other tail of the distribution nearest to but not exceeding $q_{\mathrm{obs}}$.
 
 
-### Student $t$ test
 
-Let $Y_1,\ldots,Y_n$ be a Gaussian random sample with mean $\mu$ and variance $\sigma^2$. Suppose that the null hypothesis is $H_0: \mu = \mu_0$ against the alternative hypothesis $H_1:\mu\neq 0$.
+### Nonparametric tests
 
-The likelihood ratio test statistic is
-$$2\{\max_{\mu,\sigma^2} \ell(\mu,\sigma^2) - \max_{\sigma^2} \ell(\mu_0,\sigma^2) \} = n \log\left\{1 + \frac{T^2}{n-1}\right\}$$
-where 
-$$T = \frac{\bar{Y}- \mu_0}{\sqrt{S^2/n}}$$
-is the Student $t$ statistic, which has a $t_{n-1}$ null distribution. 
+Tests where the null hypotheses itself is formulated in terms of arbitrary distributions, so-called *nonparametric* or *distribution-free tests*. 
 
-Since the likelihood ratio test statistic is a monotone functio of $T^2$, the $p$-value is
+A random sample $Y_1,\ldots,Y_n$ arises from an unknown
+distribution $F$. The null hypothesis $H_0$ asserts that $F$ has median $\eta$ equal to $\eta_0$. 
 
-$$p_{\mathrm{obs}}=\mathrm{P}_{0}(T^2 \geq t^2_{\mathrm{obs}}) = 2\mathrm{P}(T \geq |t_{\mathrm{obs}}|)$$
+If $\eta = \eta_0$, the probability that $Y$ falls on either side of $\eta_0$ is $1/2$. This suggests that we can base a test on $$T = \sum_{i=1}^{n}I\{Y_i > \eta_0\}$$ 
 
-### Lack of fit tests
+Under $H_0$, $T$ has a binomial distribution with size $n$ and probability $1/2$, so its mean and variance are $n/2$ and $n/4$. The one-sided $p$-values are
 
-Suppose that the null hypothesis is that the random sample $Y_1,\ldots,Y_n$ is from a known continuous distribution $F(y)$. Then we can compare $F(y)$ with the emprirical distribution function 
+$$p^+_{\mathrm{obs}}= \mathrm{P}_0(T \geq t_{\mathrm{obs}}) = \sum_{k=t_{\mathrm{obs}}}^{n} {n \choose k}\frac{1}{2^n}, \quad p^-_{\mathrm{obs}} = \mathrm{P}_0(T \leq t_{\mathrm{obs}}) = \sum_{k=0}^{t_{\mathrm{obs}}} {n \choose k}\frac{1}{2^n}$$
+
+
+Under the matched pair model for the Darwin data, the height differences may be written as
+$$D_i = \theta + \sigma(\varepsilon_i - \epsilon_i)$$
+
+If $\varepsilon_i-\epsilon_i$ are symmetrically distributed around zero, then $D_i$ are symmetrically distributed around $\theta$, i.e.
+$$D_i - \theta \stackrel{d}{=} \theta - D_i \qquad i=1,\ldots,n$$
+
+By testing $H_0:\theta=0$, we have $t_{\mathrm{obs}} = 13$ and a two-sided $p$-value of
+
+```{r}
+binom.test(x=13, n=15, p=0.5, alternative="two.sided")
+```
+
+
+### Goodness of fit tests
+
+Suppose that the null hypothesis is that the random sample $Y_1,\ldots,Y_n$ is from a known continuous distribution $F(y)$. Then we can compare $F(y)$ with the empirical distribution function 
 $$\hat{F}(y) = \frac{1}{n}\sum_{i=1}^{n}I\{Y_i\leq y\}$$
 whose mean and variance are $F(y)$ and $[F(y)(1-F(y))]/n$ under $H_0$. 
 
-Under the matched pair model for the Darwin data, we assumed that $D_1,\ldots,D_{15}$ are i.i.d. as $N(\theta, \tau^2)$ where $\tau^2=2\sigma^2$. Because $\theta$ and $\tau^2$ are unknown, we cheat by replacing them with the sample mean and variance  $\hat{\theta}$ and $\hat{\tau}^2$:
+Under the matched pair model for the Darwin data, we assumed that $D_1,\ldots,D_{15}$ are i.i.d. as $N(\theta, \tau^2)$ where $\tau^2=2\sigma^2$. Because $\theta$ and $\tau^2$ are unknown, we can by replace them with the sample mean and variance  $\hat{\theta}$ and $\hat{\tau}^2$. However, this is not formally correct: the parameters specified in must be pre-specified and not estimated from the data. The problem is that we are using the same data twice: once for estimation, and then for testing. The resulting inference is only approximate in finite samples. 
 
 
-```{r}
+```{r, fig.cap="Darwin data: comparison between distribution and empirical distribution"}
 plot(ecdf(differences), verticals=T, pch=".", main="", ylab="Distribution function", xlab="y")
 curve(pnorm(x, mean=mean(differences), sd=sd(differences)), add=T)
 ```
@@ -196,7 +212,11 @@ t_obs
 To compute the $p$-value we can generate $B$ independent sets of data from the null distribution $N(\theta, \tau^2)$, calculating the corresponding statistics $T^{b}$ and
 $$p_{\mathrm{obs}}= \frac{1+\sum_{b=1}^{B} I\{ T^b \geq t_{\mathrm{obs}} \}}{1+B}$$
 
-```{r}
+
+If we generate data from $N(\hat{\theta}, \hat{\tau}^2)$ instead of $N(\theta, \tau^2)$, the resulting inference is only approximate. 
+There is some more refined distribution theory for the Kolmogorov-Smirnov test with estimated parameters, but that is not implemented in the R function `ks.test`. 
+
+```{r, fig.cap="Darwin data: histogram of the null distribution for the Kolgomorov-Smirnov statistic"}
 set.seed(123)
 t_b = sapply(1:1000, function(b)
 ks.test(rnorm(15,mean(differences), sd(differences)),
@@ -208,38 +228,335 @@ cat("p-value =",(1+sum(t_b >= t_obs$statistic))/(1000+1))
 
 
 
-### Sign test
+### Two-decision problem
 
-A random sample $Y_1,\ldots,Y_n$ arises from an unknown
-distribution $F$. The null hypothesis $H_0$ asserts that $F$ has median $\eta$ equal to $\eta_0$, while the alternative is that $\eta > \eta_0$. 
+We supposed that only the null hypothesis is explicitly formulated. 
+We now assume that, in addition to $H_0$, we have an *alternative hypothesis* $H_1$. The choice here lies between only *two decisions*: rejecting or not rejecting the null hypothesis.
+A decision procedure for such a problem is called a *test* of $H_0$ against $H_1$. By fixing the probability of rejecting $H_0$ when it is true, denoted by $\alpha$, aiming to
+maximize the probability of rejecting $H_0$ when false. This approach essentially it amounts to setting in advance a threshold for $p_{\mathrm{obs}}$.
 
-If $\eta = \eta_0$, the probability that $Y$ falls on either side of $\eta_0$ is $1/2$, and if $\eta>\eta_0$, then $\mathrm{P}(Y > \eta_0) > 1/2$. This suggests that we can base a test on $$T = \sum_{i=1}^{n}I\{Y_i > \eta_0\}$$ 
+Suppose we have data $Y$ distributed according to $\mathrm{P}_{\theta}$ with $\theta \in \Theta$. About $\theta$ we formulate the null hypotheses $H_0: \theta \in \Theta_0$ with $\Theta_0 \subseteq \Theta$. The alternative hypothesis is $H_1:  \theta \in \Theta_1$ with  $\Theta_1=\Theta\setminus \Theta_0$.
 
-Under $H_0$, $T$ has a binomial distribution with size $n$ and probability $1/2$, so its mean and variance are $n/2$ and $n/4$. The $p$-value is
+A hypothesis that completely determines the distribution of $Y$ is called *simple*; otherwise is *composite*.
 
-$$p_{\mathrm{obs}}= \mathrm{P}_0(T \geq t_{\mathrm{obs}}) = \sum_{k=t_{\mathrm{obs}}}^{n} {n \choose k}\frac{1}{2^n} \approx 1 - \Phi\left( \frac{t_{\mathrm{obs}} - n/2}{\sqrt{n/4}}\right)$$
-by normal approximation to the binomial null distribution of $T$. 
+A test $\phi$ assigns to each possible value $y$ of $Y$ one
+of these two decisions 
+$$\phi: \mathcal{Y} \mapsto \{0,1\}$$
+where 1 denotes the decision of rejecting $H_0$ and 0 denotes the decision of not rejecting $H_0$, and thereby partition the sample space $\mathcal{Y}$ into two complementary regions $\mathcal{Y}_0$ and $\mathcal{Y}_1$. 
 
-Under the matched pair model for the Darwin data, the height differences may be written as
-$$D_i = \theta + \sigma(\varepsilon_i - \epsilon_i)$$
+When performing a test one may arrive at the correct decision, or one may commit one of two errors: rejecting the hypothesis when it is true (*error of the first kind*) or not rejecting it when it is false (*error of the second kind*).
 
-If $\varepsilon_i-\epsilon_i$ is symmetrically distributed around zero, then $D_i$ are symmetrically distributed around $\theta$, while $\theta=0$ under the null hypothesis of no difference between fertilization. 
+It is required to assign a bound to the probability of incorrectly rejecting $H_0$ when it is true.  Thus one selects the *level* $\alpha \in (0,1)$, and impose the condition that
+$$\mathrm{P}_{\theta}(\phi(Y)=1) \leq \alpha \quad \forall \, \theta \in \Theta_0$$
 
-The sign test statistic takes value $t_{\mathrm{obs}}=13$, with corresponding $p$-value of 
+Subject to this condition, it is desired to maximize the *power* $$\mathrm{P}_{\theta}(\phi(Y)=1) \quad \theta \in \Theta_1$$
 
-```{r}
-sum(dbinom(13:15, size=15, prob=0.5))
-```
+Considered as a function of $\theta$ for all $\theta \in \Theta$,
+this probability is called the *power function* of the test and is denoted by $\beta(\theta)$. 
+
+The *size* of the test is defined by
+$$\sup_{\theta \in \Theta_0} \mathrm{P}_{\theta}(\phi(Y)=1)$$
+If $\sup_{\theta \in \Theta_0} \mathrm{P}_{\theta}(\phi(Y)=1)=\alpha$, then we have an (exact) size $\alpha$ test. 
+
+Usually for varying $\alpha$, the rejection regions $\mathcal{Y}_1(\alpha)$ and $\mathcal{Y}_1(\alpha')$ are nested in the sense that
+$$\mathcal{Y}_1(\alpha) \subset \mathcal{Y}_1(\alpha') \quad \mathrm{if\,\,}\alpha < \alpha'$$
+
+When this is the case, the $p$-value is defined as the smallest significance level at which the hypothesis would be rejected for the given observation:
+$$p_{\mathrm{obs}} = \inf\{\alpha\in [0,1]: y \in \mathcal{Y}_1(\alpha)\}$$
+
 
 # Neyman-Pearson lemma
 
-### Power
+**Reference**: @davison2003statistical, Sections 7.3.2, 7.3.3
 
-### Neyman-Pearson lemma
+Let $f_0(y)$ and $f_1(y)$ denote the probability densities of $Y$ under the null and alternative hypotheses, i.e. $H_0:f(y)=f_0(y)$ and $H_1:f(y)=f_1(y)$. Then the Neyman–Pearson lemma states that the most powerful test of size $\alpha$ has critical region
+$$\mathcal{Y}_1 = \Big\{ y \in \mathcal{Y}:  \frac{f_1(y)}{f_0(y)} \geq t_{\alpha} \Big\}$$
+determined by the likelihood ratio.
 
-### Local power
+To explain this, suppose that such a region does exist and let $\mathcal{Y}'_1$ be any other critical region of size $\alpha$ or less:
+$$\alpha = \int_{\mathcal{Y}_1} f_0(y)dy \geq \int_{\mathcal{Y}'_1} f_0(y)dy$$
+thus
+$$\int_{\mathcal{Y}_1 \setminus \mathcal{Y}'_1} f_0(y)dy \geq \int_{\mathcal{Y}'_1 \setminus\mathcal{Y}_1} f_0(y)dy$$
+because $\int_{\mathcal{Y}_1} f_0(y)dy = \int_{\mathcal{Y}_1 \setminus \mathcal{Y}'_1} f_0(y)dy + \int_{\mathcal{Y}_1 \cap \mathcal{Y}'_1} f_0(y)dy$
 
-### Similar tests
+Now, if $y\in \mathcal{Y}_1 \setminus \mathcal{Y}'_1$, then $f_1(y) \geq t_{\alpha}f_0(y)$ while if $y\in \mathcal{Y}'_1 \setminus \mathcal{Y}_1$ then $t_{\alpha}f_0(y) > f_{1}(y)$. 
+
+It follows that 
+$$t_{\alpha} \int_{\mathcal{Y}_1 \setminus \mathcal{Y}'_1} f_1(y)dy\geq \int_{\mathcal{Y}_1 \setminus \mathcal{Y}'_1} f_0(y)dy \geq \int_{\mathcal{Y}'_1 \setminus\mathcal{Y}_1} f_0(y)dy \geq t_{\alpha} \int_{\mathcal{Y}'_1 \setminus\mathcal{Y}_1} f_1(y)dy$$
+
+Then 
+$$ \int_{\mathcal{Y}_1 } f_1(y)dy \geq  \int_{\mathcal{Y}'_1 } f_1(y)dy$$
+thus the power of $\mathcal{Y}_1$ is at least that of $\mathcal{Y}'_1$. 
+
+It may happen that $H_0$ is simple and the alternative is composite, but that the likelihood ratio critical region is most powerful for each component of the alternative hypothesis. Then $Y$ is said to be *uniformly most powerful*.
+
+
+
+### UMP tests
+
+**Reference**: @davison2003statistical, Section 7.3.2
+
+Let $Y_1,\ldots,Y_n$ be a random sample from $N(\mu,\sigma^2)$ distribution with known $\sigma^2$, and suppose that we are testing $H^{-}_0: \mu \leq \mu_0$ against $H^+_1: \mu > \mu_0$. Suppose we decide to reject $H^-_0$ if $\bar{Y}$ exceed some constant $t_{\alpha}$.
+
+The size of this test is
+$$\sup_{\mu\leq \mu_0} \mathrm{P}_\mu(\bar{Y} \geq t_{\alpha}) = \mathrm{P}_{\mu_0}(\bar{Y} \geq t_{\alpha}) = \mathrm{P}_{\mu_0}\left(\frac{\bar{Y}-\mu_0}{\sqrt{\sigma^2/n}} \geq \frac{t_{\alpha} - \mu_0}{\sqrt{\sigma^2/n}}\right) = \Phi\left(\frac{\mu_0 - t_{\alpha}}{\sqrt{\sigma^2/n}}\right)$$
+
+For a test of size $\alpha$, we must choose 
+$t_{\alpha}=\mu_0 + z_{1-\alpha}\frac{\sigma}{\sqrt{n}}$
+and the critical region is
+$$\mathcal{Y}^+_{1}=\Big\{(y_1,\ldots,y_n): \bar{y} \geq \mu_0 + z_{1-\alpha}\frac{\sigma}{\sqrt{n}} \Big\}$$
+For $\mu_1 > \mu_0$, the power of the test is
+$$\beta_{\bar{Y}}(\mu_1)=\mathrm{P}_{\mu_1}(\bar{Y} \geq t_{\alpha}) = \Phi(z_{\alpha} + \delta)$$
+where $\delta=\sqrt{n}(\frac{\mu_1 - \mu_0}{\sigma})$. 
+
+The likelihood ratio for testing $\mu=\mu_0$ against $\mu=\mu_1$ is
+$$\frac{f_1(Y)}{f_0(Y)} = \exp\Big[\frac{1}{2\sigma^2}(2n\bar{Y}(\mu_1-\mu_0)- \mu_1^2 + \mu_0^2)\Big]$$
+If $\mu_1 >\mu_0$, this is monotone increasing in $\bar{Y}$, and so the critical region rejects $H_0$ when $\bar{Y} \geq t_{\alpha}$. 
+It follows that this test is most powerful for any $\mu_1> \mu_0$ and so is *uniformly most powerful* (UMP).  
+
+Likewise, the test defined by the critical region 
+$$\mathcal{Y}^-_{1}=\Big\{(y_1,\ldots,y_n): \bar{y} \leq \mu_0 + z_{\alpha}\frac{\sigma}{\sqrt{n}} \Big\}$$
+is UMP for testing $H_0^+: \mu\geq \mu_0$ against $H_1^-: \mu\leq \mu_0$. 
+
+
+Of course, the sign test has lower power than the UMP test for testing $H^{-}_0: \mu \leq \mu_0$ against $H^+_1: \mu > \mu_0$. Its test statistic is $S=\sum_{i=1}^{n}I\{Y_i > \mu_0\}$, which gives the critical region
+$$\mathcal{Y}'^+_{1}=\Big\{(y_1,\ldots,y_n): \sum_{i=1}^{n}I\{Y_i > \mu_0\} \geq  \frac{n}{2} - z_{\alpha}\frac{\sqrt{n}}{2} \Big\}$$
+by using a normal approximation. 
+
+
+We have 
+$$\mathrm{P}_{\mu_1}(Y_i \geq \mu_0) = \mathrm{P}_{\mu_1}\Big(\frac{Y_i - \mu_1}{\sigma} \geq \frac{\mu_0 - \mu_1}{\sigma}\Big) = \Phi\Big(\frac{\delta}{\sqrt{n}}\Big)$$
+Under $H_1$, $S$ is approximately normal with mean $\mathrm{E}_1(S) = n \Phi(\delta/\sqrt{n})$ and variance $\mathrm{Var}_1(S) = n\Phi(\delta/\sqrt{n})(1-\Phi(\delta/\sqrt{n}))$. 
+
+Then
+$$\mathrm{P}_{\mu_1}\Big(S \geq s_{\alpha} \Big)\approx  \mathrm{P}_{\mu_1}\Big(N(0,1) \geq  \frac{s_{\alpha} - \mathrm{E}_1(S)}{\sqrt{\mathrm{Var}_1(S)}} \Big)$$
+where $s_{\alpha}= \frac{n}{2} - z_{\alpha}\frac{\sqrt{n}}{2}$. 
+For $n$ large, 
+$$\Phi(\delta n^{-1/2}) \approx \Phi(0) + \Phi'(0)(\delta n^{-1/2}) = \frac{1}{2} + \frac{\delta\phi(0)}{\sqrt{n}} = \frac{1}{2} + \frac{\delta}{\sqrt{2\pi n}}$$ and after simplifying,
+$$\beta_S(\mu_1)=\mathrm{P}_{\mu_1}(S \geq s_\alpha) \approx \Phi\Big(z_\alpha + \delta\sqrt{\frac{2}{\pi}}\Big)$$
+
+
+```{r fig.cap="Power functions of UMP and sign test"}
+alpha = 0.05
+delta = seq(-4,4,by=0.01)
+plot(delta, pnorm(qnorm(alpha) + delta), type="l", ylab="power")
+lines(delta, pnorm(qnorm(alpha) + delta*sqrt(2/pi)), lty=2)
+abline(h=alpha, lty=3)
+```
+
+
+Suppose now that we wish to test $H_0: \mu = \mu_0$ against $H_1: \mu \neq \mu_0$. 
+
+The critical region
+$$\mathcal{Y}_{1}= \mathcal{Y}^{-}_{1} \cup \mathcal{Y}^{+}_{1}$$
+has size $2\alpha$, and no uniformly more powerful test exists for the two-sided alternative. 
+
+A test $\phi$ of $H_0:\theta \in \Theta_0$ against $H_1: \theta \in \Theta_1$ is *unbiased* of size $\alpha$ if $\sup_{\theta \in \Theta_0}\mathrm{P}_{\theta}(\phi(Y)=1)=\alpha$ and $\mathrm{P}_{\theta}(\phi(Y)=1)\geq\alpha$ for all $\theta \in \Theta_1$. A test which is uniformly most powerful amongst the class of all
+unbiased tests is *uniformly most powerful unbiased* (UMPU).
+
+It can be proved that the test defined by $\mathcal{Y}_{1}= \mathcal{Y}^{-}_{1} \cup \mathcal{Y}^{+}_{1}$ is UMPU. 
+
+
+### Hotelling's $T^2$ test
+
+Let $Y_1,\ldots,Y_n$ be a random sample from the $m$-variate normal distribution $N_m(\mu,\Sigma)$, and suppose that we are testing $H_0: \mu=\mu_0$ against $H_1: \mu \neq \mu_0$. 
+
+If $\Sigma$ is known, the likelihood ratio test statistic is
+$$T^2 = n(\bar{Y} - \mu_0)'\Sigma^{-1}(\bar{Y} - \mu_0)$$
+which follows the Chi-squared distribution $\chi^2_m$ under $H_0$. 
+
+If $\Sigma$ is unknown, the Hotelling $T^2$ statistic is
+$$T^2 = n(\bar{Y} - \mu_0)'S^{-1}(\bar{Y} - \mu_0)$$
+where $S = \frac{1}{n-1}\sum_{i=1}^{n}(Y_i - \bar{Y})(Y_i - \bar{Y})'$. Under $H_0$, $T^2$ follows a  Hotelling's T-squared distribution 
+$$T^2_{m,n-1} = \frac{m(n-1)}{n-m} F_{m,n-m}$$
+where $F_{m,n-m}$ is the F-distribution with parameters $m$ and $n-m$. 
+
+The Hotelling $T^2$ statistic is a generalization of Student $t$ statistic, i.e. for $m=1$, $T^2 = (t)^2$. 
+
+The $T^2$ statistic is invariant to full rank linear transformations
+$$X = AY + b$$ with $\underset{m\times m}{A}$ non-singular. 
+
+No UMP test exists for this problem. It can be proved that the Hotelling $T^2$ test is the most powerful test in the class of tests that are invariate to full rank linear transformations (UMPI). 
+
+### Testing equivalence
+
+Let $Y_1,\ldots,Y_n$ be a random sample from $N(\mu,1)$ distribution with known $\sigma^2$, and suppose that we are testing $H_0: \mu \in (-\infty,-\Delta] \cup [\Delta,\infty)$ against $H_1: \mu \in (-\Delta,\Delta)$ for some pre-specified $\Delta >0$. 
+
+Consider the test statistic
+$$T= n\bar{Y}^2 \sim \chi^2_{1,n\mu^2}$$
+which rejects for small values, where $\chi^2_{\nu,\lambda}$ is a non-central Chi-squared distribution with $\nu$ degree of freedom and noncentrality parameter $\lambda$. 
+
+
+Because
+$$\sup_{\mu \in (-\infty,-\Delta] \cup [\Delta,\infty)} \mathrm{P}_\mu(T \leq t_{\alpha}) = \mathrm{P}(\chi^2_{1,n\Delta^2} \leq t_{\alpha})
+$$
+
+the critical region of size $\alpha$ is given by
+
+$$\mathcal{Y}_1 = \{(y_1,\ldots,y_n): T \leq t_{\alpha} \} = \{(y_1,\ldots,y_n):-\sqrt{t_{\alpha}/n}  \leq  \bar{y} \leq \sqrt{t_{\alpha}/n} \}$$
+
+where $t_{\alpha}$ is the $\alpha$ quantile of $\chi^2_{1,n\Delta^2}$. 
+
+It can be proved that this test is UMP. 
+
+```{r fig.cap="Critical region of testing equivalence with Delta = 1/2 at 5% level"}
+Delta = 0.5
+n=1:100
+alpha = 0.05
+c2 = qchisq(alpha,df=1,ncp=n*(Delta^2))
+plot(n,sqrt(c2/n), type="l", ylim=c(-1,1), ylab=expression(bar(y)))
+lines(n,-sqrt(c2/n))
+abline(h=Delta,lty=3)
+abline(h=-Delta,lty=3)
+```
+
+
+Let $Y_1,\ldots,Y_n$ i.i.d. $N(\mu,\sigma^2)$ and suppose we want to test $H_0: \frac{\mu}{\sigma} \in (-\infty,-\Delta] \cup [\Delta,\infty)$ against  
+$H_1: \frac{\mu}{\sigma} \in [-\Delta,\Delta]$. Consider the squared $t$ test statistic
+$$T = \frac{n\bar{Y}^2}{S^2} \sim F_{1,n-1,n\frac{\mu^2}{\sigma^2}}$$
+which rejects for small values, where $F_{\nu_1,\nu_2,\lambda}$ is a non-central F distribution with $\nu_1$ and $\nu_2$ degree2 of freedom and noncentrality parameter $\lambda$. 
+
+The $p$-value of the test is
+$$p_{\mathrm{obs}} = \mathrm{P}_{\Delta}(T \leq t_{\mathrm{obs}}) = \mathrm{P}(F_{1,n-1,n\Delta^2} \leq t_{\mathrm{obs}})$$
+
+For the Darwin data  we take $\Delta=1/5$, which is a conventional value for an effect of small magnitude, and we obtain a $p$-value of
+
+```{r}
+Delta=1/5
+n = length(differences)
+tobs = t.test(differences)$stat
+cat(pf(tobs, df1=1,df2=n-1, ncp=n*Delta^2))
+```
+
+# Confidence bounds
+
+**Reference**: @davison2003statistical, Section 7.3.4
+
+If the density of $Y$ depends on a scalar parameter $\theta$, we define an *upper bound* for $\theta$ at confidence level $1-\alpha$ to be a function $\bar{\theta}_{\alpha} = \bar{\theta}_{\alpha}(Y)$ such that
+$$\mathrm{P}_{\theta}(\theta \leq \bar{\theta}_{\alpha})\geq 1-\alpha \qquad \forall\, \theta \in \Theta $$
+
+Lower confidence bounds may be defined analogously. An equi-tailed $(1-2\alpha)$ confidence interval for $\theta$ is $[\underline{\theta}_{\alpha}, \bar{\theta}_{\alpha}]$
+
+There is a link between tests and the construction of confidence intervals. 
+For each $\theta_0 \in \Theta$, let $\mathcal{Y}_0(\theta_0)$ be the acceptance region of a test of size $\alpha$ for testing $\theta=\theta_0$. 
+The set of values of $\theta$ not rejected by the test 
+$$S(Y) = \{\theta \in \Theta: Y \in \mathcal{Y}_0(\theta)\}$$
+contains the true parameter with probability at least $1-\alpha$. 
+
+By definition of $S(Y)$, $\theta \in S(Y)$ if and only if $Y \in \mathcal{Y}_0(\theta)$, and hence
+$$\mathrm{P}_{\theta}(\theta \in S(Y)) = \mathrm{P}_{\theta}(Y \in \mathcal{Y}_0(\theta)) \geq 1-\alpha \qquad \forall\,\,\theta \in \Theta$$
+
+
+
+### Confidence intervals for nonpivotal quantities
+
+**Reference**: @Kelley2007
+
+Although confidence intervals for the mean $\mu$ and the variance $\sigma^2$ of a Gaussian distribution are well known, the confidence interval for the standardized mean 
+$$
+ \theta = \frac{\mu}{\sigma}
+$$
+is less known. Consider 
+$$\sqrt{n}\hat{\theta} = \sqrt{n} \frac{\bar{Y}}{S} \sim t_{n-1, \sqrt{n}\theta}$$
+where $\bar{Y}$ is the sample mean and $S^2$ is the unbiased estimator of the variance based on a random sample of size $n$.
+
+
+A confidence interval for $\theta$ with level $1-\alpha$ is given by $[\underline{\theta}_{\alpha}, \overline{\theta}_{\alpha}]$
+with $\underline{\theta}_{\alpha}$  such that $\displaystyle T_{n-1,\frac{\underline{\theta}_{\alpha}}{\sqrt{n}}}(\sqrt{n}\hat{\theta}) = 1-\alpha/2$ and  $\overline{\theta}_{\alpha}$ such that $\displaystyle T_{n-1,\frac{\overline{\theta}_{\alpha}}{\sqrt{n}}}(\sqrt{n}\hat{\theta}) = \alpha/2$, respectively, where $T_{\nu,\lambda}(t)$ denotes the cumulative distribution function evaluated at $t$ of a non-central Student's t distribution with $\nu$ degrees of freedom and non-centrality parameter $\lambda$.
+
+### Assessing uncertainty: intervals and directions
+
+Suppose that our research question is about the standardized effect
+$$
+ \theta = \frac{\mu}{\sigma}
+$$
+where $\mu$ and $\sigma$ are the mean and the standard deviation of a Gaussian distribution, respectively.
+
+Statisticians have classically asked the wrong question 
+
+> Is the effect 0?'' -- but the effect is always different from $0$ -- at least in some remote decimal place @tukey1991
+
+The question that should be addressed instead is 
+
+*Is the effect large enough to be meaningfully different from 0?*
+
+Older by far than any other statistical technique is *point estimation*, i.e.
+$$
+ \hat{\theta} = \frac{\bar{Y}}{S}
+$$
+where $\bar{X}$ is the sample mean and $S^2$ is the unbiased estimator of the variance based on a random sample of size $n$. A point estimate gives a hint of the most likely value the data seem to point out or suggest, but by itself this is not enough because it ignores variability and gives no insight into uncertainty. A better answer should embrace variation and accept uncertainty.
+
+Tukey @tukey1991 advocated that the answer should be provided by *confident conclusions*.
+Confident conclusions are of two types: *directions* and *intervals*. 
+
+Confidence intervals address the original question *What are the likely values for the effect?* by pointing out a whole interval of possible values, chosen so that there can be high confidence that the true value of the effect is among them.
+
+Confidence directions address a simpler question: *What is the sign of the effect?* Is it *positive*, *negative* or *irrelevant*?
+
+Since asking only for direction asks for a cruder form of information, we may expect to have more statistical power to answer the question.
+
+Small effects usually matter very little, i.e. are not considered of practical importance. It is the researcher's duty to have enough subject matter knowledge in order to know the magnitude of a minimally relevant effect. The researcher can choose a relevance boundary $\Delta$ such that an effect is considered *irrelevant* when $-\Delta \leq \theta \leq \Delta$ or  *relevant* otherwise, i.e. *positive* when $\theta>\Delta$ and *negative* when $\theta< -\Delta$.
+For illustration purposes only, from here on we take the conventional value of $\Delta=1/5$ for an effect of small magnitude.
+
+
+We define a confidence direction for $\theta$ with level $1-\alpha$  by
+  \begin{eqnarray}\label{cd}
+D^{1-\alpha}  = \left\{
+    \begin{array}{lll}
+          (\Delta, \infty) & \textrm{(positive)} & \mathrm{if\,\,} \hat{\theta} >c/ \sqrt{n} \\
+          (-\infty, -\Delta) & \textrm{(negative)} & \mathrm{if\,\,}   \hat{\theta} < - c/ \sqrt{n} \\
+   \left[ - \Delta, \Delta \right] & \textrm{(irrelevant)} & \mathrm{if\,\,} -k/ \sqrt{n}   < \hat{\theta} < k/ \sqrt{n} \\
+   (-\infty,\infty) & \textrm{(uncertain)} & \textrm{otherwise}
+  \end{array}
+    \right.
+ \end{eqnarray}
+ with $c^2 = F^{-1}_{1,n-1,n\Delta^2}(1-\tilde{\alpha})$, $k^2 = F^{-1}_{1,n-1,n\Delta^2}(\tilde{\alpha})$ and $\tilde{\alpha}$ is such that 
+\begin{eqnarray}
+\displaystyle  \sup_{\theta} \mathrm{P}_{\theta}(\theta \notin D^{1-\alpha}) =  \tilde{\alpha} + T_{n-1,\sqrt{n}\Delta}(-c) = \alpha
+\end{eqnarray}
+  where $F^{-1}_{\nu_1,\nu_2,\lambda}(\alpha)$ denotes the quantile function evaluated at $\alpha$ of a non-central F distribution with $\nu_1$ and $\nu_2$ degrees of freedom and non-centrality parameter $\lambda$. 
+  
+Concluding a positive, negative and irrelevant direction corresponds to reject at level $\alpha$ the null hypotheses $\theta \in (-\infty, \Delta]$,  $\theta \in [-\Delta, \infty)$ and $\theta \in (-\infty, -\Delta) \cup (\Delta,\infty)$, respectively.
+  
+If we are only interested in concluding for relevant effects (positive or negative), a slightly more powerful decision rule can be used: $D^{1-\alpha} = (-\infty,-\Delta) \cup (\Delta, \infty)$ if $n\hat{\theta}^2 > F^{-1}_{1,n-1,n\Delta^2}(1-\alpha)$.
+
+Suppose that we have obtained a point estimate $\hat{\theta} = 0.46$ based on a random sample of size $n=50$.
+With high confidence, e.g. $95\%$, we can conclude that the direction is positive, i.e. we reject  the null hypothesis that $\theta \in (-\infty, \Delta]$ 
+since $\hat{\theta} > c/\sqrt{n} = 0.446$ where we get $\tilde{\alpha}=0.04998$. 
+The usual confidence interval, however, is $I^{95\%}= [0.1662, 0.7496]$; see the Figure below.
+
+
+```{r fig.cap="95% confident conclusions as a function of n and of the point estimate"}
+rm(list=ls())
+alpha = 0.05
+ns = 2:100
+delta = 1/5
+a = sapply(ns, function(n)
+uniroot(function(a) {
+ - alpha + a + pt(-sqrt(qf(1-a,df1=1,df2=n-1,ncp=n*delta^2)), df=n-1, ncp=sqrt(n)*delta)
+  }, lower=0.01, upper = 1
+)$root
+)
+c2 = qf(1-a,df1=1,df2=ns-1,ncp=ns*delta^2)
+k2 = qf(a,df1=1,df2=ns-1,ncp=ns*delta^2)
+plot(ns,sqrt(c2/ns), type="l", ylim = c(-1,1), ylab="Point estimate", xlab="n")
+lines(ns,-sqrt(c2/ns))
+lines(ns,sqrt(k2/ns))
+lines(ns,-sqrt(k2/ns))
+abline(h=delta, lty=3)
+abline(h=-delta, lty=3)
+segments(x0=50,x1=50, y0=0.1662, y1=0.7496)
+points(50,0.46, pch=20)
+```
+
+
+On the one hand, the interval $[0.1662, 0.7496]$ is clearly more precise than the conclusion that $\theta \in (\Delta, \infty)$.
+On the other hand, this precision comes at a price: $[0.1662, 0.7496]$ does not imply the conclusion that the direction of the effect is positive because the interval contains values below $\Delta=1/5$. 
+If we are only interested in the tripartite decision regarding relevance and sign of the effect, we have more power regarding for the statement of interest, but it may come at the price of a confidence interval of larger length.
+
+
+This example illustrates the following principle: it is much easier to detect the direction than to pinpoint the likely values for the effect, or more generally, *the less specific the question is, the more power to answer*.
+ 
 
 
 
