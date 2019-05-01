@@ -1,0 +1,635 @@
+---
+title: "Selection and multiple testing"
+description: |
+  Statistical Inference II
+author:
+  - name: Aldo Solari
+    url: https://aldosolari.github.io/
+    affiliation: DEMS
+    affiliation_url: http://dems.unimib.it/
+date: "`r Sys.Date()`"
+output:
+  radix::radix_article:
+    toc: true
+    toc_depth: 1
+bibliography: selmt.bib
+---
+
+
+# The crisis of modern science
+
+**Reference**: @patil2016statistical
+
+It is not difficult to find stories of a crisis in modern science, either in the popular press or in the scientific literature.
+
+```{r, echo=FALSE}
+library("htmltools")
+library("vembedr")
+embed_url("https://www.youtube.com/watch?v=0Rnq1NpHdmw")
+```
+
+<aside>
+Scientific Studies: Last Week Tonight with John Oliver (HBO)
+</aside>
+
+*Scientific studies* should be *reproducible* and *replicable*.
+Here we provide informal definitions for key scientific terms. 
+
+**A scientific study**: consists of document(s) specifying a population, question, hypothesis,
+experimental design, experimenter, data, analysis plan, analyst, code, parameter estimates, and
+claims about the parameter estimates
+
+**Reproducibility** is defined as reperforming
+the same analysis with the same code using a
+different analyst
+
+```{r}
+library(scifigure)
+reproduce_figure()
+```
+
+**Replicability** is defined as reperforming
+the experiment and collecting new data
+
+```{r}
+replicate_figure()
+```
+
+**Publication**: Making a public claim on the basis of a scientific study
+
+**Replicable claim**: By reperforming
+the experiment, you make an equivalent claim based on the results of the study
+
+**False discovery**: The claim at the conclusion of a scientific study is not equal to the claim you would make if you could observe all data from the population given your hypothesis,
+experimental design, and analysis plan
+
+**Garden of forking paths**: Given a population, hypothesis, experimental design, experimenter, data, analysis plan, and analyst, the code changes given the data you observe
+
+**P-hacking**:
+Given a population, hypothesis, experimental design, experimenter, data, analysis plan, and analyst, the code changes to match a desired statemen
+
+**File drawer effect**: The probability of publication depends on the claim made at the conclusion of a scientific study
+
+
+### Example: male height study
+
+* $P$: All male humans on Earth at current time
+* $Q$: What is the average height for men?
+* $H$: The average height is > 174 cm
+* $ED$: Gather a sample of $n$ accessible males and measure height
+* $D$: The measured heights of $n$ males in our sample
+* $AP$: Sum all of the heights and divide by $n$. Conduct a one-sample t-test of $H_0: \mu \leq 174$ and compute a $p$-value
+* $C$: A function that computes the mean of a set of values, the t-statistic, and the associated $p$-value
+* $\theta$ : The average height of all male humans on Earth at current time
+* $\theta^{*}$ : The average height of all accessible male humans
+* $\hat{\theta}$: The average height of our sample (with $p$-value)
+
+* Replication of a Study: Obtain a new sample of $n$ males and obtain a new average $\hat{\theta}'$. 
+
+* Replication of a Claim: Suppose that the original claim based on $\hat{\theta}$ is “The average male height is > 174 cm”. The new claim based on $\hat{\theta}'$ must be the same
+
+* False Positive: If the truth is that “The average male is 174 cm” then our claim “The average male
+is > 174 cm” based on $\hat{\theta}$ is wrong
+
+* $p$-hacking: Suppose we truly desire to state that the average male height is < 174 cm. We could
+rewrite our code to continually manipulate the data (drop observations, transform observations,
+use different statistical tests) until we are able to make this claim with statistical significance
+
+* Garden of Forking Paths: Suppose we do not fix our assumptions and analysis plan before we observe our data, and based on the distribution of our sample we choose to run a nonparametric test instead of a $t$-test. If we were to take another sample that appeared normally distributed, we may choose to apply a t-test and get different results
+
+* File-drawer problem: If our statistical test does not produce a significant $p$-value, we will disregard our study and move on to a new one that has a better hope for a significant result
+
+# The likelihood of false discoveries
+
+**Reference**: @goeman2016randomness Sections 1-3
+
+In most scientific fields the acceptable risk of a false positive result is pre-specified for all researchers. It is conventionally set to 5%, which implies that 19 out of 20 times that a researcher
+performs an experiment the result should not be a false positive.
+
+This may seem to imply that 19 out of 20 published scientific results are reliable. Ioannidis @ioannidis2005most, however, argued that this is not the case. This ratio of 19 out of 20
+represents the perspective of the researcher, but is not immediately relevant from the perspective of the readers of the scientific literature. 
+
+Even if 95% of the time researchers produce results that are not false positives, this does not mean that 95% of all scientific publications are not false positives. This is because negative results, being less newsworthy, are seldom published. Looking only at published results, the proportion of false positives is likely to be much higher than 5%.
+
+Suppose that 200 experiments have been carried out by researchers in a certain field of science in a certain period of time. Sometimes the conjecture the researchers set out to prove was correct, sometimes it was not. For some experiments the
+researchers accumulated enough evidence to prove the conjecture; for others they were not. Based on these two dichotomies we can summarize these 200 experiments in a $2\times 2$ contingency table.
+
+If we suppose that half of the conjectures that
+researchers try to prove are in fact true, then we have 100 experiments on true and
+false conjectures each. If 5% false positive results are allowed, then 5 out of 100
+experiments on false conjectures regardlessly accumulate enough evidence lead to
+a publication. Conversely, researchers typically accept a 20% chance of false
+negative results, so that 80 out of the other 100 experiments lead to a publication.
+These numbers are summarized in the following Table. 
+
+|   | True conjecture  | False conjecture | Total  | 
+|---|---|---|---|
+| Evidence for conjecture | 80  | 5  |  85 |
+| No evidence for conjecture   | 20  |  95  | 115   |
+| Total  | 100  | 100  | 200 |
+
+As readers of the scientific literature we
+only see the 85 published results, not the 115 experiments in which the researchers failed to demonstrate their point. The percentage of false positive results among the
+publications is 5/85 = 6%, clearly more than 5%, but not dramatically so.
+
+
+This changes if we think of a field in which researchers try much more ambitious conjectures. Let us suppose that instead of 50%, only 10% of the conjectures that the researchers attempt are in fact true. In this case we can create a similar table, which will look like the following one:
+
+|   | True conjecture  | False conjecture | Total  | 
+|---|---|---|---|
+| Evidence for conjecture | 16  | 9  |  25 |
+| No evidence for conjecture   | 4  |  171  | 175   |
+| Total  | 20  | 180  | 200 |
+
+Now the researchers have to work a lot harder for their publications, and only 25 publications result from their 200
+experiments. More importantly, the percentage of irreproducible findings soars to 9/25 = 36%.
+
+
+The percentage of irreproducible results can also be high if many of the experiments on true conjectures are underpowered, i.e. if researchers have a small probability of finding evidence for a conjecture even if it is true. If we would have
+50% true conjectures as in the first Table, but only for 30 out of 100 true conjectures enough evidence would be accumulated, then the proportion of false positive would be as high as 5/35 = 14%, as we can see in the following Table:
+
+|   | True conjecture  | False conjecture | Total  | 
+|---|---|---|---|
+| Evidence for conjecture | 30  | 5  |  35 |
+| No evidence for conjecture   | 70  |  95  | 165   |
+| Total  | 100  | 100  | 200 |
+
+In general, even when the percentage of false positive results per experiment is at most 5%, the percentage of false positive, i.e. irreproducible results will be large if most of the conjectures
+researchers set out to prove are false, or if the probability of accumulating enough evidence for publication of a true result is low.
+
+
+It is interesting to note that in the last two Tables we see that the percentage of experiments that leads to a publication is relatively low: 12.5% and 17.5%, respectively. 
+One of the things that is crucial for judging the viability of scientific findings is therefore the success rate, i.e. the proportion of failed experiments for every successful one. This success rate is typically hidden from the view of the
+reader of the scientific literature, who only gets to see the successful experiments. The resulting selection bias, also known as *publication bias*, is inherent to the
+publication model that is currently dominant in science.
+
+A third way, however, in which the proportion of false positive results in the literature may be high is when there is a large probability that evidence is seemingly
+found for a conjecture that is wrong. This probability is supposed to be at most 5%,
+but it can be much larger because of the well-known psychological mechanism of
+*confirmation bias*. This is a natural tendency to look for evidence that supports our
+initial views, and to discard evidence that seems to counter those. Confirmation bias
+is a very strong force in human thinking, and one which is very difficult to counter.
+
+In practice, researchers therefore do not usually perform one single analysis, but perform several, selecting relatively favorable ones by their confirmation bias. Even
+if every individual experiment yields a false positive result only once every 20 times, a series of experiments like this may easily have a much larger probability a
+false positive result, because a researcher trying to demonstrate something that is
+not true will make several attempts, each of which again has a probability of a
+seemingly favorable result. When the existence of confirmation bias is taken into
+account in Ioannidis’ argument, it is easy to see that it will result in an even larger
+proportion of false positive results in the scientific literature.
+
+
+
+# A new scientific paradigm
+
+There are likely multiple sources for this crisis in modern science. One source of this crisis is the misuse of statistical methods in science, with the $p$-value receiving most of the criticism. 
+
+It could be argued that this misuse of statistical methods is caused by a shift in how data is used in 21st century science compared to its use in the mid-20th century which presumed scientists had formal statistical hypotheses before collecting data. This paradigm has been shifted to one in which scientists *collect data first and ask questions later*.
+
+**Textbook practice**
+
+1. Select hypotheses/model/questions
+
+2. Collect data
+
+3. Perform inference
+
+**Modern practice**
+
+1. Collect data
+
+2. Select hypotheses/model/questions
+
+3. Perform inference
+
+Elementary statistical textbooks and researchers often ignore selection issues. As a consequence, inference mat be completely wrong and misleading.
+
+These are the problems that the area of *selective inference* attempts to address. 
+
+
+**Example of textbook practice:** @goeman2016randomness
+
+A group of nutrition researchers from Amsterdam led by Martijn Katan wanted to demonstrate that the consumption of sugar through soft drinks makes children gain weight. 
+
+This may seem obvious, but other researchers (and soft drink companies) maintained that children would automatically compensate for their sugar intake by being more active or eating less of other foods, negating the weight gain of the sugar intake.
+
+To prove their point, Katan’s group enrolled 650 children in
+several schools and randomly allocated them into two groups. The first group was handed out a daily sugared soft drink. The second group received a daily sugar-free version. The two drinks tasted the same and the children and their parents were kept in the dark as to which child received which drink. 
+
+After 1.5 year the researchers measured the weight gain of each of the children. They found that on average the children who drank the sugared drink gained one kilo more weight than the children
+who drank the sugar-free version. They submitted a description of the experiment and their conclusions to the New England Journal of Medicine, writing that consumption of sugar via soft drinks does indeed cause substantial weight gain in children. 
+
+Before the study was started, the precise design of the study was laid down in a study protocol published separately. This protocol stipulated exactly how the study would be executed, what measurements would be taken at what time, what statistical analyses would be performed and what would be
+done with the data (or the absence of data) of children who did not follow the study to the end. The protocol also motivates the number of participating children. This was chosen in such a way that if Katan’s theory was right and children would
+indeed gain weight as a result of drinking soft drinks, Katan would have 80% chance of demonstrating it with this trial.
+
+
+**Example of modern practice:** @goeman2016randomness
+
+We have seen that Katan built in all kinds of
+safeguards into his experimental design, such as the blinding and the protocol, to protect the experiment from his own biases. Essentially, these measures limit his own freedom in analyzing his results. Not all research is as well designed. 
+
+Headlines in newspapers in 1995 announced that eating tomatoes would dramatically decrease the risk of prostate cancer.
+
+![](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUpGAxaBozIBQtB9tSR8LMSYRoEBgGPteMBqRw-o_xvlxWjJpN)
+
+Surprisingly, the beneficial effect was not found in fresh tomatoes, but rather in tomato concentrate in the form of ketchup, pizza, tomato soup and even potato crisps with ketchup flavor. 
+
+The source of the news was a publication by a group led
+by Edward Giovannucci from Harvard. According to
+him, the substance lycopene, found abundantly in tomato concentrate, eliminated the free radicals which caused the cancer.
+Giovannucci’s article has had a major
+impact, with over a 1000 citations in the scientific literature over the last twenty years. 
+
+How did Giovannucci come to his conclusion? He asked a large group of health professionals to fill out food intake questionnaires, focusing on intake of 46 vegetables and fruits. Next, he followed his subjects in time to see who would
+develop prostate cancer, to check whether people who ate more or less of certain foodstuffs would on average develop prostate cancer more frequently. 
+
+In only 4 of the 46 food types he investigated was he able to find the relationship he was looking for, supported by $p$-values smaller than 0.05. 
+
+Upon closer examination, those four
+were all related to industrially processed tomatoes. A plausible explanation was
+found in the lycopene theory, and this was the result that was highlighted in the
+publication.
+
+How convincing is the result? We have to remember that Giovannucci did not yet have his theory about
+lycopene when he started his study, so that at the moment he contacted a critic, he would have only had a relatively vague theory that the risk of prostate cancer might be influenced by diet. 
+
+However, the risk of prostate cancer might depend
+on all manner of things, such as genetic and lifestyle factors, but that food intake did not matter. 
+For example, people who eat more vegetables typically also
+exercise more and are more highly educated. 
+If we find that people who eat more
+vegetables have less prostate cancer, is that due to the vegetables or due to the exercise? 
+
+Giovannucci investigated 46 different foodstuffs separately, calculating a separate $p$-value for each of them. In 4 out of these 46 did he find a $p$-value smaller than 0.05. 
+
+However, suppose there is no relationship
+between diet and prostate cancer. We can expect to find a $p$-value smaller than 0.05 about 2.3 times out of 46. 
+This is because $P_1,\ldots,P_{46}$ are distributed as $U(0,1)$, thus 
+$$\mathrm{E}\Big(\sum_{i=1}^{46} I\{P_i\leq 0.05\}\Big) = \sum_{i=1}^{46}\mathrm{P}\Big( U(0,1) \leq 0.05\Big) =  46 \cdot 0.05 = 2.3$$
+
+If we assume that $P_1,\ldots,P_{46}$ are i.i.d. $U(0,1)$, 
+having at least 4 $p$-value smaller than 0.05 in this situation is not an unlikely event, with an occurrence almost 20%. 
+This is because $V = \sum_{i=1}^{46} I\{P_i\leq 0.05\} \sim \mathrm{Binomial}(46,0.05)$ and 
+$$\mathrm{P}\Big(V \geq 4\Big) = 0.196$$
+If — as is likely here — the $p$-values are
+dependent, this probability will typically be even larger.
+
+# The law of selection 
+
+> When I was young I was very impressed by how food producers could fill jars with whole walnuts. Somehow they could crack the shells while leaving the nuts intact. Most of the times I tried it, I ended up with mixed pieces of shell and nut. [...] Later, however, I learned that although the manufacturers had a better success rate than I did, they often ended up with mixed shell and nut pieces, too. But I also learned that they did something else: they SELECTED their results. @hand2014improbability
+
+The point here is that we often don't see the entire picture. 
+In the example it is assumed that the whole walnuts are the results of ALL OF the trials, rather than of just a selected subset of them. 
+
+Selection is ubiquitous yet subtle. In the following we will present examples and case studies to illustrate the issue of selection. 
+
+### Confidence intervals for selected parameters
+
+Often researchers examine many parameters $\theta_1,\ldots,\theta_m$ at once and report confidence intervals for *selected ones*. 
+
+Note that if confidence intervals (CIs) have the right coverage, i.e. $\mathbb{E}(I\{\mathrm{CI}_i \ni \theta_i\}) = 95\%$ for $i=1,\ldots,m$, then the number of covering CIs divided by the number of parameters is expected to be
+
+$$\mathbb{E}\Big(\frac{1}{m}\sum_{i=1}^{m}I\{\mathrm{CI}_i \ni \theta_i \}\Big)= 95\%$$
+
+However, as noted by @soric1989
+
+> In a large number of 95% confidence intervals, 95% of them contain the population parameter [...] but it would be wrong to imagine that the same rule also applies to a large number of 95% interesting confidence intervals
+
+Suppose we have $m=20$ parameters and we construct 90% confidence intervals. 
+
+```{r, echo=FALSE}
+set.seed(12)
+alpha = 0.1
+m = 20
+theta = rnorm(m,0,sqrt(0.04))
+stats = rnorm(m,theta,1)
+CIlow = stats - qnorm(alpha, lower.tail = F) 
+CIup = stats + qnorm(alpha, lower.tail = F) 
+plot(1:m,theta,ylim=c(-3,3), ylab=expression(theta), xlab="i")
+abline(h=0)
+select = (CIlow*CIup>0)
+for (i in 1:m){
+  segments(x0=i,x1=i,y0=CIlow[i], y1=CIup[i], col=select[i]+1)
+}
+```
+
+As expected, 2 out of 20 CIs cover the respective parameters. 
+However, if we select interesting parameters whose CIs do not cover 0, only 1 out of 3 CIs covers the selected parameters. 
+
+### Inference after variable selection
+
+The problem of variable selection arises when one wants to model the relationship between a variable of interest $Y$ and a subset of potential explanatory variables or predictors $X_1,\ldots,X_p$, but there is uncertainty about which subset to use. 
+
+A variable selection algorithm can be used to find a subset $\hat{S}$. How to perform inference after variable selection?
+
+Here we apply a variable selection algorithm to the Hitters data. We wish to predict a baseball player’s Salary on the basis of various covariates associated with performance in the previous year:
+
+```{r}
+library(ISLR)
+Hitters =na.omit(Hitters)
+covs=names(Hitters)[-19]
+covs
+set.seed(23)
+Hitters$Salary = sample(Hitters$Salary)
+```
+
+We split the observations into a training set and a test set. 
+We select the variables and perform inference on the selected model by using the training data: 
+
+```{r}
+set.seed(1)
+train = sample(c(T,F), nrow(Hitters),rep=TRUE)
+library(leaps)
+fit_all = regsubsets(Salary ~ ., Hitters[train,])
+fml = paste("Salary ~", paste(covs[summary(fit_all)$which[which.min(summary(fit_all)$cp),-1]], collapse=" + "))
+round(
+  summary(lm(fml, Hitters[train,]))$coeff
+  ,4)
+```
+
+However, if we validate the previous inference on the test data we obtain:
+
+```{r}
+round(
+  summary(lm(fml, Hitters[!train,]))$coeff
+  ,4)
+```
+
+Statistical inference after variable selection requires an inference framework that takes the selection into account in order to be valid. 
+
+### U.S. economy and politics: HARKing (Hypothesizing After the Results are Known)
+
+**Reference**: https://fivethirtyeight.com/features/science-isnt-broken/
+
+You are a social scientist with a question: *Is the U.S. economy affected by whether Republicans or Democrats are in office?* 
+
+Try to show that a connection exists, using real data going back to 1948. For your results to be publishable in an academic journal, you’ll need to prove that they are “statistically significant” by achieving a low enough $p$-value.
+
+```{r}
+rm(list=ls())
+library(RCurl)
+X <- read.csv("https://raw.githubusercontent.com/aldosolari/SL/master/data/X.csv", stringsAsFactors = FALSE)
+Y <- read.csv("https://raw.githubusercontent.com/aldosolari/SL/master/data/Y.csv", stringsAsFactors = FALSE)
+df = merge(X, Y, by.y = "date", by.x = "date", all=T)
+df$date <- as.Date(df$date)
+df2 = na.omit(df)
+```
+
+**Democrats perspective**
+
+How do you want to measure economic performance?
+
+$\Box$ Employment
+$\Box$ Inflation
+$\boxtimes$ **GDP**
+$\Box$ Stock prices
+
+```{r}
+plot(gdp ~ date, df2, type="l")
+```
+
+Which politicians do you want to include?
+
+$\Box$ Presidents
+$\boxtimes$ **Governors**
+$\Box$ Senators
+$\Box$ Representatives
+
+```{r}
+plot(gov_dem  ~ date, df, type="s")
+```
+
+Scatterplot gdp vs gov_dem:
+
+```{r}
+library(ggpubr)
+ggscatter(df2, x = "gov_dem", y = "gdp",
+          add = "reg.line", add.params = list(color = "blue"), xlab="More Democrats in Office", ylab="A Better Economy")
+```
+
+Inference:
+
+```{r}
+summary(lm(gdp ~ gov_dem,df2))$coefficients
+```
+
+
+**Republicans perspective**
+
+How do you want to measure economic performance? 
+
+$\boxtimes$ **Employment**
+$\Box$ Inflation
+$\Box$ GDP
+$\Box$ Stock prices
+
+```{r}
+plot(unem ~ date, df, type="l")
+```
+
+Which politicians do you want to include?
+
+$\Box$ Presidents
+$\boxtimes$ **Governors**
+$\Box$ Senators
+$\Box$ Representatives
+
+```{r}
+plot(gov_gop ~ date, df, type="l")
+```
+
+Scatterplot unem vs gov_gop:
+
+```{r}
+library(ggpubr)
+ggscatter(df2, x = "gov_gop", y = "unem",
+          add = "reg.line", add.params = list(color = "red"), xlab="More Republicans in Office", ylab="A Better Economy")
+```
+
+Inference:
+
+```{r}
+summary(lm(unem ~ gov_gop,df2))$coefficients
+```
+
+
+### Jelly beans - acne: unplanned subgroup analysis
+
+Let's imagine you are trying to find out if jelly beans cause acne. To do this you could find a group of people and randomly split them into two groups - one group who you get to eat lots of jelly beans and a second group who are banned from eating jelly beans. 
+
+After some time you compare whether the group that eat jelly beans have more acne than those who do not. If more people in the group that eat jelly beans have acne then you might think that jelly beans cause acne. 
+
+The scientists find no link between jelly beans and acne ($p$-value > 0.05) but then Megan and Cueball ask them to see if only one colour of jelly beans is responsible. They test 20 different colors each at a significance level of 5%, and they found a significant result for the green jelly beans. However, there is a problem.
+
+![](https://imgs.xkcd.com/comics/significant.png)
+
+Consider the null hypotheses $H_0$:"jelly beans and acne are independent" and $H_i$:"$i$th color jelly beans and acne are independent", $i=1,\ldots,20$. The described procedure
+
+1. Test $H_0$ at $5\%$
+2. If $H_0$ is not rejected at $5\%$, test $H_i$, $i=1,\ldots,20$ at $5\%$
+
+If all null hypotheses are true, then it may happen that 
+
+```{r}
+set.seed(3)
+n = 20
+z = 1:20
+A <- vector()
+B <- vector()
+for (i in 1:100){
+  x = rnorm(n)
+  y = rnorm(n)
+if ( pnorm( (mean(x)-mean(y))/sqrt(2/n) ) > .05) {
+A[i]<-F
+B[i]<- any( sapply(1:20, function(i) 
+  pnorm( (x[z==i]-y[z==i])/sqrt(2) )
+) <.05 ) }
+else { A[i]<-T; B[i]<-NA }
+}
+cat("P(rejecting H0 or any Hi) =", mean(A==T | B==T), "\n")
+cat("P(rejecting H0) =", mean(A), "\n")
+cat("P(rejecting at least one Hi | H0 not rejected) =", mean(B, na.rm = T))
+```
+
+
+### The dead salmon study: large-scale testing
+
+In 2009, a highly remarkable scientific experiment was performed by Bennett, Baird, Miller and Wolford, four American brain researchers @bennett2009neural. They used functional
+magnetic resonance imaging (fMRI), a brain imaging technique, to determine which
+brain areas respond to emotional stimuli in a test subject. The subject was shown several emotionally laden pictures and was asked to verbalize the emotion shown.
+The display of pictures was alternated with rest, and by comparing the brain readings between exposure and rest, the researchers were able to clearly identify a brain area that showed a response to the stimulus offered.
+
+To find brain regions, 8064 $t$-tests were performed at $\alpha=0.001$, and 16 were found significant (red dots in the figure below). 
+
+![](http://mriquestions.com/uploads/3/4/5/7/34572113/5529816.jpg?419)
+
+The originality of the study lay in the choice of the test subject. This was not, as usual, a
+human, but an Atlantic salmon. Moreover, the salmon was stone dead, having been
+bought in the local supermarket on the very morning of the experiment.  
+
+Apparently, standard imaging techniques with standard analysis methods could produce clearly nonsensical results. Here we can expect to find a $p$-value smaller than 0.001 about 8 times out of 8064. As a result of this paper, methodological standards in brain imaging have increased substantially in the last few years.
+
+
+
+# Multiple testing
+
+**Reference**: @goeman2014multiple Sections 1-2
+
+In many fields, scientific claims are not believed unless corroborated by rejection of some hypothesis. Hypothesis tests are not free of error, however, and for every hypothesis test there is a risk of falsely rejecting a hypothesis that is true, i.e.\ a type I error, and of failing to reject a hypothesis that is false, i.e.\ a type II error.
+
+
+In hypothesis testing, type I errors are traditionally considered more problematic than type II errors. If a rejected hypothesis allows publication of a scientific finding, a type I error brings a *false discovery*, and the risk of publication of a potentially misleading scientific result. Type II errors, on the other hand, mean missing out on a scientific result. Although unfortunate for the individual researcher, the latter is, in comparison, less harmful to scientific research as a whole.
+
+In hypothesis tests the probability of making a type I error is bounded by $\alpha$, an acceptable risk of type I errors, conventionally set at 0.05. Problems arise, however, when researchers do not perform a single hypothesis test but many of them. 
+
+Since each test again has a probability of producing a type I error, performing a large number of hypothesis tests virtually guarantees the presence of type I errors among the findings.
+Indeed, the expected number of type I errors is 
+$$\mathrm{E}(\mathrm{number\,\,of\,\,type\,\,I\,\,errors})=\mathrm{number\,\,of\,\,true\,\,null\,\,hypotheses}\times \alpha$$
+As the type I errors among the findings are likely to be the most surprising and novel ones, they have a high risk of finding their way into publications.
+
+The key goal of *multiple testing* methods is to control, or at least to quantify, the flood of type I errors that arise when many hypothesis tests are performed simultaneously.
+
+It is helpful to see the problem of multiple testing as a problem caused by *selection*. Although the probability of a type I error in each individual hypothesis remains equal to $\alpha$ regardless of the number of hypotheses that have been tested, the researcher will tend to emphasize only the rejected hypotheses. These rejected hypotheses are a selected subset of the original collection of hypotheses, and type I errors tend to be overrepresented in this selection. The probability of a selected hypothesis to be a type I error is therefore much larger than $\alpha$. 
+
+For example, as illustrated below, the probability of a selected hypothesis to be a type I error is $45/125 = 36\%$.
+
+![](https://cdn.static-economist.com/sites/default/files/images/articles/20131019_FBC916.png)
+
+Multiple testing methods correct for this selection process and bring type I error probabilities back to $\alpha$ even for selected hypotheses.
+
+
+### Error rates
+
+There are many ways of dealing with type I errors.  We will focus on three types of multiple
+testing methods: those that control the *familywise error* (FWER), those that control the *false discovery
+rate* (FDR) and those that estimate the *false discovery proportion* (FDP) or make confidence intervals for it. 
+
+Suppose we have a collection $\mathcal{H} = (H_1, \ldots, H_m)$ of hypotheses of interest. An
+unknown number $m_0$ of these hypotheses is true, whereas the other $m_1=m-m_0$ is false. We call the collection of true hypotheses $\mathcal{T} \subseteq \mathcal{H}$ and the remaining collection of false hypotheses $\mathcal{F} = \mathcal{H} \setminus \mathcal{T}$. We denote the proportion of true hypotheses $\pi_0=m_0/m$. 
+
+The goal of a multiple testing procedure is to choose a collection $\mathcal{R} \subseteq \mathcal{H}$ of hypotheses to reject. If we
+have p-values $p_1,\ldots,p_m$ for each of the hypotheses $H_1,\ldots,H_m$, an obvious choice is the collection
+$$\mathcal{R} = \{H_i: p_i \leq T\}$$
+rejecting all hypotheses with a $p$-value below a threshold $T$ . In this situation, the
+multiple testing problem reduces to the choice of $T$. In some situations, however, rejected sets of other
+forms may be of interest. 
+
+Ideally, the set of rejected hypotheses $\mathcal{R}$ should coincide with the set $\mathcal{F}$ of false hypotheses as much
+as possible.
+Two types of error can be made: false positives, or type I errors, are the rejected hypotheses that are not false, i.e.\ $\mathcal{R} \cap \mathcal{T}$; false negatives or type II errors are the false hypotheses that we failed to reject, i.e.\ $\mathcal{F} \setminus \mathcal{R}$. Rejected hypotheses are sometimes called *discoveries*, hence the terms *true discovery* and *false discovery* are sometimes used for correct and incorrect rejections.
+
+
+We can summarize the numbers of errors occurring in a hypothesis testing procedure in a contingency table. 
+
+|   | true  | false  | total  | 
+|---|---|---|---|
+| rejected  | $V$  | $U$  |  $R$ |
+| not rejected   | $m_0-V$  |  $m_1-U$  | $m-R$   |
+| total  | $m_0$  | $m_1$  | $m$  |
+
+We can observe $m$ and $R = \#\mathcal{R}$, but all quantities in the first two columns of the table are unobservable.
+
+
+Below a simulated example with $m=100$ and $m_0=80$:
+
+```{r}
+set.seed(123)
+alpha = 0.05
+m = 100
+m0 = 80
+effect = 3
+setT = sample(1:m, size=m0, replace=F)
+stats <- rnorm(m)
+stats[-setT] <- stats[-setT] + effect
+pvals = pnorm(stats, lower.tail = FALSE)
+setR = which(pvals <= alpha)
+# setR = which(stats >= qnorm(1-alpha)) # equivalently
+addmargins(table( rejected= 1:m %in% setR,
+true = 1:m %in% setT))
+```
+
+
+Type I and type II errors are in direct competition with each other, and a trade-off between the two must be made. If we reject more hypotheses, we typically have more type I errors but fewer type II errors. Multiple testing methods try to reject as many hypotheses as possible while keeping some measure of
+type I errors in check. This measure is usually either the number 
+$V$ of type I errors or the *false discovery
+proportion* (FDP) $Q$, defined as
+\[
+Q = \frac{V}{\max(R,1)}= \left\{ \begin{array}{ll} V/R & \textrm{if $R > 0$} \\ 0 & \mathrm{otherwise}, \end{array} \right.
+\]
+the proportion of false rejections among all rejections, defined as 0 if no rejections are made. 
+
+Most multiple testing methods choose the threshold $T$ as a function of the data so that the set $\mathcal{R}$ of
+rejected hypotheses is random, and so both $V$ and $Q$ are random variables. In this situation, we cannot
+keep the values of $V$ and $Q$ themselves small, but must focus on relevant aspects of their distribution.
+Different types of multiple testing methods focus on different summaries of the distribution of $V$ and $Q$.
+
+The most popular ones are the *Family-wise Error Rate* (FWER), given by
+\[
+\mathrm{FWER} = \mathrm{P}(V > 0) = \mathrm{P}(Q > 0)
+\]
+and the *False Discovery Rate* (FDR), given by
+\[
+\mathrm{FDR} = \mathrm{E}(Q).
+\]
+
+The FWER focuses on the probability that the rejected set contains any error, whereas FDR looks at the
+expected proportion of errors among the rejections.
+Either FWER or FDR is controlled at level $\alpha$, which
+means that the set $\mathcal{R}$ (i.e. the threshold $T$) is chosen in such a way that the corresponding aspect of the
+distribution of $Q$ is guaranteed to be at most $\alpha$.
+
+
+The two error rates FDR and FWER are related. Because $0\leq Q \leq 1$, we have $\mathrm{E}(Q) \leq \mathrm{P}(Q > 0)$, which means that FWER-controlling methods are automatically also FDR-controlling methods.
+
+Because FDR is smaller than FWER, it is easier to keep the FDR below a level $\alpha$ than to keep the FWER below the same level, and we can generally expect FDR-based method to have more power than FWER-based ones. 
+
+In practice, FDR-controlling methods are especially more powerful than FWER-controlling
+methods if there are many false hypotheses. Conversely, if all hypotheses are true, FDR and FWER are
+identical; because $R=V$ in this case, $Q$ is a Bernoulli variable, and $\mathrm{E}(Q)=\mathrm{P}(Q>0)$. Both FDR and
+FWER are proper generalizations of the concept of type I error to multiple hypotheses. If there is only
+one hypothesis ($m=1$), the two error rates are identical and equal to the regular type I error.
+
+
+
+
