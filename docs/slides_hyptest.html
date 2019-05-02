@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hypothesis testing</title>
+    <meta charset="utf-8">
+    <meta name="author" content="Aldo Solari" />
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# <strong>Hypothesis testing</strong>
+### Aldo Solari
+
+---
+
+
+
+
+# Outline
+
+
+* Darwin data
+
+* Lindley's paradox
+
+* Confident conclusions
+
+---
+
+# Darwin data
+
+* Charles Darwin collected data over a period of years on the heights of Zea mays plants
+
+* The plants were descended from the same parents and planted at the same time. 
+
+* Half of the plants were *self-fertilized*, and half were
+*cross-fertilized*, and the purpose of the experiment was to compare their *heights*. 
+
+* In order to minimize differences in humidity, growing conditions, and lighting, Darwin planted the seeds in pairs in different pots
+
+---
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Pot &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Cross &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Self &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; I &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 23.500 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 17.375 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; I &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 12.000 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 20.375 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; I &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 21.000 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 20.000 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; II &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 22.000 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 20.000 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; II &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 19.125 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 18.375 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; II &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 21.500 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 18.625 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; III &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 22.125 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 18.625 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; III &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 20.375 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 15.250 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; III &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 18.250 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 16.500 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; III &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 21.625 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 18.000 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; III &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 23.250 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 16.250 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; IV &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 21.000 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 18.000 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; IV &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 22.125 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 12.750 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; IV &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 23.000 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 15.500 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; IV &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 12.000 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 18.000 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+
+# Questions
+
+1. What is the effect of cross-fertilization? Are cross-fertilized plants equal, smaller or taller than self-fertilized plants?
+
+2. Which statistical model would you use to describe the experiment?
+
+3. Formulate a null hypothesis about the parameter of interest, and perform a test. What is your conclusion?
+
+---
+
+![](slides_hyptest_files/figure-html/unnamed-chunk-2-1.png)&lt;!-- --&gt;
+
+---
+
+
+```
+
+	Two Sample t-test
+
+data:  height by type
+t = 2.4371, df = 28, p-value = 0.02141
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ 0.4173433 4.8159900
+sample estimates:
+mean in group Cross  mean in group Self 
+           20.19167            17.57500 
+```
+
+---
+
+![](slides_hyptest_files/figure-html/unnamed-chunk-4-1.png)&lt;!-- --&gt;
+
+---
+
+
+```
+
+	One Sample t-test
+
+data:  differences
+t = 2.148, df = 14, p-value = 0.0497
+alternative hypothesis: true mean is not equal to 0
+95 percent confidence interval:
+ 0.003899165 5.229434169
+sample estimates:
+mean of x 
+ 2.616667 
+```
+
+---
+
+# Point null hypothesis
+
+* Testing a point null hypothesis `\(H_0: \theta=0\)` against `\(H_1:\theta \neq 0\)` is a classical but controversial issue in statistical methodology
+
+* Statisticians have classically asked the wrong question 
+
+&gt; Is the effect 0? -- but the effect is always different from 0 -- at least in some remote decimal place 
+
+* The question that should be addressed instead is 
+
+&gt; Is the effect large enough to be meaningfully different from 0?
+
+---
+
+# ESP experiment
+
+* We give an example from parapsychological research 
+
+* The case at hand involved the test
+of a subject’s claim to affect a series of randomly generated zeros and ones by means of extrasensory capacities
+
+* The subject claimed
+that his ESP would make the sample mean differ significantly from `\(1/2\)`
+
+---
+
+# Data
+
+* `\(n=104490000\)`
+
+* `\(Y_1,\ldots, Y_n\)` i.i.d. Bernoulli `\((\theta)\)`
+
+* `\(H_0: \theta=1/2\)` against `\(H_{1}: \theta \neq 1/2\)`
+
+* Observed `\(\sum_{i=1}^{n}y_i = 52263471\)` ones, `\(n-\sum_{i=1}^{n}y_i = 52226529\)` zeros
+
+
+```
+
+	Exact binomial test
+
+data:  52263471 and 104490000
+number of successes = 52263000, number of trials = 104490000, p-value = 0.0003017
+alternative hypothesis: true probability of success is not equal to 0.5
+95 percent confidence interval:
+ 0.5000809 0.5002726
+sample estimates:
+probability of success 
+             0.5001768 
+```
+
+
+---
+
+# Equivalence and non-equivalence regions
+
+*  `\(X\sim N(\theta,1)\)` and `\(\theta \in \mathbb{R}\)`
+
+*  Pre-specify a margin `\(\Delta \geq 0\)` 
+
+* Equivalence region `\(E=[-\Delta,\Delta]\)` 
+
+* Non-equivalence region `\(\bar{E} = (- \infty,-\Delta) \cup (\Delta, +\infty)\)`
+
+* Hypotheses `\(H_E: \theta \in E\)` and `\(H_{\bar{E}}: \theta \in \bar{E}\)`
+
+---
+
+# Asymmetry in conclusions
+
+* Testing one hypothesis (the null) against the other (the alternative) at level `\(\alpha=0.05\)` leads to the well-known asymmetry in conclusions
+
+* Rejecting the null implies the conclusion that the true parameter `\(\theta\)` belongs to the region specified by the alternative, which is the correct conclusion `\(95\%\)` of the times
+
+* Not rejecting the null does not allow to conclude that `\(\theta\)` is in the region specified by the null: it leaves us with uncertainty about where `\(\theta\)` lies
+
+---
+
+# Back to symmetry
+
+* Symmetry can be restored by testing again but interchanging the null and the alternative.
+
+* This involves simultaneously testing the two null hypotheses `\(H_E\)` and `\(H_{\bar{E}}\)` at level `\(\alpha\)`
+
+* For instance, even if the experiment was exclusively planned for concluding equivalence, it would be still possible to conclude non-equivalence for free
+
+
+* The conclusion is then that the observed data `\(x\)` is consistent with `\(E\)`, with `\(\bar{E}\)`, or with both, i.e. complete uncertainty
+
+
+---
+
+# Inference on the standardized effect
+
+
+* Let `\(Y_1,\ldots,Y_n\)` be a random sample from `\(N(\mu,\sigma^2)\)`
+
+* Suppose that the parameter of interest is the standardized effect
+
+$$
+ \theta = \frac{\mu}{\sigma}
+$$
+
+
+* Older by far than any other statistical technique is *point estimation*, i.e.
+$$
+ \hat{\theta} = \frac{\bar{Y}}{S}
+$$
+where `\(\bar{X}\)` is the sample mean and `\(S^2\)` is the unbiased estimator of the variance based on a random sample of size `\(n\)`
+
+* A point estimate gives a hint of the most likely value the data seem to point out or suggest, but by itself this is not enough because it ignores variability and gives no insight into uncertainty
+
+
+---
+
+# Confident conclusions
+
+* Tukey advocated that the answer should be provided by *confident conclusions*
+
+* Confident conclusions are of two types: *directions* and *intervals*
+
+* Confidence intervals address the original question *What are the likely values for the effect?* by pointing out a whole interval of possible values, chosen so that there can be high confidence that the true value of the effect is among them
+
+* Confidence directions address a simpler question: *What is the sign of the effect?* Is it *positive*, *negative* or *irrelevant*?
+
+* Since asking only for direction asks for a cruder form of information, we may expect to have more statistical power to answer the question
+
+---
+
+# Relevance boundary
+
+* Small effects usually matter very little, i.e. are not considered of practical importance
+
+* It is the researcher's duty to have enough subject matter knowledge in order to know the magnitude of a minimally relevant effect
+
+* The researcher can choose a relevance boundary `\(\Delta\)` such that an effect is considered 
+    - *irrelevant* when `\(-\Delta \leq \theta \leq \Delta\)`
+
+    - *positive* when `\(\theta&gt;\Delta\)` 
+
+    - *negative* when `\(\theta&lt; -\Delta\)`.
+
+---
+
+# Confidence interval
+
+* Lower bound `\(\underline{\theta}_{\alpha}\)`  such that `$$\displaystyle T_{n-1,\frac{\underline{\theta}_{\alpha}}{\sqrt{n}}}(\sqrt{n}\hat{\theta}_{\mathrm{obs}}) = 1-\alpha$$` 
+
+* Upper bound `\(\overline{\theta}_{\alpha}\)` such that `\(\displaystyle T_{n-1,\frac{\overline{\theta}_{\alpha}}{\sqrt{n}}}(\sqrt{n}\hat{\theta}_{\mathrm{obs}}) = \alpha\)`
+
+
+
+---
+
+# Confidence direction
+
+
+`$$D^{1-\alpha}  = \left\{
+    \begin{array}{lll}
+          (\Delta, \infty) &amp; \textrm{(positive)} &amp; \mathrm{if\,\,} \hat{\theta} &gt;c/ \sqrt{n} \\
+          (-\infty, -\Delta) &amp; \textrm{(negative)} &amp; \mathrm{if\,\,}   \hat{\theta} &lt; - c/ \sqrt{n} \\
+   \left[ - \Delta, \Delta \right] &amp; \textrm{(irrelevant)} &amp; \mathrm{if\,\,} -k/ \sqrt{n}   &lt; \hat{\theta} &lt; k/ \sqrt{n} \\
+   (-\infty,\infty) &amp; \textrm{(uncertain)} &amp; \textrm{otherwise}
+  \end{array}
+    \right.$$`
+
+where
+
+* `\(c^2 = F^{-1}_{1,n-1,n\Delta^2}(1-\tilde{\alpha})\)` 
+
+* `\(k^2 = F^{-1}_{1,n-1,n\Delta^2}(\tilde{\alpha})\)` 
+
+* `\(\tilde{\alpha}\)` is such that 
+
+`$$\sup_{\theta} \mathrm{P}_{\theta}(\theta \notin D^{1-\alpha}) =  \tilde{\alpha} + T_{n-1,\sqrt{n}\Delta}(-c) = \alpha$$`
+
+---
+
+![](slides_hyptest_files/figure-html/unnamed-chunk-7-1.png)&lt;!-- --&gt;
+    </textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightLanguage": "R",
+"countIncrementalSlides": false,
+"highlightLines": true
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function() {
+  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})();</script>
+
+<script>
+(function() {
+  var i, text, code, codes = document.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+})();
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

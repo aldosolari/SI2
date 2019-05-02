@@ -1,0 +1,12 @@
+---
+title: "Homework 1"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Davison (2003) Exercise 4 p. 347
+
+16, 19, 20 p. 351

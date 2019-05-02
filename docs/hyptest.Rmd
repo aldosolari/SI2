@@ -94,7 +94,7 @@ these differences, which are not of interest, whereas
 *comparison within pairs* would depend only on the type of fertilization. 
 
 Fisher considered the model
-$$Y_i = \mu_j + \sigma \varepsilon_{i}, \quad X_i = \mu_i + \theta + \sigma \epsilon_{i}, \quad i = 1,\ldots,n$$
+$$Y_i = \mu_i + \sigma \varepsilon_{i}, \quad X_i = \mu_i + \theta + \sigma \epsilon_{i}, \quad i = 1,\ldots,n$$
 
 The parameter $\mu_i$ represents the effects of the planting conditions for the $i$th pair,
 and $\varepsilon_i$ and $\epsilon_i$ are independent random variables with mean zero and unit variance. 
@@ -165,7 +165,7 @@ In a discrete problem it is $q_{\mathrm{obs}}$ plus the achievable $p$-value fro
 Tests where the null hypotheses itself is formulated in terms of arbitrary distributions, so-called *nonparametric* or *distribution-free tests*. 
 
 A random sample $Y_1,\ldots,Y_n$ arises from an unknown
-distribution $F$. The null hypothesis $H_0$ asserts that $F$ has median $\eta$ equal to $\eta_0$. 
+continuous distribution $F$. The null hypothesis $H_0$ asserts that $F$ has median $\eta$ equal to $\eta_0$. 
 
 If $\eta = \eta_0$, the probability that $Y$ falls on either side of $\eta_0$ is $1/2$. This suggests that we can base a test on $$T = \sum_{i=1}^{n}I\{Y_i > \eta_0\}$$ 
 
@@ -174,8 +174,8 @@ Under $H_0$, $T$ has a binomial distribution with size $n$ and probability $1/2$
 $$p^+_{\mathrm{obs}}= \mathrm{P}_0(T \geq t_{\mathrm{obs}}) = \sum_{k=t_{\mathrm{obs}}}^{n} {n \choose k}\frac{1}{2^n}, \quad p^-_{\mathrm{obs}} = \mathrm{P}_0(T \leq t_{\mathrm{obs}}) = \sum_{k=0}^{t_{\mathrm{obs}}} {n \choose k}\frac{1}{2^n}$$
 
 
-Under the matched pair model for the Darwin data, the height differences may be written as
-$$D_i = \theta + \sigma(\varepsilon_i - \epsilon_i)$$
+Consider a more complicated matched pair model for the Darwin data, where the height differences may be written as
+$$D_i = \theta + \sigma_i(\varepsilon_i - \epsilon_i)$$
 
 If $\varepsilon_i-\epsilon_i$ are symmetrically distributed around zero, then $D_i$ are symmetrically distributed around $\theta$, i.e.
 $$D_i - \theta \stackrel{d}{=} \theta - D_i \qquad i=1,\ldots,n$$
@@ -185,6 +185,7 @@ By testing $H_0:\theta=0$, we have $t_{\mathrm{obs}} = 13$ and a two-sided $p$-v
 ```{r}
 binom.test(x=13, n=15, p=0.5, alternative="two.sided")
 ```
+
 
 
 ### Goodness of fit tests
@@ -378,6 +379,7 @@ $$X = AY + b$$ with $\underset{m\times m}{A}$ non-singular.
 
 No UMP test exists for this problem. It can be proved that the Hotelling $T^2$ test is the most powerful test in the class of tests that are invariate to full rank linear transformations (UMPI). 
 
+
 ### Testing equivalence
 
 Let $Y_1,\ldots,Y_n$ be a random sample from $N(\mu,1)$ distribution with known $\sigma^2$, and suppose that we are testing $H_0: \mu \in (-\infty,-\Delta] \cup [\Delta,\infty)$ against $H_1: \mu \in (-\Delta,\Delta)$ for some pre-specified $\Delta >0$. 
@@ -428,6 +430,49 @@ tobs = t.test(differences)$stat
 cat(pf(tobs, df1=1,df2=n-1, ncp=n*Delta^2))
 ```
 
+
+### Similar tests
+
+Suppose that $\theta = (\psi,\lambda)$ where $\psi \in \Psi$
+is called the *parameter of interest* and $\lambda \in \Lambda$ is called *nuisance parameter*, with $\Theta = \Psi \times \Lambda$. 
+
+Usually the null hypothesis impose the constraint $\psi = \psi_0$ but puts no restriction on $\lambda$. The $p$-value may be then written
+
+$$\mathrm{P}_0(T \geq t_{\mathrm{obs}})=\mathrm{P}(T \geq t_{\mathrm{obs}}; \psi_0,\lambda) = \int_{y: t(y) \geq t_{\mathrm{obs}}} f(y; \psi_0,\lambda)dy$$
+
+which depends on $\lambda$.
+
+Sometimes a critical region $\mathcal{Y}_1$ of size $\alpha$ can be found such that 
+
+$$\mathrm{P}(Y \in \mathcal{Y}_1; \psi_0,\lambda) = \alpha \quad \forall \lambda \in \Lambda$$
+
+
+Such a $\mathcal{Y}_1$ is called a *similar region*; it is similar to the sample space, which satisfies this equation with $\lambda = 1$. A test whose critical regions are similar is called a *similar test*. One approach to find similar test is the use of conditioning. 
+
+When there is a minimal sufficient statistic $S_0$ for the unknown $\lambda$ in a null distribution, it can be removed by conditioning, giving $p$-value
+
+$$\mathrm{P}(T \geq t_{\mathrm{obs}} | S_0;\psi_0)= \int_{y: t(y) \geq t_{\mathrm{obs}}} f(y| s_0; \psi_0)dy$$
+
+which is independent of $\lambda$ by sufficiency of $S_0$. 
+
+Consider two independent Poisson variables $Y_1 \sim \mathrm{Poisson}(\mu_1)$ and $Y_2 \sim \mathrm{Poisson}(\mu_2)$.
+Suppose we wish to test $\mu_1=\mu_2$ against $\mu_1 > \mu_2$. We may equivalently set $(\psi,\lambda)=(\log(\mu_1/\mu_2), \log(\mu_1))$ and test $\psi=0$ against $\psi > 0$ with no restriction on $\lambda = \log(\mu_2)$. 
+Here $T=Y_1$ and $S_0 = Y_1+Y_2 \sim \mathrm{Poisson}(\mu_1+\mu_2)$, so that 
+$$Y_1|Y_1+Y_2 \sim \mathrm{Binomial}(y_1+y_2, e^\psi/(1+e^\psi))$$
+and 
+$$\mathrm{P}(T \geq t_{\mathrm{obs}} | S_0 = s_0;\psi=0)=\sum_{t=t_{\mathrm{obs}}}^{s_0} { s_0\choose t} \frac{1}{2^{s_{0}}}$$
+
+
+### Permutation test
+
+Let $Y_1,\ldots,Y_m$  and $Y_{m+1},\ldots, Y_n$ be independent random samples with densities $g(y)$ and $g(y-\theta)$ where $g$ is unknown. 
+Suppose we wish to test the null hypothesis $\theta=0$. 
+
+Under the null hypothesis, $Y_1,\ldots,Y_n$ form a random sample with unknown density $g$, and the set of ordered statistics $Y_{(1)},\ldots,Y_{(n)}$ is a minimal sufficient statistic. The conditional distribution of $Y_1,\ldots,Y_n$ given the observed values $y_{(1)},\ldots,y_{(n)}$ of the ordered statistics puts equal mass on each of the $n!$ permutations of $y_{1},\ldots,y_{n}$, so the $p$-value is
+$$\mathrm{P}(T \geq t_{\mathrm{obs}} | Y_{(1)},\ldots,Y_{(n)}) = \frac{1}{n!} \sum I\{t(y_{\mathrm{perm}}) \geq t_{\mathrm{obs}} \}$$
+where the sum is over all permutations $y_{\mathrm{perm}}$ of $y_1,\ldots,y_n$. 
+
+
 # Duality with confidence intervals
 
 **Reference**: @davison2003statistical, Section 7.3.4
@@ -461,8 +506,8 @@ $$\sqrt{n}\hat{\theta} = \sqrt{n} \frac{\bar{Y}}{S} \sim t_{n-1, \sqrt{n}\theta}
 where $\bar{Y}$ is the sample mean and $S^2$ is the unbiased estimator of the variance based on a random sample of size $n$.
 
 
-A confidence interval for $\theta$ with level $1-\alpha$ is given by $[\underline{\theta}_{\alpha}, \overline{\theta}_{\alpha}]$
-with $\underline{\theta}_{\alpha}$  such that $\displaystyle T_{n-1,\frac{\underline{\theta}_{\alpha}}{\sqrt{n}}}(\sqrt{n}\hat{\theta}) = 1-\alpha/2$ and  $\overline{\theta}_{\alpha}$ such that $\displaystyle T_{n-1,\frac{\overline{\theta}_{\alpha}}{\sqrt{n}}}(\sqrt{n}\hat{\theta}) = \alpha/2$, respectively, where $T_{\nu,\lambda}(t)$ denotes the cumulative distribution function evaluated at $t$ of a non-central Student's t distribution with $\nu$ degrees of freedom and non-centrality parameter $\lambda$.
+A confidence interval for $\theta$ with level $1-2\alpha$ is given by $[\underline{\theta}_{\alpha}, \overline{\theta}_{\alpha}]$
+with $\underline{\theta}_{\alpha}$  such that $\displaystyle T_{n-1,\frac{\underline{\theta}_{\alpha}}{\sqrt{n}}}(\sqrt{n}\hat{\theta}) = 1-\alpha$ and  $\overline{\theta}_{\alpha}$ such that $\displaystyle T_{n-1,\frac{\overline{\theta}_{\alpha}}{\sqrt{n}}}(\sqrt{n}\hat{\theta}) = \alpha$, respectively, where $T_{\nu,\lambda}(t)$ denotes the cumulative distribution function evaluated at $t$ of a non-central Student's t distribution with $\nu$ degrees of freedom and non-centrality parameter $\lambda$.
 
 ### Assessing uncertainty: intervals and directions
 

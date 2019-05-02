@@ -31,11 +31,11 @@ output:
 # Program
 
 1. [**Hypothesis testing**](https://aldosolari.github.io/SI2/docs/hyptest.html): Darwin data, $p$-values, Neyman-Pearson lemma, duality with confidence intervals
-    - TBD
+    - [Homework 1](https://aldosolari.github.io/SI2/docs/hw1.pdf)
 
 2. [**Selection and multiple testing**](https://aldosolari.github.io/SI2/docs/selmt.html): 
 The crisis of modern science, the likelihood of false discoveries, a new scientific paradigm, the law of selection, multiple testing
-    - TBD
+    - [Homework 2](https://aldosolari.github.io/SI2/docs/hw2.pdf)
 
 3. **Methods for FWER and FDR control**: Golub data, Bonferroni, Holm, Westfall \& Young, Benjamini-Hochberg, confidence intervals for selected parameters and false coverage rate
 
