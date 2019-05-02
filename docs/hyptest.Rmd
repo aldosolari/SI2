@@ -382,7 +382,7 @@ No UMP test exists for this problem. It can be proved that the Hotelling $T^2$ t
 
 ### Testing equivalence
 
-Let $Y_1,\ldots,Y_n$ be a random sample from $N(\mu,1)$ distribution with known $\sigma^2$, and suppose that we are testing $H_0: \mu \in (-\infty,-\Delta] \cup [\Delta,\infty)$ against $H_1: \mu \in (-\Delta,\Delta)$ for some pre-specified $\Delta >0$. 
+Let $Y_1,\ldots,Y_n$ be a random sample from $N(\mu,1)$, and suppose that we are testing $H_0: \mu \in (-\infty,-\Delta] \cup [\Delta,\infty)$ against $H_1: \mu \in (-\Delta,\Delta)$ for some pre-specified $\Delta >0$. 
 
 Consider the test statistic
 $$T= n\bar{Y}^2 \sim \chi^2_{1,n\mu^2}$$
@@ -414,7 +414,7 @@ abline(h=-Delta,lty=3)
 
 
 Let $Y_1,\ldots,Y_n$ i.i.d. $N(\mu,\sigma^2)$ and suppose we want to test $H_0: \frac{\mu}{\sigma} \in (-\infty,-\Delta] \cup [\Delta,\infty)$ against  
-$H_1: \frac{\mu}{\sigma} \in [-\Delta,\Delta]$. Consider the squared $t$ test statistic
+$H_1: \frac{\mu}{\sigma} \in (-\Delta,\Delta)$. Consider the squared $t$ test statistic
 $$T = \frac{n\bar{Y}^2}{S^2} \sim F_{1,n-1,n\frac{\mu^2}{\sigma^2}}$$
 which rejects for small values, where $F_{\nu_1,\nu_2,\lambda}$ is a non-central F distribution with $\nu_1$ and $\nu_2$ degree2 of freedom and noncentrality parameter $\lambda$. 
 
@@ -447,11 +447,11 @@ Sometimes a critical region $\mathcal{Y}_1$ of size $\alpha$ can be found such t
 $$\mathrm{P}(Y \in \mathcal{Y}_1; \psi_0,\lambda) = \alpha \quad \forall \lambda \in \Lambda$$
 
 
-Such a $\mathcal{Y}_1$ is called a *similar region*; it is similar to the sample space, which satisfies this equation with $\lambda = 1$. A test whose critical regions are similar is called a *similar test*. One approach to find similar test is the use of conditioning. 
+Such a $\mathcal{Y}_1$ is called a *similar region*; it is similar to the sample space, which satisfies this equation with $\alpha = 1$. A test whose critical regions are similar is called a *similar test*. One approach to find similar test is the use of conditioning. 
 
 When there is a minimal sufficient statistic $S_0$ for the unknown $\lambda$ in a null distribution, it can be removed by conditioning, giving $p$-value
 
-$$\mathrm{P}(T \geq t_{\mathrm{obs}} | S_0;\psi_0)= \int_{y: t(y) \geq t_{\mathrm{obs}}} f(y| s_0; \psi_0)dy$$
+$$p_{\mathrm{obs}} = \mathrm{P}_0(T \geq t_{\mathrm{obs}} | S_0;\psi_0)= \int_{y: t(y) \geq t_{\mathrm{obs}}} f(y| s_0; \psi_0)dy$$
 
 which is independent of $\lambda$ by sufficiency of $S_0$. 
 
@@ -460,7 +460,7 @@ Suppose we wish to test $\mu_1=\mu_2$ against $\mu_1 > \mu_2$. We may equivalent
 Here $T=Y_1$ and $S_0 = Y_1+Y_2 \sim \mathrm{Poisson}(\mu_1+\mu_2)$, so that 
 $$Y_1|Y_1+Y_2 \sim \mathrm{Binomial}(y_1+y_2, e^\psi/(1+e^\psi))$$
 and 
-$$\mathrm{P}(T \geq t_{\mathrm{obs}} | S_0 = s_0;\psi=0)=\sum_{t=t_{\mathrm{obs}}}^{s_0} { s_0\choose t} \frac{1}{2^{s_{0}}}$$
+$$p_{\mathrm{obs}} = \mathrm{P}(T \geq t_{\mathrm{obs}} | S_0 = s_0;\psi=0)=\sum_{t=t_{\mathrm{obs}}}^{s_0} { s_0\choose t} \frac{1}{2^{s_{0}}}$$
 
 
 ### Permutation test
@@ -469,8 +469,8 @@ Let $Y_1,\ldots,Y_m$  and $Y_{m+1},\ldots, Y_n$ be independent random samples wi
 Suppose we wish to test the null hypothesis $\theta=0$. 
 
 Under the null hypothesis, $Y_1,\ldots,Y_n$ form a random sample with unknown density $g$, and the set of ordered statistics $Y_{(1)},\ldots,Y_{(n)}$ is a minimal sufficient statistic. The conditional distribution of $Y_1,\ldots,Y_n$ given the observed values $y_{(1)},\ldots,y_{(n)}$ of the ordered statistics puts equal mass on each of the $n!$ permutations of $y_{1},\ldots,y_{n}$, so the $p$-value is
-$$\mathrm{P}(T \geq t_{\mathrm{obs}} | Y_{(1)},\ldots,Y_{(n)}) = \frac{1}{n!} \sum I\{t(y_{\mathrm{perm}}) \geq t_{\mathrm{obs}} \}$$
-where the sum is over all permutations $y_{\mathrm{perm}}$ of $y_1,\ldots,y_n$. 
+$$p_{\mathrm{obs}} = \mathrm{P}_0(T \geq t_{\mathrm{obs}} | Y_{(1)},\ldots,Y_{(n)}) = \frac{1}{n!} \sum I\{t(y_{\mathrm{perm}}) \geq t_{\mathrm{obs}} \}$$
+where the sum is over all permutations $y_{\mathrm{perm}} = (y_{\pi(1)}, \ldots,y_{\pi(n)})$ of $y_1,\ldots,y_n$. 
 
 
 # Duality with confidence intervals
@@ -507,7 +507,7 @@ where $\bar{Y}$ is the sample mean and $S^2$ is the unbiased estimator of the va
 
 
 A confidence interval for $\theta$ with level $1-2\alpha$ is given by $[\underline{\theta}_{\alpha}, \overline{\theta}_{\alpha}]$
-with $\underline{\theta}_{\alpha}$  such that $\displaystyle T_{n-1,\frac{\underline{\theta}_{\alpha}}{\sqrt{n}}}(\sqrt{n}\hat{\theta}) = 1-\alpha$ and  $\overline{\theta}_{\alpha}$ such that $\displaystyle T_{n-1,\frac{\overline{\theta}_{\alpha}}{\sqrt{n}}}(\sqrt{n}\hat{\theta}) = \alpha$, respectively, where $T_{\nu,\lambda}(t)$ denotes the cumulative distribution function evaluated at $t$ of a non-central Student's t distribution with $\nu$ degrees of freedom and non-centrality parameter $\lambda$.
+with $\underline{\theta}_{\alpha}$  such that $\displaystyle T_{n-1,\frac{\underline{\theta}_{\alpha}}{\sqrt{n}}}(\sqrt{n}\hat{\theta}_{\mathrm{obs}}) = 1-\alpha$ and  $\overline{\theta}_{\alpha}$ such that $\displaystyle T_{n-1,\frac{\overline{\theta}_{\alpha}}{\sqrt{n}}}(\sqrt{n}\hat{\theta}_{\mathrm{obs}}) = \alpha$, respectively, where $T_{\nu,\lambda}(t)$ denotes the cumulative distribution function evaluated at $t$ of a non-central Student's t distribution with $\nu$ degrees of freedom and non-centrality parameter $\lambda$.
 
 ### Assessing uncertainty: intervals and directions
 
@@ -557,7 +557,7 @@ D^{1-\alpha}  = \left\{
  \end{eqnarray}
  with $c^2 = F^{-1}_{1,n-1,n\Delta^2}(1-\tilde{\alpha})$, $k^2 = F^{-1}_{1,n-1,n\Delta^2}(\tilde{\alpha})$ and $\tilde{\alpha}$ is such that 
 \begin{eqnarray}
-\displaystyle  \sup_{\theta} \mathrm{P}_{\theta}(\theta \notin D^{1-\alpha}) =  \tilde{\alpha} + T_{n-1,\sqrt{n}\Delta}(-c) = \alpha
+ \tilde{\alpha} + T_{n-1,\sqrt{n}\Delta}(-c) = \alpha
 \end{eqnarray}
   where $F^{-1}_{\nu_1,\nu_2,\lambda}(\alpha)$ denotes the quantile function evaluated at $\alpha$ of a non-central F distribution with $\nu_1$ and $\nu_2$ degrees of freedom and non-centrality parameter $\lambda$. 
   

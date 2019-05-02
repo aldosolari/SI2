@@ -35,7 +35,6 @@ output:
 
 2. [**Selection and multiple testing**](https://aldosolari.github.io/SI2/docs/selmt.html): 
 The crisis of modern science, the likelihood of false discoveries, a new scientific paradigm, the law of selection, multiple testing
-    - [Homework 2](https://aldosolari.github.io/SI2/docs/hw2.pdf)
 
 3. **Methods for FWER and FDR control**: Golub data, Bonferroni, Holm, Westfall \& Young, Benjamini-Hochberg, confidence intervals for selected parameters and false coverage rate
 
@@ -59,8 +58,8 @@ The III term exam session starts on 8 July 2019 and ends on 19 July 2019.
 
 The grade will be based on
 
-* written and oral exam (75%)
-* homework (25%)
+* written and oral exam (X%)
+* homework (Y%)
 
 
 

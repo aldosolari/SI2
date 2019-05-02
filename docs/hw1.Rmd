@@ -7,6 +7,15 @@ output: pdf_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-Davison (2003) Exercise 4 p. 347
+### Reading
 
-16, 19, 20 p. 351
+Davison, A.C., (2003). Statistical models. Cambridge University Press. Chapter 13, Section 7.3 (p. 325-346)
+
+### Exercize
+
+Below are diastolic blood pressures (mm Hg) of ten patients before and after treatment for high blood pressure. Test the hypothesis that the treatment has no effect on blood pressure using a Wilcoxon signed-rank test, (a) using the exact significance level and (b) using a
+normal approximation. Discuss briefly.
+
+Before 94 105 101 106 118 107 96 102 114 95
+
+After 96 96 95 103 105 111 86 90 107 84
