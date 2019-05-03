@@ -178,9 +178,7 @@ seemingly favorable result. When the existence of confirmation bias is taken int
 account in Ioannidis’ argument, it is easy to see that it will result in an even larger
 proportion of false positive results in the scientific literature.
 
-
-
-# A new scientific paradigm
+# The law of selection
 
 There are likely multiple sources for this crisis in modern science. One source of this crisis is the misuse of statistical methods in science, with the $p$-value receiving most of the criticism. 
 
@@ -204,85 +202,8 @@ It could be argued that this misuse of statistical methods is caused by a shift 
 
 Elementary statistical textbooks and researchers often ignore selection issues. As a consequence, inference mat be completely wrong and misleading.
 
-These are the problems that the area of *selective inference* attempts to address. 
+These are the problems that the area of *selective inference* attempts to address. In the following we will present examples and case studies to illustrate the issue of selection. 
 
-
-**Example of textbook practice:** @goeman2016randomness
-
-A group of nutrition researchers from Amsterdam led by Martijn Katan wanted to demonstrate that the consumption of sugar through soft drinks makes children gain weight. 
-
-This may seem obvious, but other researchers (and soft drink companies) maintained that children would automatically compensate for their sugar intake by being more active or eating less of other foods, negating the weight gain of the sugar intake.
-
-To prove their point, Katan’s group enrolled 650 children in
-several schools and randomly allocated them into two groups. The first group was handed out a daily sugared soft drink. The second group received a daily sugar-free version. The two drinks tasted the same and the children and their parents were kept in the dark as to which child received which drink. 
-
-After 1.5 year the researchers measured the weight gain of each of the children. They found that on average the children who drank the sugared drink gained one kilo more weight than the children
-who drank the sugar-free version. They submitted a description of the experiment and their conclusions to the New England Journal of Medicine, writing that consumption of sugar via soft drinks does indeed cause substantial weight gain in children. 
-
-Before the study was started, the precise design of the study was laid down in a study protocol published separately. This protocol stipulated exactly how the study would be executed, what measurements would be taken at what time, what statistical analyses would be performed and what would be
-done with the data (or the absence of data) of children who did not follow the study to the end. The protocol also motivates the number of participating children. This was chosen in such a way that if Katan’s theory was right and children would
-indeed gain weight as a result of drinking soft drinks, Katan would have 80% chance of demonstrating it with this trial.
-
-
-**Example of modern practice:** @goeman2016randomness
-
-We have seen that Katan built in all kinds of
-safeguards into his experimental design, such as the blinding and the protocol, to protect the experiment from his own biases. Essentially, these measures limit his own freedom in analyzing his results. Not all research is as well designed. 
-
-Headlines in newspapers in 1995 announced that eating tomatoes would dramatically decrease the risk of prostate cancer.
-
-![](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUpGAxaBozIBQtB9tSR8LMSYRoEBgGPteMBqRw-o_xvlxWjJpN)
-
-Surprisingly, the beneficial effect was not found in fresh tomatoes, but rather in tomato concentrate in the form of ketchup, pizza, tomato soup and even potato crisps with ketchup flavor. 
-
-The source of the news was a publication by a group led
-by Edward Giovannucci from Harvard. According to
-him, the substance lycopene, found abundantly in tomato concentrate, eliminated the free radicals which caused the cancer.
-Giovannucci’s article has had a major
-impact, with over a 1000 citations in the scientific literature over the last twenty years. 
-
-How did Giovannucci come to his conclusion? He asked a large group of health professionals to fill out food intake questionnaires, focusing on intake of 46 vegetables and fruits. Next, he followed his subjects in time to see who would
-develop prostate cancer, to check whether people who ate more or less of certain foodstuffs would on average develop prostate cancer more frequently. 
-
-In only 4 of the 46 food types he investigated was he able to find the relationship he was looking for, supported by $p$-values smaller than 0.05. 
-
-Upon closer examination, those four
-were all related to industrially processed tomatoes. A plausible explanation was
-found in the lycopene theory, and this was the result that was highlighted in the
-publication.
-
-How convincing is the result? We have to remember that Giovannucci did not yet have his theory about
-lycopene when he started his study, so that at the moment he contacted a critic, he would have only had a relatively vague theory that the risk of prostate cancer might be influenced by diet. 
-
-However, the risk of prostate cancer might depend
-on all manner of things, such as genetic and lifestyle factors, but that food intake did not matter. 
-For example, people who eat more vegetables typically also
-exercise more and are more highly educated. 
-If we find that people who eat more
-vegetables have less prostate cancer, is that due to the vegetables or due to the exercise? 
-
-Giovannucci investigated 46 different foodstuffs separately, calculating a separate $p$-value for each of them. In 4 out of these 46 did he find a $p$-value smaller than 0.05. 
-
-However, suppose there is no relationship
-between diet and prostate cancer. We can expect to find a $p$-value smaller than 0.05 about 2.3 times out of 46. 
-This is because $P_1,\ldots,P_{46}$ are distributed as $U(0,1)$, thus 
-$$\mathrm{E}\Big(\sum_{i=1}^{46} I\{P_i\leq 0.05\}\Big) = \sum_{i=1}^{46}\mathrm{P}\Big( U(0,1) \leq 0.05\Big) =  46 \cdot 0.05 = 2.3$$
-
-If we assume that $P_1,\ldots,P_{46}$ are i.i.d. $U(0,1)$, 
-having at least 4 $p$-value smaller than 0.05 in this situation is not an unlikely event, with an occurrence almost 20%. 
-This is because $V = \sum_{i=1}^{46} I\{P_i\leq 0.05\} \sim \mathrm{Binomial}(46,0.05)$ and 
-$$\mathrm{P}\Big(V \geq 4\Big) = 0.196$$
-If — as is likely here — the $p$-values are
-dependent, this probability will typically be even larger.
-
-# The law of selection 
-
-> When I was young I was very impressed by how food producers could fill jars with whole walnuts. Somehow they could crack the shells while leaving the nuts intact. Most of the times I tried it, I ended up with mixed pieces of shell and nut. [...] Later, however, I learned that although the manufacturers had a better success rate than I did, they often ended up with mixed shell and nut pieces, too. But I also learned that they did something else: they SELECTED their results. @hand2014improbability
-
-The point here is that we often don't see the entire picture. 
-In the example it is assumed that the whole walnuts are the results of ALL OF the trials, rather than of just a selected subset of them. 
-
-Selection is ubiquitous yet subtle. In the following we will present examples and case studies to illustrate the issue of selection. 
 
 ### Confidence intervals for selected parameters
 
@@ -358,7 +279,7 @@ round(
 
 Statistical inference after variable selection requires an inference framework that takes the selection into account in order to be valid. 
 
-### U.S. economy and politics: HARKing (Hypothesizing After the Results are Known)
+### U.S. economy and politics: $p$-hacking
 
 **Reference**: https://fivethirtyeight.com/features/science-isnt-broken/
 
@@ -452,6 +373,58 @@ Inference:
 ```{r}
 summary(lm(unem ~ gov_gop,df2))$coefficients
 ```
+
+
+### Giovannucci et al. study: HARKing (Hypothesizing After the Results are Known) 
+
+**Reference**: @goeman2016randomness
+
+Headlines in newspapers in 1995 announced that eating tomatoes would dramatically decrease the risk of prostate cancer.
+
+![](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUpGAxaBozIBQtB9tSR8LMSYRoEBgGPteMBqRw-o_xvlxWjJpN)
+
+Surprisingly, the beneficial effect was not found in fresh tomatoes, but rather in tomato concentrate in the form of ketchup, pizza, tomato soup and even potato crisps with ketchup flavor. 
+
+The source of the news was a publication by a group led
+by Edward Giovannucci from Harvard @giovannucci1995intake. According to
+him, the substance lycopene, found abundantly in tomato concentrate, eliminated the free radicals which caused the cancer.
+Giovannucci’s article has had a major
+impact, with over a 1000 citations in the scientific literature over the last twenty years. 
+
+How did Giovannucci come to his conclusion? He asked a large group of health professionals to fill out food intake questionnaires, focusing on intake of 46 vegetables and fruits. Next, he followed his subjects in time to see who would
+develop prostate cancer, to check whether people who ate more or less of certain foodstuffs would on average develop prostate cancer more frequently. 
+
+In only 4 of the 46 food types he investigated was he able to find the relationship he was looking for, supported by $p$-values smaller than 0.05. 
+
+Upon closer examination, those four
+were all related to industrially processed tomatoes. A plausible explanation was
+found in the lycopene theory, and this was the result that was highlighted in the
+publication.
+
+How convincing is the result? We have to remember that Giovannucci did not yet have his theory about
+lycopene when he started his study, so that at the moment he contacted a critic, he would have only had a relatively vague theory that the risk of prostate cancer might be influenced by diet. 
+
+However, the risk of prostate cancer might depend
+on all manner of things, such as genetic and lifestyle factors, but that food intake did not matter. 
+For example, people who eat more vegetables typically also
+exercise more and are more highly educated. 
+If we find that people who eat more
+vegetables have less prostate cancer, is that due to the vegetables or due to the exercise? 
+
+Giovannucci investigated 46 different foodstuffs separately, calculating a separate $p$-value for each of them. In 4 out of these 46 did he find a $p$-value smaller than 0.05. 
+
+However, suppose there is no relationship
+between diet and prostate cancer. We can expect to find a $p$-value smaller than 0.05 about 2.3 times out of 46. 
+This is because $P_1,\ldots,P_{46}$ are distributed as $U(0,1)$, thus 
+$$\mathrm{E}\Big(\sum_{i=1}^{46} I\{P_i\leq 0.05\}\Big) = \sum_{i=1}^{46}\mathrm{P}\Big( U(0,1) \leq 0.05\Big) =  46 \cdot 0.05 = 2.3$$
+
+If we assume that $P_1,\ldots,P_{46}$ are i.i.d. $U(0,1)$, 
+having at least 4 $p$-value smaller than 0.05 in this situation is not an unlikely event, with an occurrence almost 20%. 
+This is because $V = \sum_{i=1}^{46} I\{P_i\leq 0.05\} \sim \mathrm{Binomial}(46,0.05)$ and 
+$$\mathrm{P}\Big(V \geq 4\Big) = 0.196$$
+If — as is likely here — the $p$-values are
+dependent, this probability will typically be even larger.
+
 
 
 ### Jelly beans - acne: unplanned subgroup analysis

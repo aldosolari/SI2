@@ -283,7 +283,7 @@ because $\int_{\mathcal{Y}_1} f_0(y)dy = \int_{\mathcal{Y}_1 \setminus \mathcal{
 Now, if $y\in \mathcal{Y}_1 \setminus \mathcal{Y}'_1$, then $f_1(y) \geq t_{\alpha}f_0(y)$ while if $y\in \mathcal{Y}'_1 \setminus \mathcal{Y}_1$ then $t_{\alpha}f_0(y) > f_{1}(y)$. 
 
 It follows that 
-$$t_{\alpha} \int_{\mathcal{Y}_1 \setminus \mathcal{Y}'_1} f_1(y)dy\geq \int_{\mathcal{Y}_1 \setminus \mathcal{Y}'_1} f_0(y)dy \geq \int_{\mathcal{Y}'_1 \setminus\mathcal{Y}_1} f_0(y)dy \geq t_{\alpha} \int_{\mathcal{Y}'_1 \setminus\mathcal{Y}_1} f_1(y)dy$$
+$$\frac{1}{t_{\alpha}} \int_{\mathcal{Y}_1 \setminus \mathcal{Y}'_1} f_1(y)dy\geq \int_{\mathcal{Y}_1 \setminus \mathcal{Y}'_1} f_0(y)dy \geq \int_{\mathcal{Y}'_1 \setminus\mathcal{Y}_1} f_0(y)dy \geq \frac{1}{t_{\alpha}} \int_{\mathcal{Y}'_1 \setminus\mathcal{Y}_1} f_1(y)dy$$
 
 Then 
 $$ \int_{\mathcal{Y}_1 } f_1(y)dy \geq  \int_{\mathcal{Y}'_1 } f_1(y)dy$$
