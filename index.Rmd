@@ -28,22 +28,33 @@ output:
 | May 9 | 14:00-17:00 | U6-18 |
 | May 10 | 14:00-17:00 | U6-21 |
 
-# Program
+# Lecture notes
 
 1. [**Hypothesis testing**](https://aldosolari.github.io/SI2/docs/hyptest.html): Darwin data, $p$-values, Neyman-Pearson lemma, duality with confidence intervals
-    - [Homework 1](https://aldosolari.github.io/SI2/docs/hw1.pdf)
 
-2. [**Selection and multiple testing**](https://aldosolari.github.io/SI2/docs/selmt.html): 
-The crisis of modern science, the likelihood of false discoveries, a new scientific paradigm, the law of selection, multiple testing
 
-3. **Methods for FWER and FDR control**: Golub data, Bonferroni, Holm, Westfall \& Young, Benjamini-Hochberg, confidence intervals for selected parameters and false coverage rate
+2. [**The crisis of modern science and selective inference**](https://aldosolari.github.io/SI2/docs/selmt.html): 
+The crisis of modern science, the likelihood of false discoveries, a new scientific paradigm, the law of selection
 
-4. **The post-hoc inference problem**: fMRI data, cluster inference, closed testing, simultaneous confidence bounds for the FDP
+3. **Multiple testing**: 
+[Error rates](https://aldosolari.github.io/SI2/docs/MT.pdf), [Methods for FWER control](https://aldosolari.github.io/SI2/docs/FWER.pdf), [Methods for FDR control](https://aldosolari.github.io/SI2/docs/FDR.pdf), 
+[Golub data](https://aldosolari.github.io/SI2/docs/Golub.pdf),
+[Simultaneous and selective confidence intervals](https://aldosolari.github.io/SI2/docs/FCR.pdf)
+
+4. **The post-hoc inference problem**: fMRI data, Simultaneous confidence bounds for the FDP
 
 5. **The variable selection problem**: Variable selection algorithms, post selection inference, model confidence set
 
 
 All of the course material is on the [github repository](https://github.com/aldosolari/SI2).
+
+# Homework
+
+* [Homework 1](https://aldosolari.github.io/SI2/docs/homework/hw1.pdf) (1 point)
+* [Homework 2](https://aldosolari.github.io/SI2/docs/homework/hw2.pdf) (2 points)
+* [Homework 3](https://aldosolari.github.io/SI2/docs/homework/hw3.pdf) (2 points)
+* [Homework 4](https://aldosolari.github.io/SI2/docs/homework/hw4.pdf) (2 points)
+* Homework 5 
 
 
 # Exam
@@ -58,8 +69,8 @@ The III term exam session starts on 8 July 2019 and ends on 19 July 2019.
 
 The grade will be based on
 
-* written and oral exam (X%)
-* homework (Y%)
+* written and oral exam (75%, 22.5 points)
+* homework (25%, 7.5 points)
 
 
 

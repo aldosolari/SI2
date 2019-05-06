@@ -1,5 +1,5 @@
 ---
-title: "Selection and multiple testing"
+title: "The crisis of modern science and selective inference"
 description: |
   Statistical Inference II
 author:
@@ -437,33 +437,7 @@ The scientists find no link between jelly beans and acne ($p$-value > 0.05) but 
 
 ![](https://imgs.xkcd.com/comics/significant.png)
 
-Consider the null hypotheses $H_0$:"jelly beans and acne are independent" and $H_i$:"$i$th color jelly beans and acne are independent", $i=1,\ldots,20$. The described procedure
 
-1. Test $H_0$ at $5\%$
-2. If $H_0$ is not rejected at $5\%$, test $H_i$, $i=1,\ldots,20$ at $5\%$
-
-If all null hypotheses are true, then it may happen that 
-
-```{r}
-set.seed(3)
-n = 20
-z = 1:20
-A <- vector()
-B <- vector()
-for (i in 1:100){
-  x = rnorm(n)
-  y = rnorm(n)
-if ( pnorm( (mean(x)-mean(y))/sqrt(2/n) ) > .05) {
-A[i]<-F
-B[i]<- any( sapply(1:20, function(i) 
-  pnorm( (x[z==i]-y[z==i])/sqrt(2) )
-) <.05 ) }
-else { A[i]<-T; B[i]<-NA }
-}
-cat("P(rejecting H0 or any Hi) =", mean(A==T | B==T), "\n")
-cat("P(rejecting H0) =", mean(A), "\n")
-cat("P(rejecting at least one Hi | H0 not rejected) =", mean(B, na.rm = T))
-```
 
 
 ### The dead salmon study: large-scale testing
