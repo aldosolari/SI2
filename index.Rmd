@@ -42,7 +42,7 @@ The crisis of modern science, the likelihood of false discoveries, a new scienti
 
 4. [**The post-hoc inference problem**](https://aldosolari.github.io/SI2/docs/FDP.pdf): fMRI data, Simultaneous confidence bounds for the FDP
 
-5. **The variable selection problem**: Variable selection algorithms, post selection inference, model confidence set
+5. [**The variable selection problem**](https://aldosolari.github.io/SI2/docs/VS.pdf): Variable selection algorithms, post selection inference, model confidence set
 
 
 All of the course material is on the [github repository](https://github.com/aldosolari/SI2).
@@ -78,8 +78,8 @@ The III term exam session starts on 8 July 2019 and ends on 19 July 2019.
 
 The grade will be based on
 
-* written and oral exam (75%, 22.5 points)
-* homework (25%, 7.5 points)
+* written and oral exam (75%)
+* homework (25%)
 
 
 
