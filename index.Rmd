@@ -49,13 +49,13 @@ All of the course material is on the [github repository](https://github.com/aldo
 
 
 
-# Homework (to be completed)
+# Homework 
 
 * [Homework 1](https://aldosolari.github.io/SI2/docs/homework/hw1.pdf)
 * [Homework 2](https://aldosolari.github.io/SI2/docs/homework/hw2.pdf)
 * [Homework 3](https://aldosolari.github.io/SI2/docs/homework/hw3.pdf)
 * [Homework 4](https://aldosolari.github.io/SI2/docs/homework/hw4.pdf)
-* Homework 5 
+* [Homework 5](https://aldosolari.github.io/SI2/docs/homework/hw5.pdf)
 
 <!-- # Reading -->
 
@@ -72,8 +72,8 @@ The III term exam session starts on 8 July 2019 and ends on 19 July 2019.
 
 | | Date | Hours | Room |
 |--|------|-------|------|
-| Written exam | TBD | TBD | TBD |
-| Oral exam | TBD | TBD | TBD |
+| Written exam | 17 July 2019 | 9:00 | U6-18 |
+| Oral exam | 17 July 2019 | 14:30 | U6-18 |
 
 
 The grade will be based on
