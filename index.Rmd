@@ -81,5 +81,32 @@ The grade will be based on
 * written and oral exam (75%)
 * homework (25%)
 
+For exam preparation:
 
 
+* https://aldosolari.github.io/SI2/docs/hyptest.html
+
+* Davison (2003) Statistical Models. Cambridge University Press, Section 7.3, Subsections 7.3.1 p. 325-332, 7.3.2 p. 333-339, 7.3.3 p. 339-341, 7.3.4 p. 343-345, Examples 7.22, 7.24, 7.25, 7.26, 7.27, 7.28, 7.29, 7.30, 7.32, Exercises 7.3 (p. 347) 2, 3
+
+
+* https://aldosolari.github.io/SI2/docs/selmt.html
+
+* https://aldosolari.github.io/SI2/docs/MT.pdf
+
+* https://aldosolari.github.io/SI2/docs/FWER.pdf
+
+* https://aldosolari.github.io/SI2/docs/FDR.pdf
+
+* https://aldosolari.github.io/SI2/docs/FCR.pdf
+
+* J.J. Goeman and A. Solari. Multiple hypothesis testing in genomics. Statistics in medicine, 33(11):1946–1978, 2014
+
+* https://aldosolari.github.io/SI2/docs/FDP.pdf
+
+* J.J. Goeman, A. Solari, et al. Multiple testing for exploratory research. Statistical Science, 26(4):584–597, 2011
+
+* J. Goeman, R. Meijer, T. Krebs, and A. Solari. Simultaneous control of all false discovery proportions in large-scale multiple hypothesis testing. https://arxiv.org/pdf/1611.06739.pdf
+
+* https://aldosolari.github.io/SI2/docs/VS.pdf
+
+* Berk, Brown, Buja, Zhang, Zhao (2013) Valid post-selection inference. Annals of Statistics 41:802-837
