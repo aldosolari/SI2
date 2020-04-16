@@ -35,36 +35,52 @@ All of the course material is on the
 
 ## Program and resources
 
-* Hypothesis testing: a review
+* Hypothesis testing: a review 
 * The crisis of modern science
-* Global testing in high-dimensions: higher criticism
-* Multiple testing and error rates
-* FWER control: Bonferroni and Holm
-* FDR control: Benjamini-Hochberg procedure
-* Post-selection inference: closed testing
+* The law of selection 
+* Global testing in high-dimensions: higher criticism 
+* Multiple testing and error rates 
+* FWER control: Bonferroni and Holm 
+* FDR control: Benjamini-Hochberg procedure 
+* Post-selection inference: closed testing 
 
 
 ## Homeworks
 
-TBD
+|| N || Date || Deadline || Text ||
+|-|-|-|-|-|-|-|-|-|-|
+||  || ||  ||  || ||
+|| 0 || 16/04/20 || 20/04/20 || [HW0](docs/hw/hw0.pdf) ||
+|| 1 || 21/04/20 || TBD || [HW1]() ||
+|| 2 || 22/04/20 || TBD || [HW2]() ||
+|| 3 || 23/04/20 || TBD || [HW3]() ||
+|| 4 || 28/04/20 || TBD || [HW4]() ||
+|| 5 || 29/04/20 || TBD || [HW5]() ||
 
-<!-- || N || Date || Deadline || Text || -->
-<!-- |-|-|-|-|-|-|-|-|-|-| -->
-<!-- ||  || ||  ||  || || -->
-<!-- || 1 || TBD || TBD || [HW1]() || -->
-<!-- || 2 || TBD || TBD || [HW2]() || -->
-<!-- || 3 || TBD || TBD || [HW3]() || -->
-<!-- || 4 || TBD || TBD || [HW4]() || -->
-<!-- || 5 || TBD || TBD || [HW5]() || -->
+The rules are the following:
 
+* You will have to submit your solution by the deadline
 
+* Answer with clarity and precision. R code (if any) must be reproducible
+
+* For theoretical questions, provide a well-reasoned mathematical argument. Simulations can help form your intuition; but a purely empirical answer will only receive partial points
+
+* Use of sources (people, books, internet and so on) without citing them in homework sets results in negative grade
+
+* You must follow a code of conduct, which covers issues such as plagiarism, falsification, unauthorized assistance, cheating, and other grievous acts of academic dishonesty
 
 
 ## Exam
 
-TBD
+The final grade will be based on 
+
+* Homework assignments
+
+* Oral examination
 
 ## Textbooks
+
+* Cox (2006) Principles of Statistical Inference. Cambridge University Press
 
 * Davison (2003) Statistical Models. Cambridge University Press
 
