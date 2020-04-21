@@ -41,6 +41,7 @@ All of the course material is on the
 * [The crisis of modern science](docs/2_crisis.pdf)
 * [The law of selection](docs/3_lawsel.pdf) 
 * Global testing in high-dimensions
+    - Donoho, Jin (2004) AoS
 * Multiple testing and error rates: FWER and FDR control 
 * Post-selection inference
 
