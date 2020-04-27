@@ -42,8 +42,8 @@ All of the course material is on the
 * [The law of selection](docs/3_lawsel.pdf) 
 * [Global testing in high-dimensions](docs/4_glob.pdf)
     - Donoho, Jin (2004) AoS
-* Multiple testing and error rates: FWER and FDR control 
-* Post-selection inference
+* [Multiple testing and error rates](docs/5_mt.pdf) 
+* [Post-selection inference](docs/6_posthoc.pdf)
 
 
 ## Homeworks
@@ -52,11 +52,11 @@ All of the course material is on the
 |-|-|-|-|-|-|-|-|-|-|
 ||  || ||  ||  || ||
 || 0 || 16/04/20 || 20/04/20 || [HW0](docs/hw/hw0.pdf) ||
-|| 1 || 21/04/20 || TBD || [HW1](docs/hw/hw1.pdf) ||
-|| 2 || 22/04/20 || TBD || [HW2]() ||
-|| 3 || 23/04/20 || TBD || [HW3]() ||
-|| 4 || 28/04/20 || TBD || [HW4]() ||
-|| 5 || 29/04/20 || TBD || [HW5]() ||
+|| 1 || 21/04/20 || 01/05/20 || [HW1](docs/hw/hw1.pdf) ||
+|| 2 || 22/04/20 || 22/05/20 || [HW2]() ||
+|| 3 || 23/04/20 || 08/05/20 || [HW3](docs/hw/hw3.pdf) ||
+|| 4 || 28/04/20 || 15/05/20 || [HW4](docs/hw/hw4.pdf) ||
+|| 5 || 29/04/20 || 29/05/20 || [HW5]() ||
 
 The rules are the following:
 
