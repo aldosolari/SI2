@@ -43,6 +43,7 @@ All of the course material is on the
 * [Global testing in high-dimensions](docs/4_glob.pdf)
     - Donoho, Jin (2004) AoS
 * [Multiple testing and error rates](docs/5_mt.pdf) 
+    - Goeman, Solari (2014) Stat Med Tutorial
 * [Post-selection inference](docs/6_posthoc.pdf)
 
 
