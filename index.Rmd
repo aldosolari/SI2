@@ -42,9 +42,10 @@ All of the course material is on the
 * [The law of selection](docs/3_lawsel.pdf) 
 * [Global testing in high-dimensions](docs/4_glob.pdf)
     - Donoho, Jin (2004) AoS
-* [Multiple testing and error rates](docs/5_mt.pdf) 
-    - Goeman, Solari (2014) Stat Med Tutorial
+* [Multiple testing and error rates](docs/5_mt.pdf)
+    - Goeman, Solari (2014) Stat. Med. Tutorial
 * [Post-selection inference](docs/6_posthoc.pdf)
+    - Goeman, Solari (2011) Stat. Sci.
 
 
 ## Homeworks
