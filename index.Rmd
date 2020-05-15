@@ -44,7 +44,7 @@ All of the course material is on the
     - Donoho, Jin (2004) AoS
 * [Multiple testing and error rates](docs/5_mt.pdf)
     - Goeman, Solari (2014) Stat. Med. Tutorial
-* [Post-selection inference](docs/6_posthoc.pdf) [[update]](docs/7_webinar)
+* [Post-selection inference](docs/6_posthoc.pdf) [[update]](docs/7_webinar.pdf)
     - Goeman, Solari (2011) Stat. Sci.
 
 
