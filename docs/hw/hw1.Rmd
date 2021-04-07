@@ -55,7 +55,7 @@ Answer 1. and 2. by specifying
 
 *  **Analysis Plan**: Define a statistical model, and be very specific about the required assumptions. You can use different models to answer 1 and 2. 
 
-* **Code**: Write the R code to get the results.  Your code must be replicable. 
+* **Code**: Write the code to get the results. Your code must be replicable. 
 
 * **Claim:** Briefly comment your results in 1. and 2.
 

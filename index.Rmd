@@ -76,7 +76,7 @@ The rules are the following:
 
 * You will submit your solution (one .PDF file of maximum 2 pages) via e-mail by the deadline; 
 
-* Answer with clarity and precision. R code (if any) must be reproducible; For theoretical questions, provide a well-reasoned mathematical argument. Simulations can help form your intuition; but a purely empirical answer will only receive partial points;
+* Answer with clarity and precision. Code (if any) must be reproducible; For theoretical questions, provide a well-reasoned mathematical argument. Simulations can help form your intuition; but a purely empirical answer will only receive partial points;
 
 * Use of sources (people, books, internet and so on) without citing them in homework sets results in negative grade;
 
