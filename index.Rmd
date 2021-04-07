@@ -39,21 +39,27 @@ All of the course material is on the
 
 2. Reproducibility and replicability
 
-- The crisis of modern science
-- The law of selection
+- [The crisis of modern science](docs/slide/2_crisis.pdf)
+- [The law of selection](docs/slide/3_lawsel.pdf)
 
 3. Multiple testing
 
-- Global tests
-- Methods for FamilyWise Error Rate control
-- Methods for False Discovery Rate control
+- [Global tests in high-dimensions](docs/slide/4_glob.pdf)
+- [Methods for FamilyWise Error Rate and False Discovery Rate control](docs/slide/5_mt.pdf)
 
 4. Post-selection inference
 
 - Closed testing
-- Simultaneous control of False Discovery Proportions
+- [Simultaneous control of False Discovery Proportions](docs/slide/6_FDP.pdf)
 
 
+## Datasets
+
+* [Cholesterol data](docs/data/cholesterol.html)
+
+* [Pulmonary data](docs/data/pulmonary.html)
+
+* [von Bortkiewicz’s horse-kicks data](docs/data/vanBort.html)
 
 ## Homeworks
 
@@ -81,7 +87,7 @@ The rules are the following:
 
 * Homework assignments
 
-* Written exam
+* Written exam (July 12-23, 2021)
 
 
 ## Textbooks
