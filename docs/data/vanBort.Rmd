@@ -1,0 +1,33 @@
+---
+title: "von Bortkiewicz's horse-kicks data"
+output: markdowntemplates::minimal
+---
+
+```{r setup, include=FALSE, message=F, warning=F, error=F, comment=NA}
+knitr::opts_chunk$set(echo=T, eval=T, message=F, warning=F, error=F, comment=NA)
+```
+
+L. von Bortkiewicz (or Bortkewitsch) tends to be associated mainly with his data set describing the numbers of men horse kicks in the Prussian Army. 
+
+The full data-table shows how many Prussian died from horse-kicks in each of the 14 corps in each of the 20 successive years 1875 to 1894; the 14 corps were 13 *Armeecorps* (denoted by I, II, ..., XV) plus the *Gardecorps* (denoted by G).
+
+
+```{r}
+library(vcd)
+head(VonBort)
+```
+
+
+Bortkiewicz noted that the four corps denoted G, I, VI and XI had numerical compositions that were particularly far from the average. He therefore excluded these four corpsand obtained the following frequency distribution
+
+```{r}
+xtabs(~ deaths, data = VonBort, subset = fisher == "yes")
+```
+
+Fitting a log-linear model to the data-set without the four anomalous corps G, I, VI and XI gives the following analysis of deviance:
+
+```{r}
+summary(aov(glm(deaths ~ as.factor(year) + corps, family=poisson, data=VonBort, subset = fisher == "yes")))
+```
+
+

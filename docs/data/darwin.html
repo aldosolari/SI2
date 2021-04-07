@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Darwin’s data</title>
+
+<style type="text/css"></style>
+
+
+
+
+</head>
+
+<body>
+<div class="container">
+
+<h1>Darwin’s data</h1>
+
+
+
+<p>A scientific study consists of document(s) specifying a population, question, hypothesis, experimental design, experimenter, data, analysis plan, analyst, code, parameter estimates, and claims about the parameter estimates (Patil et al., 2016)</p>
+<p>Charles Darwin collected data over a period of years on the heights of Zea mays plants.</p>
+<div id="population" class="section level3">
+<h3>Population</h3>
+<p>Zea mays plants</p>
+</div>
+<div id="darwins-hypothesis" class="section level3">
+<h3>Darwin’s hypothesis</h3>
+<p>Height of a plant depends on the type of fertilization.</p>
+</div>
+<div id="experimental-design" class="section level3">
+<h3>Experimental Design</h3>
+<p>The plants were descended from the same parents and planted at the same time. Half of the plants were <em>self-fertilized</em>, and half were <em>cross-fertilized</em>, and the purpose of the experiment was to compare their <em>heights</em> (measured in eighths of an inch). To this end Darwin planted them in pairs in different pots.</p>
+<p>The focus of interest is the relation between the height of a plant and something that can be controlled by the experimenter, namely whether it is self or cross-fertilized. This means that you can regard the height as random with a distribution that depends on the type of fertilization, which is fixed for each plant.</p>
+<p>Note that in order to minimize differences in humidity, growing conditions, lighting, etc. Darwin had decided to plant the seeds in pairs in the same pots. The height of a plant would therefore also depend on these factors, which are not of interest, not only on the type of fertilization.</p>
+</div>
+<div id="data" class="section level3">
+<h3>Data</h3>
+<pre><code>   Pot  Cross   Self
+1    I 23.500 17.375
+2    I 12.000 20.375
+3    I 21.000 20.000
+4   II 22.000 20.000
+5   II 19.125 18.375
+6   II 21.500 18.625
+7  III 22.125 18.625
+8  III 20.375 15.250
+9  III 18.250 16.500
+10 III 21.625 18.000
+11 III 23.250 16.250
+12  IV 21.000 18.000
+13  IV 22.125 12.750
+14  IV 23.000 15.500
+15  IV 12.000 18.000</code></pre>
+</div>
+<div id="questions" class="section level2">
+<h2>Questions</h2>
+<ol style="list-style-type: decimal">
+<li><p>Does height depend on the type of fertilization?</p></li>
+<li><p>Could you estimate the height difference, and assess the uncertainty of the estimate?</p></li>
+</ol>
+</div>
+<div id="task" class="section level2">
+<h2>Task</h2>
+<p>Answer 1. and 2. by specifying</p>
+<ul>
+<li><strong>Analysis Plan</strong>: Define a statistical model, and be very specific about the required assumptions. The less the assumptions the better. You can use different models to answer 1 and 2.</li>
+<li><strong>Code</strong>: Write the R code to get the results. You can add plots, statistical summaries, etc. Your code must be replicable.</li>
+<li><strong>Claim:</strong> Comment your results and write your conclusions about 1 and 2.</li>
+</ul>
+</div>
+<div id="references" class="section level2">
+<h2>References</h2>
+<ul>
+<li><p>Davison (2003). Statistical Models. Cambridge University Press.</p></li>
+<li><p>Patil, Peng, and Leek (2016) A statistical definition for reproducibility and replicability. BioRxiv.</p></li>
+</ul>
+</div>
+
+
+</div>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

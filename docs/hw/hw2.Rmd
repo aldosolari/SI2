@@ -1,0 +1,46 @@
+---
+title: "Homework 2"
+output: markdowntemplates::minimal
+---
+
+```{r setup, include=FALSE, message=F, warning=F, error=F, comment=NA}
+knitr::opts_chunk$set(echo=T, eval=T, message=F, warning=F, error=F, comment=NA)
+```
+
+
+A researcher attempts to determine if a certain treatment has an effect on a particular disease.
+
+The presence or absence of the disease was measured in 21 individuals before and after the treatment. 
+
+
+```{r, echo=F}
+dat= matrix(c(
+  "Disease", "Disease",
+  "No Disease", "Disease",
+  "Disease", "No Disease",
+  "Disease", "No Disease",
+  "Disease", "No Disease",
+  "Disease", "No Disease",
+  "Disease", "No Disease",
+  "Disease", "No Disease",
+  "Disease", "No Disease",
+  "No Disease", "No Disease",
+  "No Disease", "No Disease",
+  "No Disease", "No Disease",
+  "No Disease", "No Disease",
+  "No Disease", "No Disease",
+  "No Disease", "No Disease",
+  "No Disease", "No Disease",
+  "No Disease", "No Disease",
+  "No Disease", "No Disease",
+  "No Disease", "No Disease",
+  "No Disease", "No Disease",
+  "No Disease", "No Disease"), ncol=2, byrow=T)
+colnames(dat) = c("Before treatment", "After treatment")
+dat = dat[sample(nrow(dat)),]
+rownames(dat) = paste("Individual",1:21,sep=" ")
+dat
+```
+
+
+For these data, test the null hypothesis of no effect of the treatment, and compute the $p$-value. 

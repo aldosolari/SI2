@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>von Bortkiewicz’s horse-kicks data</title>
+
+<style type="text/css"></style>
+
+
+
+
+</head>
+
+<body>
+<div class="container">
+
+<h1>von Bortkiewicz’s horse-kicks data</h1>
+
+
+
+<p>L. von Bortkiewicz (or Bortkewitsch) tends to be associated mainly with his data set describing the numbers of men horse kicks in the Prussian Army.</p>
+<p>The full data-table shows how many Prussian died from horse-kicks in each of the 14 corps in each of the 20 successive years 1875 to 1894; the 14 corps were 13 <em>Armeecorps</em> (denoted by I, II, …, XV) plus the <em>Gardecorps</em> (denoted by G).</p>
+<pre class="r"><code>library(vcd)
+head(VonBort)</code></pre>
+<pre><code>  deaths year corps fisher
+1      0 1875     G     no
+2      0 1875     I     no
+3      0 1875    II    yes
+4      0 1875   III    yes
+5      0 1875    IV    yes
+6      0 1875     V    yes</code></pre>
+<p>Bortkiewicz noted that the four corps denoted G, I, VI and XI had numerical compositions that were particularly far from the average. He therefore excluded these four corpsand obtained the following frequency distribution</p>
+<pre class="r"><code>xtabs(~ deaths, data = VonBort, subset = fisher == &quot;yes&quot;)</code></pre>
+<pre><code>deaths
+  0   1   2   3   4 
+109  65  22   3   1 </code></pre>
+<p>Fitting a log-linear model to the data-set without the four anomalous corps G, I, VI and XI gives the following analysis of deviance:</p>
+<pre class="r"><code>summary(aov(glm(deaths ~ as.factor(year) + corps, family=poisson, data=VonBort, subset = fisher == &quot;yes&quot;)))</code></pre>
+<pre><code>                 Df Sum Sq Mean Sq F value Pr(&gt;F)  
+as.factor(year)  19  15.38  0.8095   1.448 0.1108  
+corps             9  10.58  1.1756   2.102 0.0318 *
+Residuals       171  95.62  0.5592                 
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+
+
+</div>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

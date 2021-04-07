@@ -1,0 +1,27 @@
+---
+title: "Pulmonary data"
+output: markdowntemplates::minimal
+---
+
+```{r setup, include=FALSE, message=F, warning=F, error=F, comment=NA}
+knitr::opts_chunk$set(echo=T, eval=T, message=F, warning=F, error=F, comment=NA)
+```
+
+Changes in pulmonary function of 12 workers after 6 hours of exposure to cotton dust.
+
+A data frame with 12 observations on the following 3 variables.
+
+* FVC : change in FVC (forced vital capacity) after 6 hours.
+
+* FEV : change in FEV\_3 (forced expiratory volume) after 6 hours.
+
+* CC : change in CC (closing capacity) after 6 hours.
+
+
+
+```{r, echo=FALSE}
+library(ICSNP)
+data(pulmonary)
+pulmonary
+```
+

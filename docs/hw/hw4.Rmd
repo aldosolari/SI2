@@ -1,0 +1,18 @@
+---
+title: "Homework 4"
+output: markdowntemplates::minimal
+---
+
+```{r setup, include=FALSE, message=F, warning=F, error=F, comment=NA}
+knitr::opts_chunk$set(echo=T, eval=T, message=F, warning=F, error=F, comment=NA)
+```
+
+Suppose we wish to test $m>1$ hypotheses $H_1,\ldots,H_m$ by using Bonferroni and Benjamini-Hochberg procedures that operate in two-step:
+
+1. Specify $\alpha \in (0,1)$. Select the  ``interesting'' hypotheses with indices in
+$S=\{i \in \{1,\ldots,m\}: p_i \leq \alpha\}$
+
+2. Apply Bonferroni and Benjamini-Hochberg procedures at level $\alpha$ to the selected hypotheses in $S$ as if they were given a priori (e.g. Bonferroni rejects the hypotheses with indexes in $R = \{i \in S: p_i \leq \alpha/|S|\}$)
+
+
+Calculate the FWER of this Bonferroni two-step procedure and the FDR of this Benjamini-Hochberg two-step procedure by assuming that  all $m$ hypotheses are true and $p_1,\ldots,p_m$ are i.i.d. Uniform(0,1). 
