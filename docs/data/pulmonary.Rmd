@@ -25,3 +25,12 @@ data(pulmonary)
 pulmonary
 ```
 
+Hotelling T2 test
+
+
+```{r}
+HotellingsT2(pulmonary, mu = c(0,0,0), test ="f")
+```
+
+
+

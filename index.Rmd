@@ -31,23 +31,23 @@ All of the course material is on the
 
 ## Program
 
-1. Statistical hypothesis testing
+1. *Statistical hypothesis testing: a review*
 
-- Significance tests
+- [Significance tests](docs/slide/1_hyptest.pdf)
 - Hypothesis tests
 - Link with confidence intervals
 
-2. Reproducibility and replicability
+2. *Reproducibility and replicability*
 
 - [The crisis of modern science](docs/slide/2_crisis.pdf)
 - [The law of selection](docs/slide/3_lawsel.pdf)
 
-3. Multiple testing
+3. *Multiple testing*
 
 - [Global tests in high-dimensions](docs/slide/4_glob.pdf)
 - [Methods for FamilyWise Error Rate and False Discovery Rate control](docs/slide/5_mt.pdf)
 
-4. Post-selection inference
+4. *Post-selection inference*
 
 - Closed testing
 - [Simultaneous control of False Discovery Proportions](docs/slide/6_FDP.pdf)
