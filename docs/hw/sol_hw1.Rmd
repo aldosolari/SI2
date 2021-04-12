@@ -1,0 +1,139 @@
+---
+title: "Darwin's data"
+output: markdowntemplates::minimal
+---
+
+```{r setup, include=FALSE, message=F, warning=F, error=F, comment=NA}
+knitr::opts_chunk$set(echo=T, eval=T, message=F, warning=F, error=F, comment=NA)
+```
+
+
+```{r, echo=FALSE}
+library(SMPracticals)
+data(darwin)
+darwin_pair = data.frame(Pot = darwin[darwin$type=="Cross",1],
+           Cross = darwin[darwin$type=="Cross",4],
+           Self = darwin[darwin$type=="Self",4])
+```
+
+## Reference for the solution(s)
+
+A.C. Davison (2003) Statistical Models. Cambridge University Press. Examples 1.1, 3.11, 3.16, 7.24, 7.28, 8.13, 8.19
+
+
+## Galton's model
+
+Galton assumed a model where the height of a self-fertilized plant is
+$$
+Y = \mu + \sigma \varepsilon
+$$
+and of a cross-fertilized plant is
+$$
+X = \mu + \theta + \sigma \epsilon
+$$
+where $\mu$, $\theta$ and $\sigma$ are unknown parameters, and $\varepsilon$ and $\epsilon$ are independent random variables with mean zero and unit variance. 
+
+Observations from self-fertilized plants $Y_1,\ldots,Y_{15}$ are i.i.d. as $Y$, and observations from cross-fertilized plants $X_1,\ldots,X_{15}$ are i.i.d. as $X$. 
+
+The comparison between two independent samples are usually visualized by a boxplot:
+
+```{r}
+library(ggpubr)
+ggboxplot(darwin, x = "type", y = "height",color = "type")
+```
+
+If we assume that $\epsilon_i$ and $\varepsilon_i$ have a $N(0,1)$ distribution, we can use a two-sample t test
+
+```{r}
+t.test(height  ~ type, data=darwin, var.equal=TRUE)
+```
+
+From the two-sample t test we obtain a point estimate of $\hat{\theta}=20.19-17.57= 2.62$ along with a 95\% confidence interval
+$(0.417, 4.816)$ not including 0. The answer to Q1 is there is a significant height increase - estimated on average 2.62 eighths of an inch for cross-fertilized plants - and we reject $H_0:\theta=0$ with $p$-value $= 0.021$ (two-sided alternative). The answer to Q2 is that the average height increase is between $(0.417, 4.816)$ with 95\% confidence.
+
+Alternatives: Welch's test
+
+```{r}
+t.test(height  ~ type, data=darwin)
+```
+
+or by including pot's effect
+
+```{r}
+summary(lm(height  ~ 0 + pot + type, data=darwin))
+```
+
+
+## Fisher's model
+
+In order to minimize differences in humidity, growing conditions, and lighting, Darwin had taken the trouble to plant the seeds in pairs in the same pots.
+
+Comparison of different pairs would therefore involve
+these differences, which are not of interest, whereas
+\emph{comparison within pairs} would depend only on the type of fertilization. 
+
+Fisher considered the model
+$$Y_i = \mu_i + \sigma \varepsilon_{i}, \quad X_i = \mu_i + \theta + \sigma \epsilon_{i}, \quad i = 1,\ldots,n$$
+
+The parameter $\mu_i$ represents the effects of the planting conditions for the $i$th pair,
+and $\varepsilon_i$ and $\epsilon_i$ are independent random variables with mean zero and unit variance. 
+
+The $\mu_i$ could be eliminated by using the differences
+$$D_i = X_i - Y_i$$
+which have mean $\theta$ and variance $2\sigma^2$. 
+
+The comparison within pairs can be visualized by the following plot:
+
+```{r fig.cap="Darwin data: difference in height for each pair"}
+ggline(darwin, x = "type", y = "height", group="pair")
+```
+
+If we assume that $\epsilon_i$ and $\varepsilon_i$ have a $N(0,1)$ distribution, we can use a \emph{paired t test}, or one-sample t test for the difference 
+
+```{r}
+differences <- apply(darwin_pair[,3:2],1,diff)
+t.test(differences)
+```
+
+From the one-sample t test we obtain a point estimate of $\hat{\theta}= 2.62$ (exactly as before) along with a 95\% confidence interval
+$(0.004, 5.24)$. The answer to Q1 is that although we obtain the same estimated height increase of 2.62 for cross-fertilized plants, there more uncertainty than before in concluding that it is significantly different from zero ($p$-value = 0.0497, two-sided alternative). The answer to Q2 is that the average height increase is between $(0.004, 5.24)$ with 95\% confidence. A long interval close to zero is not surprising given the small sample size ($n=15$).
+
+
+
+
+
+As an alternative: consider the analysis of variance with, in order: no differences among pairs and no difference
+between cross-fertilization and self-fertilization; no differences among pairs but an
+effect of fertilization type; differences among the pots and an effect of fertilization
+type; and differences among the pots and among the pairs and an effect of fertilization
+type:
+
+```{r}
+summary(aov(lm(height ~ type + pot +  pair, darwin)))
+```
+
+
+
+## Distribution-free model
+
+Consider a more general matched pair model for the Darwin data:
+$$Y_i = \mu_i + \sigma_i\varepsilon_{i}, \quad X_i = \mu_i + \theta + \tau_i\epsilon_{i}, \quad i = 1,\ldots,n$$
+with  $\varepsilon_i$ and $\epsilon_i$ are independent random variables with continuous distribution and mean zero and unit variance.
+
+
+The height differences may be written as
+$$D_i = \theta + (\tau_i\epsilon_{i} - \sigma_i\varepsilon_{i})$$
+Assume that $\varepsilon_{i}$ and $\epsilon_{i}$ are independent and symmetrically distributed around 0 ( e.g. Uniform$(-i,i)$ ),  then $D_i$ is symmetrically distributed around $\theta$, i.e. $$D_i - \theta \stackrel{d}{=} \theta - D_i \qquad i=1,\ldots,n$$
+
+If we assume that $\epsilon_i$ and $\varepsilon_i$ are independent and symmetrically distributed around 0, then $D_i$ is symmetrically distributed around $\theta$ and we can test $H_0:\theta=0$ by a nonparametric or distribution-free test, the \emph{sign test} for the difference (number of successes = 13, number of trials = 15, p-value = 0.007385 [two-sided], where success means that in a given pair the height of cross-fertilized > self-fertilized, and trials are the number of pairs). 
+
+```{r}
+binom.test(x=13, n=15, p=0.5, alternative="two.sided")
+```
+
+The sign test provides significant evidence that $\theta\neq 0$ ($p$-value = 0.007385, two-sided alternative) with little assumptions. 
+The probability for cross-fertilized plant of being higher than its self-fertilized counterpart is estimated $86\%$ with a 95\% confidence interval of $(0.59, 0.98)$.
+
+
+
+
