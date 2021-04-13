@@ -52,6 +52,14 @@ All of the course material is on the
 - Closed testing
 - [Simultaneous control of False Discovery Proportions](docs/slide/6_FDP.pdf)
 
+## Handwritten notes
+
+* [Lecture 1](docs/hand/SI2_1.pdf)
+* Lecture 2
+* Lecture 3
+* Lecture 4
+* Lecture 5
+
 
 ## Datasets
 
