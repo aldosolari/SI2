@@ -75,7 +75,7 @@ All of the course material is on the
 |-|-|-|-|-|-|-|-|
 ||  || ||  ||  || ||
 || 1 ||  April 12, 2021 h 9:00 || [HW1](docs/hw/hw1.html) [solution](docs/hw/sol_hw1.html) ||
-|| 2 ||  April 13, 2021 h 9:00|| [HW2](docs/hw/hw2.html) ||
+|| 2 ||  April 13, 2021 h 9:00|| [HW2](docs/hw/hw2.html) [solution](https://cran.r-project.org/web/packages/exact2x2/vignettes/exactMcNemar.pdf)  ||
 || 3 ||  April 15, 2021 h 9:00 || [HW3](docs/hw/hw3.html) ||
 || 4 || April 20, 2021 h 9.00 || [HW4](docs/hw/hw4.html) ||
 
