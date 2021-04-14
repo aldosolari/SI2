@@ -55,7 +55,7 @@ All of the course material is on the
 ## Handwritten notes
 
 * [Lecture 1](docs/hand/SI2_1.pdf)
-* Lecture 2
+* [Lecture 2](docs/hand/SI2_2.pdf)
 * Lecture 3
 * Lecture 4
 * Lecture 5
