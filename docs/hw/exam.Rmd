@@ -1,0 +1,26 @@
+---
+title: "Exam"
+output: markdowntemplates::minimal
+---
+
+```{r setup, include=FALSE, message=F, warning=F, error=F, comment=NA}
+knitr::opts_chunk$set(echo=T, eval=T, message=F, warning=F, error=F, comment=NA)
+```
+
+## Papers
+
+1. Exact tests via multiple data splitting
+
+2. Testing the equality of multivariate means when $p>n$ by combining the Hotelling and Simes tests
+
+3. Familywise error rate control by interactive unmasking
+
+4. Universal Inference
+
+5. Inference in Experiments with Matched Pairs
+
+6. Testing by betting: A strategy for statistical and scientific communication 
+
+## Exercises
+
+* TBD

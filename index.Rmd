@@ -95,7 +95,7 @@ The rules are the following:
 
 * Homework assignments
 
-* Written exam (July 12-23, 2021)
+* [Written exam](docs/hw/exam.html) (July 12-23, 2021)
 
 
 ## Textbooks
