@@ -57,7 +57,7 @@ All of the course material is on the
 * [Lecture 1](docs/hand/SI2_1.pdf)
 * [Lecture 2](docs/hand/SI2_2.pdf)
 * [Lecture 3](docs/hand/SI2_3.pdf)
-* Lecture 4
+* [Lecture 4](docs/hand/SI2_4.pdf)
 * Lecture 5
 
 
@@ -77,7 +77,7 @@ All of the course material is on the
 || 1 ||  April 12, 2021 h 9:00 || [HW1](docs/hw/hw1.html) [solution](docs/hw/sol_hw1.html) ||
 || 2 ||  April 13, 2021 h 9:00|| [HW2](docs/hw/hw2.html) [solution](https://cran.r-project.org/web/packages/exact2x2/vignettes/exactMcNemar.pdf)  ||
 || 3 ||  April 15, 2021 h 9:00 || [HW3](docs/hw/hw3.html) [solution](https://www.zora.uzh.ch/id/eprint/19632/2/2009_Bittman_R_M_bittmanEtAl.pdf) ||
-|| 4 || April 20, 2021 h 9.00 || [HW4](docs/hw/hw4.html) ||
+|| 4 || April 20, 2021 h 9.00 || [HW4](docs/hw/hw4.html) [solution](docs/hw/sol_hw4.html) ||
 
 
 The rules are the following:
