@@ -23,7 +23,7 @@ knitr::opts_chunk$set(echo=T, eval=T, message=F, warning=F, error=F, comment=NA)
 
 ### Short paper submission
 
-An abstract of less than 200 words and a short paper, summarising the assigned article, of maximum 4 pages, should be submitted via e-mail by Monday July 5th, h. 14:00. The short papers can be submitted using LaTeX or Word SIS editorial standards.
+An abstract of less than 200 words and a short paper between 4 and 6 pages, summarising the assigned article, should be submitted via e-mail by Monday July 5th, h. 14:00. The short papers can be submitted using LaTeX or Word SIS editorial standards.
 
 * LaTeX template (click [here](latex.zip) to download the Latex template)
 * Word template (click [here](word.zip) to download the Word template)
