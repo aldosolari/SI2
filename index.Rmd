@@ -31,65 +31,14 @@ All of the course material is on the
 
 ## Program
 
-1. *Statistical hypothesis testing: a review*
-
-- [Significance tests](docs/slide/1_hyptest.pdf)
-- Hypothesis tests
-- Link with confidence intervals
-
-2. *Reproducibility and replicability*
-
-- [The crisis of modern science](docs/slide/2_crisis.pdf)
-- [The law of selection](docs/slide/3_lawsel.pdf)
-
-3. *Multiple testing*
-
-- [Global tests in high-dimensions](docs/slide/4_glob.pdf)
-- [Methods for FamilyWise Error Rate and False Discovery Rate control](docs/slide/5_mt.pdf)
-
-4. *Post-selection inference*
-
-- Closed testing
-- [Simultaneous control of False Discovery Proportions](docs/slide/6_FDP.pdf)
 
 ## Handwritten notes
-
-* [Lecture 1](docs/hand/SI2_1.pdf)
-* [Lecture 2](docs/hand/SI2_2.pdf)
-* [Lecture 3](docs/hand/SI2_3.pdf)
-* [Lecture 4](docs/hand/SI2_4.pdf)
-* Lecture 5
 
 
 ## Datasets
 
-* [Cholesterol data](docs/data/cholesterol.html)
-
-* [Pulmonary data](docs/data/pulmonary.html)
-
-* [von Bortkiewicz’s horse-kicks data](docs/data/vanBort.html)
 
 ## Homeworks
-
-|| N  || Deadline || Text ||
-|-|-|-|-|-|-|-|-|
-||  || ||  ||  || ||
-|| 1 ||  April 12, 2021 h 9:00 || [HW1](docs/hw/hw1.html) [solution](docs/hw/sol_hw1.html) ||
-|| 2 ||  April 13, 2021 h 9:00|| [HW2](docs/hw/hw2.html) [solution](https://cran.r-project.org/web/packages/exact2x2/vignettes/exactMcNemar.pdf)  ||
-|| 3 ||  April 15, 2021 h 9:00 || [HW3](docs/hw/hw3.html) [solution](https://www.zora.uzh.ch/id/eprint/19632/2/2009_Bittman_R_M_bittmanEtAl.pdf) ||
-|| 4 || April 20, 2021 h 9.00 || [HW4](docs/hw/hw4.html) [solution](docs/hw/sol_hw4.html) ||
-
-
-The rules are the following:
-
-* You will submit your solution (one .PDF file of maximum 2 pages) via e-mail by the deadline; 
-
-* Answer with clarity and precision. Code (if any) must be reproducible; For theoretical questions, provide a well-reasoned mathematical argument. Simulations can help form your intuition; but a purely empirical answer will only receive partial points;
-
-* Use of sources (people, books, internet and so on) without citing them in homework sets results in negative grade;
-
-* You must follow a code of conduct, which covers issues such as plagiarism, falsification, unauthorized assistance, cheating, and other grievous acts of academic dishonesty.
-
 
 ## Exam
 
@@ -107,8 +56,6 @@ The rules are the following:
 * Davison (2003) Statistical Models. Cambridge University Press
 
 * Lehmann, Romano (2005) Testing Statistical Hypotheses. Springer Texts in Statistics.
-
-* Efron, Hastie (2016) Computer-Age Statistical Inference: Algorithms, Evidence, and Data Science. Cambridge University Press.
 
 * Wellek (2010) Testing Statistical Hypotheses of Equivalence and Noninferiority. Chapman and Hall/CRC.
 
