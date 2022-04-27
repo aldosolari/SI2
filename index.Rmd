@@ -40,12 +40,11 @@ All of the course material is on the
 
 * Simultaneous control of false discovery proportions
 
-## Datasets
+<!-- ## Datasets -->
 
 ## Homeworks
 
 ## Exam
-
 
 ## Textbooks
 
