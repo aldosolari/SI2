@@ -34,9 +34,7 @@ All of the course material is on the
 
 * [Hypothesis tests](docs/slides/hypothesistest.pdf) [[R](https://github.com/aldosolari/SI2/blob/master/docs/code/hypothesistest.R)]
 
-* Comparing three groups
-
-* Familywise error rate and false discovery rate control
+* [Multiple testing: FWER and FDR control](docs/slides/multipletest.pdf) [[R](https://github.com/aldosolari/SI2/blob/master/docs/code/multipletest.R)]
 
 * Simultaneous control of false discovery proportions
 
