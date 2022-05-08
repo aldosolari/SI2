@@ -36,13 +36,31 @@ All of the course material is on the
 
 * [Multiple testing: FWER and FDR control](docs/slides/multipletest.pdf) [[R](https://github.com/aldosolari/SI2/blob/master/docs/code/multipletest.R)]
 
-* Simultaneous control of false discovery proportions
+* Simultaneous control of FDP
 
 <!-- ## Datasets -->
 
-## Homeworks
-
 ## Exam
+
+* Homework assignment
+
+* Summary and presentation of manuscript(s)
+
+## Homework
+
+
+## Manuscript
+
+* Colombi Alessandro :
+
+* Danese Luca :
+
+* Ghilotti Lorenzo :
+
+* Magnani Chiara Gaia :
+
+* Presicce Luca :
+
 
 ## Textbooks
 
