@@ -21,7 +21,18 @@ legend("topleft", lty=2:1, c("Bonferroni", "HC"), lwd=2)
 #dev.off()
 
 #-----------------------------------
-# Error rates
+# p.adjust example
+#-----------------------------------
+
+set.seed(123)
+x <- rnorm(50, mean = c(rep(0, 25), rep(3, 25)))
+p <- 2*pnorm(sort(-abs(x)))
+
+round( p.adjust(p,"bonferroni"), 3)
+
+
+#-----------------------------------
+# Simulation
 #-----------------------------------
 
 rm(list=ls())
@@ -55,6 +66,7 @@ mean(res[3,])
 mean(res[4,])
 
 
+
 #-----------------------------------
 # fwer control
 #-----------------------------------
@@ -66,3 +78,5 @@ FWER = 1-(1-0.05)^(1:m0)
 #pdf("Figure_fwer.pdf")
 plot(1:m0,FWER, type="l", xlab=expression(m[0]), ylab="FWER", lwd=2)
 #dev.off()
+
+
