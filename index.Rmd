@@ -36,7 +36,7 @@ All of the course material is on the
 
 * [Multiple testing: FWER and FDR control](docs/slides/multipletest.pdf) [[R](https://github.com/aldosolari/SI2/blob/master/docs/code/multipletest.R)]
 
-* Simultaneous control of FDP
+* [Closed testing](docs/slides/closedtest.pdf) [[R](https://github.com/aldosolari/SI2/blob/master/docs/code/closedtest.R)]
 
 <!-- ## Datasets -->
 
