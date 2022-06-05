@@ -55,8 +55,8 @@ sim_errors <- function(m, m0, effect, method="none") {
 }
 
 set.seed(123)
-B = 10^4
-res <- replicate(B, sim_errors(100, 80, 2, method="none"))
+B = 10^5
+res <- replicate(B, sim_errors(20, 15, 2, method="none"))
 row.names(res) <- c("R","V","V>0", "V/R")
 res[,1:10]
 

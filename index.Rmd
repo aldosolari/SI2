@@ -46,22 +46,6 @@ All of the course material is on the
 
 * Summary and presentation of manuscript(s)
 
-## Homework
-
-
-## Manuscript
-
-* Colombi Alessandro :
-
-* Danese Luca :
-
-* Ghilotti Lorenzo :
-
-* Magnani Chiara Gaia :
-
-* Presicce Luca :
-
-
 ## Textbooks
 
 * Cox (2006) Principles of Statistical Inference. Cambridge University Press.
