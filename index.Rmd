@@ -7,7 +7,48 @@ output: markdowntemplates::minimal
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-The course aims to introduce students to modern ideas in hypothesis testing, ranging from classical significance tests to post-selection inference.
+This course focuses on hypothesis testing, which includes classical significance tests and modern selective inference methods. The main emphasis is on understanding general concepts rather than emphasizing mathematical rigour.
+
+
+
+
+<!-- ## Program and resources -->
+
+## Program
+
+* [Pure significance tests]() [[R]()]
+
+* [Significance tests]() [[R]()]
+
+* [Multiple testing]() [[R]()]
+
+All of the course material is on the 
+[github repo](https://github.com/aldosolari/SI2).
+
+
+<!-- ## Datasets -->
+
+## Exercizes
+
+tbd.
+
+## Exam
+
+Written. 
+
+## Main textbook
+
+Cox and Hinkley (1976) *Theoretical Statistics*. Chapman and Hall/CRC.
+
+## Other textbooks
+
+Casella and Berger (2002) *Statistical inference*. Duxbury Press.
+
+Cox (2006) *Principles of Statistical Inference*. Cambridge University Press.
+
+Davison (2003) *Statistical Models*. Cambridge University Press.
+
+Lehmann and Romano (2005) *Testing Statistical Hypotheses*. Springer Texts in Statistics.
 
 
 ## Calendar
@@ -15,44 +56,10 @@ The course aims to introduce students to modern ideas in hypothesis testing, ran
 || N || Date || Hours || Room || 
 |-|-|-|-|-|-|-|-|-|-|-|-|-|
 ||  || ||  ||  || || || ||
-|| 1 || April 28, 2022 || 10.00-13.00 || U6-01f ||
-|| 2 || April 29, 2022 || 10.00-13.00 || U6-01f ||
-|| 3 || May 9, 2022 || 10.00-13.00 || U6-26 ||
-|| 4 || May 10, 2022 || 10.00-13.00 || U6-26  ||
-|| 5 || May 12, 2022 || 10.30-13.30 || U6-23 ||
+|| 1 || April 27, 2023 || 9.30-12.30 || Aula Seminari U7-2104 ||
+|| 2 || May 2, 2023 || 9.30-12.30 || Aula Seminari U7-2104 ||
+|| 3 || May 3, 2023 || 9.00-12.00 || Aula Seminari U7-2104 ||
+|| 4 || May 9, 2023 || 9.30-12.30 || Aula Seminari U7-2104 ||
+|| 5 || May 10, 2023 || 9.30-12.30 || Aula Seminari U7-2104 ||
 
-
-All of the course material is on the 
-[github repo](https://github.com/aldosolari/SI2).
-
-
-<!-- ## Program and resources -->
-
-## Program
-
-* [Significance tests](docs/slides/significancetest.pdf) [[R](https://github.com/aldosolari/SI2/blob/master/docs/code/significancetest.R)]
-
-* [Hypothesis tests](docs/slides/hypothesistest.pdf) [[R](https://github.com/aldosolari/SI2/blob/master/docs/code/hypothesistest.R)]
-
-* [Multiple testing: FWER and FDR control](docs/slides/multipletest.pdf) [[R](https://github.com/aldosolari/SI2/blob/master/docs/code/multipletest.R)]
-
-* [Closed testing](docs/slides/closedtest.pdf) [[R](https://github.com/aldosolari/SI2/blob/master/docs/code/closedtest.R)]
-
-<!-- ## Datasets -->
-
-## Exam
-
-* Homework assignment
-
-* Summary and presentation of manuscript(s)
-
-## Textbooks
-
-* Cox (2006) Principles of Statistical Inference. Cambridge University Press.
-
-* Cox and Hinkley (1976) Theoretical Statistics. Chapman and Hall/CRC.
-
-<!-- * Davison (2003) Statistical Models. Cambridge University Press. -->
-
-* Lehmann, Romano (2005) Testing Statistical Hypotheses. Springer Texts in Statistics.
 

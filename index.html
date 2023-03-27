@@ -10,6 +10,19 @@
 
 <title>Statistical Inference II</title>
 
+<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
+// be compatible with the behavior of Pandoc < 2.8).
+document.addEventListener('DOMContentLoaded', function(e) {
+  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
+  var i, h, a;
+  for (i = 0; i < hs.length; i++) {
+    h = hs[i];
+    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
+    a = h.attributes;
+    while (a.length > 0) h.removeAttribute(a[0].name);
+  }
+});
+</script>
 <style type="text/css"></style>
 
 
@@ -24,7 +37,45 @@
 
 
 
-<p>The course aims to introduce students to modern ideas in hypothesis testing, ranging from classical significance tests to post-selection inference.</p>
+<p>This course focuses on hypothesis testing, which includes classical
+significance tests and modern selective inference methods. The main
+emphasis is on understanding general concepts rather than emphasizing
+mathematical rigour.</p>
+<!-- ## Program and resources -->
+<div id="program" class="section level2">
+<h2>Program</h2>
+<ul>
+<li><p><a href>Pure significance tests</a> [<a href>R</a>]</p></li>
+<li><p><a href>Significance tests</a> [<a href>R</a>]</p></li>
+<li><p><a href>Multiple testing</a> [<a href>R</a>]</p></li>
+</ul>
+<p>All of the course material is on the <a href="https://github.com/aldosolari/SI2">github repo</a>.</p>
+<!-- ## Datasets -->
+</div>
+<div id="exercizes" class="section level2">
+<h2>Exercizes</h2>
+<p>tbd.</p>
+</div>
+<div id="exam" class="section level2">
+<h2>Exam</h2>
+<p>Written.</p>
+</div>
+<div id="main-textbook" class="section level2">
+<h2>Main textbook</h2>
+<p>Cox and Hinkley (1976) <em>Theoretical Statistics</em>. Chapman and
+Hall/CRC.</p>
+</div>
+<div id="other-textbooks" class="section level2">
+<h2>Other textbooks</h2>
+<p>Casella and Berger (2002) <em>Statistical inference</em>. Duxbury
+Press.</p>
+<p>Cox (2006) <em>Principles of Statistical Inference</em>. Cambridge
+University Press.</p>
+<p>Davison (2003) <em>Statistical Models</em>. Cambridge University
+Press.</p>
+<p>Lehmann and Romano (2005) <em>Testing Statistical Hypotheses</em>.
+Springer Texts in Statistics.</p>
+</div>
 <div id="calendar" class="section level2">
 <h2>Calendar</h2>
 <table>
@@ -65,11 +116,11 @@
 <td></td>
 <td>1</td>
 <td></td>
-<td>April 28, 2022</td>
+<td>April 27, 2023</td>
 <td></td>
-<td>10.00-13.00</td>
+<td>9.30-12.30</td>
 <td></td>
-<td>U6-01f</td>
+<td>Aula Seminari U7-2104</td>
 <td></td>
 <td></td>
 <td></td>
@@ -80,11 +131,11 @@
 <td></td>
 <td>2</td>
 <td></td>
-<td>April 29, 2022</td>
+<td>May 2, 2023</td>
 <td></td>
-<td>10.00-13.00</td>
+<td>9.30-12.30</td>
 <td></td>
-<td>U6-01f</td>
+<td>Aula Seminari U7-2104</td>
 <td></td>
 <td></td>
 <td></td>
@@ -95,11 +146,11 @@
 <td></td>
 <td>3</td>
 <td></td>
-<td>May 9, 2022</td>
+<td>May 3, 2023</td>
 <td></td>
-<td>10.00-13.00</td>
+<td>9.00-12.00</td>
 <td></td>
-<td>U6-26</td>
+<td>Aula Seminari U7-2104</td>
 <td></td>
 <td></td>
 <td></td>
@@ -110,11 +161,11 @@
 <td></td>
 <td>4</td>
 <td></td>
-<td>May 10, 2022</td>
+<td>May 9, 2023</td>
 <td></td>
-<td>10.00-13.00</td>
+<td>9.30-12.30</td>
 <td></td>
-<td>U6-26</td>
+<td>Aula Seminari U7-2104</td>
 <td></td>
 <td></td>
 <td></td>
@@ -125,11 +176,11 @@
 <td></td>
 <td>5</td>
 <td></td>
-<td>May 12, 2022</td>
+<td>May 10, 2023</td>
 <td></td>
-<td>10.30-13.30</td>
+<td>9.30-12.30</td>
 <td></td>
-<td>U6-23</td>
+<td>Aula Seminari U7-2104</td>
 <td></td>
 <td></td>
 <td></td>
@@ -138,36 +189,6 @@
 </tr>
 </tbody>
 </table>
-<p>All of the course material is on the <a href="https://github.com/aldosolari/SI2">github repo</a>.</p>
-<!-- ## Program and resources -->
-</div>
-<div id="program" class="section level2">
-<h2>Program</h2>
-<ul>
-<li><p><a href="docs/slides/significancetest.pdf">Significance tests</a> [<a href="https://github.com/aldosolari/SI2/blob/master/docs/code/significancetest.R">R</a>]</p></li>
-<li><p><a href="docs/slides/hypothesistest.pdf">Hypothesis tests</a> [<a href="https://github.com/aldosolari/SI2/blob/master/docs/code/hypothesistest.R">R</a>]</p></li>
-<li><p><a href="docs/slides/multipletest.pdf">Multiple testing: FWER and FDR control</a> [<a href="https://github.com/aldosolari/SI2/blob/master/docs/code/multipletest.R">R</a>]</p></li>
-<li><p><a href="docs/slides/closedtest.pdf">Closed testing</a> [<a href="https://github.com/aldosolari/SI2/blob/master/docs/code/closedtest.R">R</a>]</p></li>
-</ul>
-<!-- ## Datasets -->
-</div>
-<div id="exam" class="section level2">
-<h2>Exam</h2>
-<ul>
-<li><p>Homework assignment</p></li>
-<li><p>Summary and presentation of manuscript(s)</p></li>
-</ul>
-</div>
-<div id="textbooks" class="section level2">
-<h2>Textbooks</h2>
-<ul>
-<li><p>Cox (2006) Principles of Statistical Inference. Cambridge University Press.</p></li>
-<li><p>Cox and Hinkley (1976) Theoretical Statistics. Chapman and Hall/CRC.</p></li>
-</ul>
-<!-- * Davison (2003) Statistical Models. Cambridge University Press. -->
-<ul>
-<li>Lehmann, Romano (2005) Testing Statistical Hypotheses. Springer Texts in Statistics.</li>
-</ul>
 </div>
 
 
