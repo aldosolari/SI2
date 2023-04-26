@@ -16,7 +16,7 @@ This course focuses on hypothesis testing, which includes classical significance
 
 ## Program
 
-* [Pure significance tests]() [[R]()]
+* [Pure significance tests](docs/slides/puresignificance.pdf) [[R](https://github.com/aldosolari/SI2/blob/master/docs/code/puresignificance.R)]
 
 
 §3 PURE SIGNIFICANCE TESTS<br>
@@ -37,7 +37,7 @@ Exercises 6.3
 Exercises 7.1
 
 
-* [Significance tests: simple and composite null hypotheses](docs/slides/significancetest.pdf) [[R](https://github.com/aldosolari/SI2/blob/master/docs/code/significancetest.R)]
+* [Significance tests: simple and composite null hypotheses]() [[R]()]
 
 * [Multiple testing]() [[R]()]
 
