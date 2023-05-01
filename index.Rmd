@@ -24,7 +24,7 @@ This course focuses on hypothesis testing, which includes classical significance
 §3.2 Test statistics and their null distributions <br>
 §3.3 Composite null hypotheses <br>
 §3.4 Discussion <br>
-Exercises 3.1, 3.2, 3.11, 3.13, 3.15, 3.16
+Exercises 3.1, 3.11, 3.13, 3.15, 3.16
 
 §6 DISTRIBUTION-FREE AND RANDOMIZATION TESTS<br>
 §6.1 General <br>
@@ -34,10 +34,36 @@ Exercises 6.3
 §7 INTERVAL ESTIMATION<br>
 §7.1 Introduction <br>
 §7.2 Scalar parameter <br>
-Exercises 7.1
+Exercises 7.1, 7.2
 
 
-* [Significance tests: simple and composite null hypotheses]() [[R]()]
+* [Significance tests: simple and composite null hypotheses](docs/slides/significancetest.pdf) [[R](https://github.com/aldosolari/SI2/blob/master/docs/code/significancetest.R)]
+
+§4 SIGNIFICANCE TESTS: SIMPLE NULL HYPOTHESES<br>
+§4.1 General<br>
+§4.2 Formulation<br>
+§4.3 Simple null hypothesis and simple alternative
+hypothesis<br>
+§4.4 Some examples<br>
+§4.5 Discrete problems<br>
+§4.6 Composite alternatives<br>
+§4.7 Two-sided tests<br>
+§4.8 Local power<br>
+§4.9 Multidimensional alternatives<br>
+Exercises 4.6, 4.8, 4.13
+
+§5 SIGNIFICANCE TESTS: COMPOSITE NULL HYPOTHESES<br>
+§5.1 General<br>
+§5.2 Similar regions<br>
+§5.3 Invariant tests<br>
+§5.4 Some more difficult problems<br>
+Exercises 5.1, 5.3
+
+§7 INTERVAL ESTIMATION<br>
+§7.3 Scalar parameter with nuisance parameters<br>
+§7.4 Vector parameter<br>
+§7.5 Estimation of future observations<br>
+Exercises 7.11
 
 * [Multiple testing]() [[R]()]
 
@@ -53,7 +79,7 @@ Davison (2003) Exercises 7.3 (page 347): 3, 5, 6, 7, 9, 13, 14; Problems 7.5 (pa
 
 ## Exam
 
-Written. May 24, 9:30
+Written. May 24, 9:30 Aula Seminari U7-2104
 
 ## Main textbook
 
