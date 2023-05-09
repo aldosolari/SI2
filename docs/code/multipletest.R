@@ -5,22 +5,6 @@ rm(list=ls())
 #===================
 
 #-----------------------------------
-# detection boundary
-#-----------------------------------
-
-beta = seq(0.5,1,length.out = 201)
-rho_bonf = (1-sqrt(1-beta))^2
-rho_hc <- rho_bonf
-rho_hc[beta<= 3/4] <- beta[beta<= 3/4] - 1/2
-
-#pdf("Figure_detectbound.pdf")
-plot(beta, rho_bonf, type="l", ylim=c(0,1), xlim=c(0.5,1),
-     xlab=expression(beta), ylab=expression(rho(beta)), lty=2, lwd=2)
-lines(beta, rho_hc, lwd=2)
-legend("topleft", lty=2:1, c("Bonferroni", "HC"), lwd=2)     
-#dev.off()
-
-#-----------------------------------
 # p.adjust example
 #-----------------------------------
 
@@ -59,6 +43,8 @@ B = 10^5
 res <- replicate(B, sim_errors(20, 15, 2, method="none"))
 row.names(res) <- c("R","V","V>0", "V/R")
 res[,1:10]
+
+xtable::xtable(res[,1:10])
 
 # FWER
 mean(res[3,])

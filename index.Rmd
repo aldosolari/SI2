@@ -54,7 +54,7 @@ hypothesis<br>
 §4.8 Local power<br>
 §4.9 Multidimensional alternatives<br>
 Examples 4.1, 4.3, 4.4, 4.5, 4.6, 4.9, 4.10, 4.11, 4.13<br>
-Exercises 4.6, 4.8, 4.13
+Exercises 4.6, 4.7, 4.10, 4.13
 
 §5 SIGNIFICANCE TESTS: COMPOSITE NULL HYPOTHESES<br>
 §5.1 General<br>
@@ -71,7 +71,7 @@ Exercises 5.1, 5.3
 Examples 7.9, 7.17, 7.18, 7.19<br>
 Exercises 7.11
 
-* [Multiple testing]() [[R]()]
+* [Multiple testing](docs/slides/multipletest.pdf) [[R](https://github.com/aldosolari/SI2/blob/master/docs/code/multipletest.R))]
 
 All of the course material is on the 
 [github repo](https://github.com/aldosolari/SI2).
@@ -81,11 +81,13 @@ All of the course material is on the
 
 ## Exercises
 
-Davison (2003) Exercises 7.3 (page 347): 3, 5, 6, 7, 9, 13, 14; Problems 7.5 (page 349) 16, 17, 18, 19, 20, 21
+Davison (2003) Exercises 7.3 (page 347): 3, 4, 5, 6, 9, 13, 14; Problems 7.5 (page 349) 17, 18, 19, 20
 
 ## Exam
 
-Written. May 24, 9:30 Aula Seminari U7-2104
+Written. May 24, 9:30 Aula Seminari U7-2104. 
+
+For the preparation of the written exam, you are expected to study all the material (books, lecture notes, slides) including proofs, and complete all the examples and exercises.
 
 ## Main textbook
 
