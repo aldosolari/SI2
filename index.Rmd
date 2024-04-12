@@ -110,6 +110,6 @@ Lehmann and Romano (2005) *Testing Statistical Hypotheses*. Springer Texts in St
 || 1 || April 15, 2024 || 10-12 and 14-16 (4 hrs) || Aula Seminari U7-2104 ||
 || 2 || April 18, 2024 || 9-12 (3 hrs) || Zoom (remote) ||
 || 3 || April 22, 2024 || 10-12 and 14-16 (4 hrs) || Aula Seminari U7-2104 ||
-|| 4 || April 29, 2024 || 10-12 and ~~[14-16]~~ 16-18 (4 hrs) || Zoom (remote) ||
+|| 4 || April 29, 2024 || 10-12 and ~~14-16~~ 16-18 (4 hrs) || Zoom (remote) ||
 
 
