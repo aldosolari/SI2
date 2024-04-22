@@ -18,29 +18,42 @@ This course focuses on hypothesis testing, which includes classical significance
 
 * [Pure significance tests](docs/slides/puresignificance.pdf) [[R](https://github.com/aldosolari/SI2/blob/master/docs/code/puresignificance.R)]
 
+**COX AND HINKLEY (1976)**
 
 §3 PURE SIGNIFICANCE TESTS<br>
 §3.1 Null hypotheses <br>
 §3.2 Test statistics and their null distributions <br>
 §3.3 Composite null hypotheses <br>
 §3.4 Discussion <br>
-Examples 3.1, 3.2, 3.4<br>
-Exercises 3.1, 3.13, 3.15, 3.16
+<!-- Examples 3.1, 3.2, 3.4 <br>
+<!-- Exercises 3.1, 3.13, 3.15, 3.16 -->
+
+
 
 §6 DISTRIBUTION-FREE AND RANDOMIZATION TESTS<br>
 §6.1 General <br>
 §6.4 Randomization tests <br>
-Examples 6.7<br>
-Exercises 6.3
+<!-- Examples 6.7<br> -->
+<!-- Exercises 6.3 -->
 
 §7 INTERVAL ESTIMATION<br>
 §7.1 Introduction <br>
 §7.2 Scalar parameter <br>
-Examples 7.1, 7.4<br>
-Exercises 7.1, 7.2
+<!-- Examples 7.1, 7.4<br> -->
+<!-- Exercises 7.1, 7.2 -->
 
+
+**DAVISON (2003)** <br>
+<br>
+Section 7.3.1 (pages 325 - 332) <br>
+Section 7.3.4 (pages 343 - 346) <br>
+<br>
+Exercises 7.3 (page 347): 1, 2, 3 <br>
+Problems 7.5 (page 350 - 351): 15, 16, 17, 18 <br>
 
 * [Significance tests: simple and composite null hypotheses](docs/slides/significancetest.pdf) [[R](https://github.com/aldosolari/SI2/blob/master/docs/code/significancetest.R)]
+
+**COX AND HINKLEY (1976)**
 
 §4 SIGNIFICANCE TESTS: SIMPLE NULL HYPOTHESES<br>
 §4.1 General<br>
@@ -53,66 +66,72 @@ hypothesis<br>
 §4.7 Two-sided tests<br>
 §4.8 Local power<br>
 §4.9 Multidimensional alternatives<br>
-Examples 4.1, 4.3, 4.4, 4.5, 4.6, 4.9, 4.10, 4.11, 4.13<br>
-Exercises 4.6, 4.7, 4.10, 4.13
+<!-- Examples 4.1, 4.3, 4.4, 4.5, 4.6, 4.9, 4.10, 4.11, 4.13<br> -->
+<!-- Exercises 4.6, 4.7, 4.10, 4.13 -->
 
 §5 SIGNIFICANCE TESTS: COMPOSITE NULL HYPOTHESES<br>
 §5.1 General<br>
 §5.2 Similar regions<br>
 §5.3 Invariant tests<br>
 §5.4 Some more difficult problems<br>
-Examples 5.1, 5.2, 5.5, 5.9, 5.10, 5.16, 5.18 <br>
-Exercises 5.1, 5.3
+<!-- Examples 5.1, 5.2, 5.5, 5.9, 5.10, 5.16, 5.18 <br> -->
+<!-- Exercises 5.1, 5.3 -->
 
 §7 INTERVAL ESTIMATION<br>
 §7.3 Scalar parameter with nuisance parameters<br>
 §7.4 Vector parameter<br>
 §7.5 Estimation of future observations<br>
-Examples 7.9, 7.17, 7.18, 7.19<br>
-Exercises 7.11
+<!-- Examples 7.9, 7.17, 7.18, 7.19<br> -->
+<!-- Exercises 7.11 -->
 
-* ~~[Multiple testing]()~~
+<!-- * ~~[Multiple testing]()~~ -->
+
+**DAVISON (2003)** <br>
+<br>
+Section 7.3.2 (pages 333 - 339) <br>
+Section 7.3.3 (pages 339 - 343) <br>
+<br>
+Exercises 7.3 (page 347): 4, 5, 6, 7, 8, 9, 13, 14 <br>
+Problems 7.5 (page 350 - 351): 19, 20 <br>
+
 
 All of the course material is on the 
 [github repo](https://github.com/aldosolari/SI2).
 
 
-<!-- ## Datasets -->
 
-## Exercises
-
-Davison (2003) Exercises 7.3 (page 347): 3, 4, 5, 6, 9, 13, 14; Problems 7.5 (page 349) 17, 18, 19, 20
 
 ## Exam
 
-Written. May 24, 9:30 Aula Seminari U7-2104. 
+Written. 
 
 For the preparation of the written exam, you are expected to study all the material (books, lecture notes, slides) including proofs, and complete all the examples and exercises.
 
-## Main textbook
+## Main textbooks
 
 Cox and Hinkley (1976) *Theoretical Statistics*. Chapman and Hall/CRC.
 
+Davison (2003) *Statistical Models*. Cambridge University Press.
+
 ## Other textbooks
 
-<!-- Casella and Berger (2002) *Statistical inference*. Duxbury Press. -->
+Casella and Berger (2002) *Statistical inference*. Duxbury Press. 
 
 Cox (2006) *Principles of Statistical Inference*. Cambridge University Press.
-
-Davison (2003) *Statistical Models*. Cambridge University Press.
 
 Lehmann and Romano (2005) *Testing Statistical Hypotheses*. Springer Texts in Statistics.
 
 
+
 ## Calendar
 
-|| N || Date || Hours || Room || 
+|| N || Date || Hours || Room ||
 |-|-|-|-|-|-|-|-|-|-|-|-|-|
 ||  || ||  ||  || || || ||
-|| 1 || April 27, 2023 || 9.30-12.30 || Aula Seminari U7-2104 ||
-|| 2 || May 2, 2023 || 9.30-12.30 || Aula Seminari U7-2104 ||
-|| 3 || May 3, 2023 || 9.00-12.00 || Aula Seminari U7-2104 ||
-|| 4 || May 9, 2023 || 9.30-12.30 || Aula Seminari U7-2104 ||
-|| 5 || May 10, 2023 || 9.30-12.30 || Aula Seminari U7-2104 ||
+|| 1 || April 15, 2024 || 10-12 and 14-16 (4 hrs) || Aula Seminari U7-2104 ||
+|| 2 || April 18, 2024 || 9-12 (3 hrs) || Zoom (remote) ||
+|| 3 || April 22, 2024 || 10-12 and 14-16 (4 hrs) || Aula Seminari U7-2104 ||
+|| 4 || April 29, 2024 || 10-12 and ~~14-16~~  (2 hrs) || Zoom (remote) ||
+|| 5 || April 30, 2024 || 10-12 and  10-12 (2 hrs) || Zoom (remote) ||
 
 
